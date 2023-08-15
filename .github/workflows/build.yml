@@ -36,7 +36,7 @@ jobs:
           name: kkdz-lcov-file
           path: coverage/lcov.info
       - name: Build
-        run: mvn -B
+        run: mvn -B verify
 
       - name: 🔊 Save PR number (for SonarCloud)
         if: github.event_name == 'pull_request'
