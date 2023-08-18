@@ -1,6 +1,6 @@
 [
 {
-  "username": "good",
+  "username": "",
   "color": "black",
   "expenses": [
     {
@@ -18,12 +18,12 @@
   ]
 },
 {
-  "username": "hello",
+  "username": "",
   "color": "black",
   "expenses": []
 },
 {
-  "username": "oh",
+  "username": "user5",
   "color": "black",
   "expenses": []
 }
