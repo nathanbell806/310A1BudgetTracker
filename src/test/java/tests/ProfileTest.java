@@ -7,8 +7,7 @@ import org.junit.Test;
 import java.io.IOException;
 
 import static org.junit.Assert.*;
-
-public class ProfileTests {
+public class ProfileTest {
     ProfileFactory profileFactory;
 
     CurrentProfile currentProfile;

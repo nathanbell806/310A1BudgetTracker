@@ -1,4 +1,5 @@
 module com.example.budgettracker {
+  exports com.example.budgettracker.profiles;
   requires javafx.controls;
   requires javafx.fxml;
 
@@ -11,9 +12,6 @@ module com.example.budgettracker {
 
   opens com.example.budgettracker to javafx.fxml, com.google.gson;
   exports com.example.budgettracker;
-  exports com.example.budgettracker.profiles;
   opens com.example.budgettracker.profiles to javafx.fxml,com.google.gson;
-
-  opens tests to javafx.fxml,com.google.gson ;
-  exports tests;
+  
 }
