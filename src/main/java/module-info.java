@@ -6,6 +6,7 @@ module com.example.budgettracker {
   requires com.dlsc.formsfx;
   requires org.kordamp.ikonli.javafx;
   requires org.kordamp.bootstrapfx.core;
+  requires com.google.gson;
 
   opens com.example.budgettracker to javafx.fxml;
   exports com.example.budgettracker;
