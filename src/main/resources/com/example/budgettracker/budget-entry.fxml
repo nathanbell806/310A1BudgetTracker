@@ -53,7 +53,7 @@
                <children>
                   <StackPane>
                      <children>
-                        <VBox fx:id="savingView" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="957.0" visible="false">
+                        <VBox fx:id="savingView" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="957.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
@@ -77,19 +77,19 @@
                                        <children>
                                           <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="403.0">
                                              <children>
-                                                <Label text="Time frame*">
+                                                <Label text="Income*">
                                                    <font>
                                                       <Font name="Bodoni MT Bold" size="26.0" />
                                                    </font>
                                                 </Label>
                                                 <HBox prefHeight="82.0" prefWidth="957.0">
                                                    <children>
-                                                      <TextArea fx:id="timeEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="160.0">
+                                                      <TextArea fx:id="savingIncomeEntry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="42.0" prefWidth="160.0" promptText="\$ Amount">
                                                          <font>
                                                             <Font size="19.0" />
                                                          </font>
                                                       </TextArea>
-                                                      <ComboBox fx:id="timeFrameCombo" prefHeight="39.0" prefWidth="137.0" promptText="Month(s)">
+                                                      <ComboBox fx:id="savingIncomeCombo" prefHeight="39.0" prefWidth="137.0" promptText="Monthly">
                                                          <HBox.margin>
                                                             <Insets left="25.0" />
                                                          </HBox.margin>
@@ -166,7 +166,7 @@
                               <Insets left="50.0" right="50.0" />
                            </opaqueInsets>
                         </VBox>
-                        <HBox fx:id="optionView" alignment="CENTER" prefHeight="316.0" prefWidth="957.0">
+                        <HBox fx:id="optionView" alignment="CENTER" prefHeight="316.0" prefWidth="957.0" visible="false">
                            <children>
                               <Button mnemonicParsing="false" onAction="#onIncome" prefHeight="210.0" prefWidth="249.0" text="Amount to Budget" textAlignment="CENTER">
                                  <HBox.margin>

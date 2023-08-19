@@ -1,6 +1,7 @@
 package com.example.budgettracker;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,7 +16,7 @@ import java.io.IOException;
 public class BudgetEntryController {
 
     @FXML
-    private ComboBox timeFrameCombo;
+    private ComboBox savingIncomeCombo;
     @FXML
     private ComboBox incomeCombo;
     @FXML
@@ -31,30 +32,32 @@ public class BudgetEntryController {
     @FXML
     private TextArea savingEntry;
     @FXML
-    private TextArea timeEntry;
+    private TextArea savingIncomeEntry;
     @FXML
     private TextArea depositEntry;
     @FXML
     private TextArea incomeEntry;
+
+    private ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", "Monthly", "Yearly");
 
     @FXML
     private void initialize() {
         expenseButton.setDisable(true);
         onBack(null);
 
-        timeFrameCombo.setItems(FXCollections.observableArrayList("Week(s)", "Month(s)", "Year(s)"));
-        incomeCombo.setItems(FXCollections.observableArrayList("Weekly", "Monthly", "Yearly"));
-        timeFrameCombo.getSelectionModel().selectFirst();
+        savingIncomeCombo.setItems(periodOptions);
+        incomeCombo.setItems(periodOptions);
+        savingIncomeCombo.getSelectionModel().selectFirst();
         incomeCombo.getSelectionModel().selectFirst();
 
         addNumericListener(savingEntry);
-        addNumericListener(timeEntry);
+        addNumericListener(savingIncomeEntry);
         addNumericListener(incomeEntry);
 
         savingEntry.textProperty().addListener((observable, oldValue, newValue) -> {
             updateExpenseButtonState();
         });
-        timeEntry.textProperty().addListener((observable, oldValue, newValue) -> {
+        savingIncomeEntry.textProperty().addListener((observable, oldValue, newValue) -> {
             updateExpenseButtonState();
         });
         incomeEntry.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -97,13 +100,13 @@ public class BudgetEntryController {
 
     private void clearAllEntries() {
         savingEntry.clear();
-        timeEntry.clear();
+        savingIncomeEntry.clear();
         depositEntry.clear();
         incomeEntry.clear();
     }
     private void updateExpenseButtonState() {
         if (savingView.isVisible()) {
-            boolean hasValidSavingEntry = isNumeric(savingEntry.getText()) && isNumeric(timeEntry.getText());
+            boolean hasValidSavingEntry = isNumeric(savingEntry.getText()) && isNumeric(savingIncomeEntry.getText());
             expenseButton.setDisable(!hasValidSavingEntry);
         }
         else if (incomeView.isVisible()) {
