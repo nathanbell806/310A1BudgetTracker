@@ -16,6 +16,9 @@ import java.io.IOException;
 public class BudgetEntryController {
 
     @FXML
+    private ComboBox savingPeriodCombo;
+
+    @FXML
     private ComboBox savingIncomeCombo;
     @FXML
     private ComboBox incomeCombo;
@@ -34,8 +37,6 @@ public class BudgetEntryController {
     @FXML
     private TextArea savingIncomeEntry;
     @FXML
-    private TextArea depositEntry;
-    @FXML
     private TextArea incomeEntry;
 
     private ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", "Monthly", "Yearly");
@@ -47,8 +48,10 @@ public class BudgetEntryController {
 
         savingIncomeCombo.setItems(periodOptions);
         incomeCombo.setItems(periodOptions);
+        savingPeriodCombo.setItems(periodOptions);
         savingIncomeCombo.getSelectionModel().selectFirst();
         incomeCombo.getSelectionModel().selectFirst();
+        savingPeriodCombo.getSelectionModel().selectFirst();
 
         addNumericListener(savingEntry);
         addNumericListener(savingIncomeEntry);
@@ -78,6 +81,8 @@ public class BudgetEntryController {
     @FXML
     private void onExpense(ActionEvent event) {
         // navigate to expense categorise view
+
+        //budget = income - saving goal
     }
 
     @FXML
@@ -101,7 +106,6 @@ public class BudgetEntryController {
     private void clearAllEntries() {
         savingEntry.clear();
         savingIncomeEntry.clear();
-        depositEntry.clear();
         incomeEntry.clear();
     }
     private void updateExpenseButtonState() {
