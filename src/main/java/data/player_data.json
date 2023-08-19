@@ -18,13 +18,13 @@
   ]
 },
 {
-  "username": "user4",
+  "username": "",
   "color": "black",
   "expenses": []
 },
 {
   "username": "user5",
-  "color": "orange",
+  "color": "black",
   "expenses": []
 }
 ]
