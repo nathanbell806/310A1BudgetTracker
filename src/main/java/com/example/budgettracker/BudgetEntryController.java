@@ -17,7 +17,6 @@ public class BudgetEntryController {
 
     @FXML
     private ComboBox savingPeriodCombo;
-
     @FXML
     private ComboBox savingIncomeCombo;
     @FXML
@@ -38,7 +37,6 @@ public class BudgetEntryController {
     private TextArea savingIncomeEntry;
     @FXML
     private TextArea incomeEntry;
-
     private ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", "Monthly", "Yearly");
 
     @FXML
@@ -53,10 +51,10 @@ public class BudgetEntryController {
         incomeCombo.getSelectionModel().selectFirst();
         savingPeriodCombo.getSelectionModel().selectFirst();
 
+        // Enable or Disable the expense navigation button if required entries are filled and is valid
         addNumericListener(savingEntry);
         addNumericListener(savingIncomeEntry);
         addNumericListener(incomeEntry);
-
         savingEntry.textProperty().addListener((observable, oldValue, newValue) -> {
             updateExpenseButtonState();
         });
@@ -68,6 +66,10 @@ public class BudgetEntryController {
         });
     }
 
+    /**
+     * This method navigates from the 'Amount to Budget' or 'Set Saving Goals' back to the option selector view.
+     * @param event The on click event
+     */
     @FXML
     private void onBack(ActionEvent event) {
         clearAllEntries();
@@ -78,6 +80,10 @@ public class BudgetEntryController {
         backButton.setVisible(false);
     }
 
+    /**
+     * This method navigates to the categorise expenses scene.
+     * @param event The on click event
+     */
     @FXML
     private void onExpense(ActionEvent event) {
         // navigate to expense categorise view
@@ -85,6 +91,10 @@ public class BudgetEntryController {
         //budget = income - saving goal
     }
 
+    /**
+     * This method shows the 'Set Saving Goals' view.
+     * @param event The on click event
+     */
     @FXML
     private void onSaving(ActionEvent event) {
         savingView.setVisible(true);
@@ -94,6 +104,10 @@ public class BudgetEntryController {
         backButton.setVisible(true);
     }
 
+    /**
+     * This method shows the 'Amount to Budget' view.
+     * @param event The on click event
+     */
     @FXML
     private void onIncome(ActionEvent event) {
         incomeView.setVisible(true);
@@ -103,11 +117,18 @@ public class BudgetEntryController {
         backButton.setVisible(true);
     }
 
+    /**
+     * This method clears all TextArea views.
+     */
     private void clearAllEntries() {
         savingEntry.clear();
         savingIncomeEntry.clear();
         incomeEntry.clear();
     }
+
+    /**
+     * This method disables/enables the categorise expense navigation button.
+     */
     private void updateExpenseButtonState() {
         if (savingView.isVisible()) {
             boolean hasValidSavingEntry = isNumeric(savingEntry.getText()) && isNumeric(savingIncomeEntry.getText());
@@ -119,9 +140,19 @@ public class BudgetEntryController {
         }
     }
 
+    /**
+     * This method takes a String and checks if it is numeric
+     * @param text The String to check numeric for
+     * @return
+     */
     private boolean isNumeric(String text) {
         return text.matches("\\d+(\\.\\d+)?");
     }
+
+    /**
+     * This method takes a TextArea and adds non-numeric characters preventer listener
+     * @param textField The TextArea to add the numeric listener to
+     */
     private void addNumericListener(TextArea textField) {
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.matches("\\d*")) {
