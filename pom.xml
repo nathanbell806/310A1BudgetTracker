@@ -10,7 +10,7 @@
     <name>BudgetTracker</name>
 
     <properties>
-        <sonar.organization>nathanbell806</sonar.organization>
+        <sonar.organization>deir905</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
@@ -73,6 +73,12 @@
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit</artifactId>
+            <version>4.0.15-alpha</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

@@ -1,4 +1,4 @@
-package com.example.budgettracker;
+package com.example.budgettracker.controller;
 
 import java.util.ArrayList;
 import javafx.collections.FXCollections;
