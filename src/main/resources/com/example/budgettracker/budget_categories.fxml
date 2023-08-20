@@ -2,13 +2,15 @@
 
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="795.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="607.0" prefWidth="795.0" style="-fx-background-color: #f0f5fd;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <PieChart id="pieChartTxt" layoutX="559.0" layoutY="40.0" prefHeight="107.0" prefWidth="141.0" />
       <Text id="totalBudgetTxt" layoutX="575.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total budegted: 0.0">
@@ -26,13 +28,29 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Button id="addCategoryBtn" layoutX="21.0" layoutY="184.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="107.0" text="Add category" />
-      <ListView id="categoryList" layoutX="21.0" layoutY="218.0" prefHeight="375.0" prefWidth="754.0" style="-fx-background-color: EDEDED;" />
+      <Button id="addCategoryBtn" layoutX="21.0" layoutY="162.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="158.0" stylesheets="@../../../Css/categories_page.css" text="Add category">
+         <font>
+            <Font name="Arial" size="12.0" />
+         </font>
+      </Button>
+      <ListView id="categoryList" layoutX="21.0" layoutY="218.0" prefHeight="375.0" prefWidth="754.0" style="-fx-background-color: #dfe9fb;" />
       <Text id="budgetedTxt" layoutX="356.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Budgeted">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <Button id="saveBtn" layoutX="144.0" layoutY="184.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="48.0" text="Save" />
+      <Button id="saveBtn" layoutX="188.0" layoutY="162.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="112.0" styleClass="saveBtn" stylesheets="@../../../Css/categories_page.css" text="Save" />
+      <Pane id="popupPane" layoutX="246.0" layoutY="255.0" prefHeight="177.0" prefWidth="309.0" style="-fx-background-color: #276ee2;" styleClass="popupPane" stylesheets="@../../../Css/categories_page.css">
+         <children>
+            <Label layoutX="67.0" layoutY="14.0" text="Add category" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="25.0" />
+               </font>
+            </Label>
+            <TextField layoutX="72.0" layoutY="56.0" />
+            <Button layoutX="26.0" layoutY="112.0" mnemonicParsing="false" styleClass="cancelBtn" text="Cancel" />
+            <Button layoutX="196.0" layoutY="112.0" mnemonicParsing="false" styleClass="addBtn" stylesheets="@../../../Css/categories_page.css" text="Done" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
