@@ -78,3 +78,7 @@
     -fx-text-fill : #FFFFFF;
     -fx-transform: scale(1.1);
 }
+
+.overlayPane{
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
