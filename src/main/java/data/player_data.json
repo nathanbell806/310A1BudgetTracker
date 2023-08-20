@@ -1,0 +1,30 @@
+[
+{
+  "username": "",
+  "color": "black",
+  "expenses": [
+    {
+      "name": "Groceries",
+      "cost": 50.0
+    },
+    {
+      "name": "Rent",
+      "cost": 1000.0
+    },
+    {
+      "name": "Utilities",
+      "cost": 150.0
+    }
+  ]
+},
+{
+  "username": "",
+  "color": "black",
+  "expenses": []
+},
+{
+  "username": "user5",
+  "color": "black",
+  "expenses": []
+}
+]
