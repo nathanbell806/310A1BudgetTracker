@@ -1,4 +1,4 @@
-package com.example.budgettracker;
+package com.example.budgettracker.controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,7 +40,7 @@ public class BudgetEntryController {
     private ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", "Monthly", "Yearly");
 
     @FXML
-    private void initialize() {
+    public void initialize() {
         expenseButton.setDisable(true);
         onBack(null);
 
@@ -71,7 +71,7 @@ public class BudgetEntryController {
      * @param event The on click event
      */
     @FXML
-    private void onBack(ActionEvent event) {
+    public void onBack(ActionEvent event) {
         clearAllEntries();
         savingView.setVisible(false);
         incomeView.setVisible(false);
@@ -85,7 +85,7 @@ public class BudgetEntryController {
      * @param event The on click event
      */
     @FXML
-    private void onExpense(ActionEvent event) {
+    public void onExpense(ActionEvent event) {
         // navigate to expense categorise view
 
         //budget = income - saving goal
@@ -96,7 +96,7 @@ public class BudgetEntryController {
      * @param event The on click event
      */
     @FXML
-    private void onSaving(ActionEvent event) {
+    public void onSaving(ActionEvent event) {
         savingView.setVisible(true);
         incomeView.setVisible(false);
         optionView.setVisible(false);
@@ -109,7 +109,7 @@ public class BudgetEntryController {
      * @param event The on click event
      */
     @FXML
-    private void onIncome(ActionEvent event) {
+    public void onIncome(ActionEvent event) {
         incomeView.setVisible(true);
         savingView.setVisible(false);
         optionView.setVisible(false);
