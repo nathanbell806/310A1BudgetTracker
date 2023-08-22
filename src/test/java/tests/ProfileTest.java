@@ -33,6 +33,7 @@ public class ProfileTest {
         currentProfile.setCurrentProfile(profileFactory.selectProfile("user5"));
         currentProfile.setProfileSlot(3);
 
+
         int userSlot = currentProfile.getProfileSlot();
         assertEquals(3, userSlot);
 
