@@ -22,7 +22,7 @@ public class CreateProfileController {
     @FXML
     public void onCreate() throws IOException {
 
-        Boolean didWork = profileFactory.createProfile(usernameTextField.getText(), "black", currentProfile.getProfileSlot());
+        Boolean didWork = profileFactory.createProfile(usernameTextField.getText(), currentProfile.getProfileSlot());
         if(Boolean.TRUE.equals(didWork)){
             currentProfile.setCurrentProfile(profileFactory.selectProfile(usernameTextField.getText()));
             //take to next page
