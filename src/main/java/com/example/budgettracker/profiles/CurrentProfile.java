@@ -9,6 +9,8 @@ public class CurrentProfile {
     private CurrentProfile() {
     }
 
+
+
     public static CurrentProfile getInstance() {
         if (instance == null) {
             instance = new CurrentProfile();
