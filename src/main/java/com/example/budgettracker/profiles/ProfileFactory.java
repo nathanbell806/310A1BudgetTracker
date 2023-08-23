@@ -15,8 +15,8 @@ public class ProfileFactory {
     }
 
 
-    public Boolean createProfile(String username, String colour, int profileSlot) throws IOException {
-        return profileRepository.createProfile(username, colour, profileSlot);
+    public Boolean createProfile(String username,int profileSlot) throws IOException {
+        return profileRepository.createProfile(username, profileSlot);
     }
 
 
@@ -29,6 +29,8 @@ public class ProfileFactory {
     public void saveProfile(Profile profile) throws IOException {
         profileRepository.saveProfile(profile);
     }
+
+
 
 
 

@@ -1,7 +1,6 @@
 [
 {
   "username": "",
-  "color": "black",
   "expenses": [
     {
       "name": "Groceries",
@@ -18,13 +17,20 @@
   ]
 },
 {
-  "username": "",
-  "color": "black",
+  "username": "user4",
   "expenses": []
 },
 {
   "username": "user5",
-  "color": "black",
-  "expenses": []
+  "expenses": [
+    {
+      "name": "food",
+      "cost": 2.0
+    },
+    {
+      "name": "food",
+      "cost": 2.0
+    }
+  ]
 }
 ]
