@@ -1,14 +1,12 @@
 package tests;
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.Expense;
-import com.example.budgettracker.profiles.Profile;
 import com.example.budgettracker.profiles.ProfileFactory;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import static org.junit.Assert.*;
 public class ProfileTest {
