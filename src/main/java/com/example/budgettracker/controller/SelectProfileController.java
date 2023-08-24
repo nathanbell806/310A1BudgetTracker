@@ -1,10 +1,10 @@
 package com.example.budgettracker.controller;
 
-import com.example.budgettracker.StartApplication;
+
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.Profile;
 import com.example.budgettracker.profiles.ProfileFactory;
-import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -80,7 +81,7 @@ public class SelectProfileController {
 
     }
     @FXML
-    private void onProfileButtonOne(ActionEvent actionEvent) throws IOException {
+    private void onProfileButtonOne(MouseEvent actionEvent) throws IOException {
         if (accountOneLabel.getText().equals(CREATE_ACCOUNT)) {
             currentProfile.setProfileSlot(1);
             changeScene(actionEvent);
@@ -90,7 +91,7 @@ public class SelectProfileController {
         }
     }
     @FXML
-    private void onProfileButtonTwo(ActionEvent actionEvent) throws IOException {
+    private void onProfileButtonTwo(MouseEvent actionEvent) throws IOException {
         if (accountTwoLabel.getText().equals(CREATE_ACCOUNT)) {
             currentProfile.setProfileSlot(2);
             changeScene(actionEvent);
@@ -100,7 +101,7 @@ public class SelectProfileController {
         }
     }
     @FXML
-    private void onProfileButtonThree(ActionEvent actionEvent) throws IOException {
+    private void onProfileButtonThree(MouseEvent actionEvent) throws IOException {
         if (accountThreeLabel.getText().equals(CREATE_ACCOUNT)) {
             currentProfile.setProfileSlot(3);
             changeScene(actionEvent);
@@ -110,10 +111,10 @@ public class SelectProfileController {
         }
     }
 
-    public void changeScene(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource(("/create-profile.fxml")));
+    public void changeScene(MouseEvent event) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource("/com/example/budgettracker/create-profile.fxml"));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(parent);
+        Scene scene = new Scene(parent, 1920, 1080);
         stage.setScene(scene);
         stage.show();
     }
