@@ -39,7 +39,7 @@
                               </Label>
                               <ImageView fx:id="profileViewTwo" fitHeight="175.0" fitWidth="175.0">
                                  <image>
-                                    <Image url="@../../../images/user.png" />
+                                    <Image url="@../../../Images/user.png" />
                                  </image>
                               </ImageView>
                               <Label fx:id="plusLabelTwo" text="+" textFill="WHITE" translateY="-15.0">
@@ -60,7 +60,7 @@
                               </Label>
                               <ImageView fx:id="profileViewOne" fitHeight="175.0" fitWidth="175.0">
                                  <image>
-                                    <Image url="@../../../images/user.png" />
+                                    <Image url="@../../../Images/user.png" />
                                  </image>
                               </ImageView>
                               <Label fx:id="plusLabelOne" text="+" textFill="WHITE" translateY="-15.0">
@@ -81,7 +81,7 @@
                               </Label>
                               <ImageView fx:id="profileViewThree" fitHeight="175.0" fitWidth="175.0">
                                  <image>
-                                    <Image url="@../../../images/user.png" />
+                                    <Image url="@../../../Images/user.png" />
                                  </image>
                               </ImageView>
                               <Label fx:id="plusLabelThree" text="+" textFill="WHITE" translateY="-15.0">

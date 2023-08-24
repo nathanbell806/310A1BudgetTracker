@@ -1,5 +1,6 @@
 package com.example.budgettracker.controller;
 
+import com.example.budgettracker.StartApplication;
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.Profile;
 import com.example.budgettracker.profiles.ProfileFactory;
@@ -110,7 +111,7 @@ public class SelectProfileController {
     }
 
     public void changeScene(ActionEvent event) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource(("create-profile.fxml")));
+        Parent parent = FXMLLoader.load(getClass().getResource(("/create-profile.fxml")));
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         Scene scene = new Scene(parent);
         stage.setScene(scene);
