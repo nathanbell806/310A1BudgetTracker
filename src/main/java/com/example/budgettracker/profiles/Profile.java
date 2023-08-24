@@ -11,6 +11,13 @@ public class Profile {
     @SerializedName("expenses")
     private List<Expense> expenses;
 
+    @SerializedName("budget")
+    private float budget;
+
+    @SerializedName("savings")
+    private float savings;
+
+
     public String getUsername() {
         return username;
     }
@@ -29,5 +36,21 @@ public class Profile {
     public void addExpense(Expense expense){
         this.expenses.add(expense);
     }
+
+    public void setBudget(float budget){
+        this.budget = budget;
+    }
+
+    public void setSavings(float savings){
+        this.savings = savings;
+    }
+
+    public float getBudget(){
+        return budget;
+    }
+    public float getSavings(){
+        return savings;
+    }
+
 }
 
