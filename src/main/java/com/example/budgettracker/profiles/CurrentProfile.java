@@ -1,5 +1,10 @@
 package com.example.budgettracker.profiles;
 
+
+/**
+ * This class acts as a singleton so that the current user profile can be saved to the json file and when it is retrieved
+ * you can often put it inside the singleton
+ */
 public class CurrentProfile {
     private static CurrentProfile instance = null;
     private Profile presentProfile;
