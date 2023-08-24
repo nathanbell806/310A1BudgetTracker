@@ -8,9 +8,11 @@ We'd welcome you to contribute to improve our budget tracker! Here're some guide
 - [Setting up](#setup)
 - [Testing](#test)
 - [Expected contributions](#excon)
-## High level design
+
+
+## <a name="highLv"></a> High level design
 The aim of the Budget Tracker project is to create a personal finance web application to enhance user’s financial awareness and to promote healthy financial spending habits. By providing a set of user-friendly and intuitive tools, users will be able to seamlessly track their expenses, set personalised budgets, and visualise their spending patterns, empowering them to make informed financial decisions and work towards their financial goals.
-## Project roadmap
+## <a name="projRM"></a> Project roadmap
 
 This project consists of 3 development stages, each with different scope of work
 
@@ -31,7 +33,7 @@ This project consists of 3 development stages, each with different scope of work
 - payment service integration and bill splitting (Potential*)
 
 
-## Found a problem?
+## <a name="bugrep"></a>Found a problem?
 If you find bug in the source code or mistakes in documentation, you can help us by submitting [an issue][link] along with a bug report
 
 You'll be asked to include the following in the bug report:
@@ -41,7 +43,7 @@ You'll be asked to include the following in the bug report:
 - Other necessary info such as error reports, screenshots, build condition
 
 [Bug report template][Link]
-## Adding features
+## <a name="newfeat"></a>Adding features
 
 You can request a new feature by submitting [an issue][link].
 
@@ -51,10 +53,10 @@ You should fork this repository and implement the feature on a new branch.
 
 Once you finished the implementation, create a pull request that reference to the resolved issue with a description of changes made. Your pull request should be reviewed by another contributor before being approved.
 
-## Setting up 
+## <a name="setup"></a>Setting up 
 TBA
-## Testing
+## <a name="test"></a>Testing
 TBA
-## What is expected
+## <a name="excon"></a>What is expected
 Please checkout the code of conduct of this project: [Code of conduct][Link]
 
