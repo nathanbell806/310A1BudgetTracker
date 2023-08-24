@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 
 public class ProfileRepository {
 
-    private List<Profile> profiles;
+    private final List<Profile> profiles;
     public ProfileRepository() throws IOException {
         this.profiles = getAllProfiles();
     }
@@ -61,7 +61,7 @@ public class ProfileRepository {
      * @param username The username of the profile
      * @param profileSlot which slot the user should be created in
      */
-    protected boolean createProfile(String username, int profileSlot) throws IOException {
+    protected boolean createProfile(String username, int profileSlot){
         username = username.trim();
         int count = 1;
         for (Profile profile : profiles) {
@@ -88,7 +88,7 @@ public class ProfileRepository {
      * This method saves an aldready created profile to json data file
      * @param saveProfile The profile to be saved
      */
-    protected void saveProfile(Profile saveProfile) throws IOException {
+    protected void saveProfile(Profile saveProfile) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         StringBuilder json = new StringBuilder("[\n");
         try (FileWriter fileWriter = new FileWriter("src/main/java/data/player_data.json")){

@@ -1,5 +1,7 @@
 package com.example.budgettracker.controller;
 
+import com.example.budgettracker.profiles.CurrentProfile;
+import com.example.budgettracker.profiles.ProfileFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,18 +11,17 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 
 import java.io.IOException;
 
 public class BudgetEntryController {
 
     @FXML
-    private ComboBox savingPeriodCombo;
+    private ComboBox<String> savingPeriodCombo;
     @FXML
-    private ComboBox savingIncomeCombo;
+    private ComboBox<String> savingIncomeCombo;
     @FXML
-    private ComboBox incomeCombo;
+    private ComboBox<String> incomeCombo;
     @FXML
     private VBox savingView;
     @FXML
@@ -37,7 +38,7 @@ public class BudgetEntryController {
     private TextArea savingIncomeEntry;
     @FXML
     private TextArea incomeEntry;
-    private ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", "Monthly", "Yearly");
+    private final ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", "Monthly", "Yearly");
 
     @FXML
     public void initialize() {
@@ -55,15 +56,9 @@ public class BudgetEntryController {
         addNumericListener(savingEntry);
         addNumericListener(savingIncomeEntry);
         addNumericListener(incomeEntry);
-        savingEntry.textProperty().addListener((observable, oldValue, newValue) -> {
-            updateExpenseButtonState();
-        });
-        savingIncomeEntry.textProperty().addListener((observable, oldValue, newValue) -> {
-            updateExpenseButtonState();
-        });
-        incomeEntry.textProperty().addListener((observable, oldValue, newValue) -> {
-            updateExpenseButtonState();
-        });
+        savingEntry.textProperty().addListener((observable, oldValue, newValue) -> updateExpenseButtonState());
+        savingIncomeEntry.textProperty().addListener((observable, oldValue, newValue) -> updateExpenseButtonState());
+        incomeEntry.textProperty().addListener((observable, oldValue, newValue) -> updateExpenseButtonState());
     }
 
     /**
@@ -85,10 +80,59 @@ public class BudgetEntryController {
      * @param event The on click event
      */
     @FXML
-    public void onExpense(ActionEvent event) {
+    public void onExpense(ActionEvent event) throws IOException {
+
+        saveUserEntryData();
         // navigate to expense categorise view
 
-        //budget = income - saving goal
+    }
+
+    /**
+     * This helped method saves the user data depending on current tab to the JSON always in weekly format
+     */
+    private void saveUserEntryData() throws IOException {
+        //checks which page was open
+        if(!savingIncomeEntry.getText().isEmpty()){
+            int income = Integer.parseInt(savingIncomeEntry.getText());
+            int saving = Integer.parseInt(savingEntry.getText());
+
+            String incomePeriod = savingIncomeCombo.getValue();
+            String savingPeriod = savingPeriodCombo.getValue();
+
+            //convert to always want data weekly
+            if(incomePeriod.equals("Monthly")){
+                income = (income*12)/52;
+            } else if (incomePeriod.equals("Yearly")) {
+                income = income/52;
+            }
+
+            if(savingPeriod.equals("Monthly")){
+                saving = (saving*12)/52;
+            } else if (savingPeriod.equals("Yearly")) {
+                saving = saving/52;
+            }
+
+            //budget = income - saving goal
+            CurrentProfile.getInstance().getCurrentProfile().setBudget(income - saving);
+            CurrentProfile.getInstance().getCurrentProfile().setSavings(saving);
+        } else {
+            int income = Integer.parseInt(incomeEntry.getText());
+
+            String budgetPeriod = incomeCombo.getValue();
+
+            //convert to always weekly data
+            if(budgetPeriod.equals("Monthly")){{
+                income = (income*12)/52;
+            }} else if (budgetPeriod.equals("Yearly")) {
+                income = income/52;
+            }
+
+            CurrentProfile.getInstance().getCurrentProfile().setBudget(income);
+            CurrentProfile.getInstance().getCurrentProfile().setSavings(0);
+
+        }
+        ProfileFactory profileFactory = new ProfileFactory();
+        profileFactory.saveProfile(CurrentProfile.getInstance().getCurrentProfile());
     }
 
     /**
@@ -143,7 +187,7 @@ public class BudgetEntryController {
     /**
      * This method takes a String and checks if it is numeric
      * @param text The String to check numeric for
-     * @return
+     * @return boolean
      */
     private boolean isNumeric(String text) {
         return text.matches("\\d+(\\.\\d+)?");
