@@ -13,5 +13,7 @@ module com.example.budgettracker {
   opens com.example.budgettracker to javafx.fxml, com.google.gson;
   exports com.example.budgettracker;
   opens com.example.budgettracker.profiles to javafx.fxml,com.google.gson;
-  
+    exports com.example.budgettracker.controller;
+    opens com.example.budgettracker.controller to com.google.gson, javafx.fxml;
+
 }

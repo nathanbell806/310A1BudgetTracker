@@ -12,26 +12,26 @@ import java.util.NoSuchElementException;
 
 public class ProfileRepository {
 
-    private List<Profile> profiles;
+    private final List<Profile> profiles;
     public ProfileRepository() throws IOException {
         this.profiles = getAllProfiles();
     }
 
+    /**
+     * This method gets all profiles from the json data file
+     */
     protected static List<Profile> getAllProfiles() throws IOException {
         ArrayList<Profile> profiles = new ArrayList<>();
 
-        // Path of the JSON to read from.
         Path profilePath = Path.of("src/main/java/data/player_data.json");
         String rawProfiles = Files.readString(profilePath);
 
-        // This streamer will parse in all the JSONs in the file.
         JsonStreamParser streamParser = new JsonStreamParser(rawProfiles);
 
-        // For every JSON object in the file, this will run (until EOF)
         while (streamParser.hasNext()) {
             JsonElement page = streamParser.next();
 
-            // JSON file is an array of elements, so needs to convert into array.
+            // JSON file is an array of elements so needs to convert into array.
             if (page.isJsonArray()) {
                 JsonArray elements = (JsonArray) page;
                 for (JsonElement element : elements) {
@@ -43,7 +43,10 @@ public class ProfileRepository {
         return profiles;
     }
 
-
+    /**
+     * This method gets a profile from the json data file
+     * @param username the username for the profile
+     */
     protected Profile selectProfile(String username) {
         for (Profile profile : profiles) {
             if (profile.getUsername().equals(username)) {
@@ -53,36 +56,39 @@ public class ProfileRepository {
         throw new NoSuchElementException("Profile not found");
     }
 
-    protected boolean createProfile(String username, String colour, int profileSlot) throws IOException {
+    /**
+     * This method creates a profile and adds it to json data file
+     * @param username The username of the profile
+     * @param profileSlot which slot the user should be created in
+     */
+    protected boolean createProfile(String username, int profileSlot){
         username = username.trim();
-        // Loop through all the profiles
         int count = 1;
         for (Profile profile : profiles) {
             if (profile.getUsername().equals(username)) {
-                //add user already created logger here
                 return false;
             }
 
-            // Overwrite. If profile is empty, default empty profile is ""
             if (profile.getUsername().equals("")&&(count==profileSlot)) {
                 profile.setUsername(username);
-                profile.setColor(colour);
                 List<Expense> emptyList = new ArrayList<>();
                 profile.setExpenses(emptyList);
+                profile.setBudget(0);
+                profile.setSavings(0);
                 saveProfile(profile);
-                //add "successfully added logger here
                 return true;
             }
             count = count+1;
         }
-
-        // In this case, all 3 slots of users are taken
         throw new IndexOutOfBoundsException("All 3 user slots are taken");
     }
 
 
-
-    protected void saveProfile(Profile saveProfile) throws IOException {
+    /**
+     * This method saves an aldready created profile to json data file
+     * @param saveProfile The profile to be saved
+     */
+    protected void saveProfile(Profile saveProfile) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         StringBuilder json = new StringBuilder("[\n");
         try (FileWriter fileWriter = new FileWriter("src/main/java/data/player_data.json")){
@@ -109,5 +115,11 @@ public class ProfileRepository {
 
 
     }
+
+
+
+
+
+
 }
 

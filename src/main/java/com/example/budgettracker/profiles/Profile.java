@@ -8,10 +8,15 @@ import java.util.List;
 public class Profile {
     @SerializedName("username")
     private String username;
-    @SerializedName("color")
-    private String color;
     @SerializedName("expenses")
     private List<Expense> expenses;
+
+    @SerializedName("budget")
+    private int budget;
+
+    @SerializedName("savings")
+    private int savings;
+
 
     public String getUsername() {
         return username;
@@ -21,14 +26,6 @@ public class Profile {
         this.username = username;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     public List<Expense> getExpenses() {
         return expenses;
     }
@@ -36,5 +33,24 @@ public class Profile {
     public void setExpenses(List<Expense> expenses) {
         this.expenses = expenses;
     }
+    public void addExpense(Expense expense){
+        this.expenses.add(expense);
+    }
+
+    public void setBudget(int budget){
+        this.budget = budget;
+    }
+
+    public void setSavings(int savings){
+        this.savings = savings;
+    }
+
+    public int getBudget(){
+        return budget;
+    }
+    public int getSavings(){
+        return savings;
+    }
+
 }
 

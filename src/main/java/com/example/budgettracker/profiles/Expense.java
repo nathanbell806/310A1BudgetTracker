@@ -4,6 +4,12 @@ public class Expense {
     private String name;
     private double cost;
 
+    public Expense(String expense, double cost) {
+        this.name = expense;
+        this.cost = cost;
+    }
+
+
     public String getName() {
         return name;
     }
@@ -18,5 +24,13 @@ public class Expense {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "name='" + name + '\'' +
+                ", cost=" + cost +
+                '}';
     }
 }
