@@ -56,10 +56,14 @@ public class ProfileTest {
     public void testSaveAndGetALlProfiles() throws IOException {
         //add food as an expense to second slot
         Expense expense = new Expense("food", 2.0);
+
         currentProfile.getCurrentProfile().addExpense(expense);
+        currentProfile.getCurrentProfile().setBudget(10);
+        currentProfile.getCurrentProfile().setSavings(5);
         profileFactory.saveProfile(currentProfile.getCurrentProfile());
         assertEquals(expense.toString(),profileFactory.getAllProfiles().get(2).getExpenses().get(0).toString());
 
-
+        assertEquals(10,profileFactory.getAllProfiles().get(2).getBudget());
+        assertEquals(5,profileFactory.getAllProfiles().get(2).getSavings());
     }
 }
