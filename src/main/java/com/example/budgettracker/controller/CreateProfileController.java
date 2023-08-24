@@ -1,6 +1,7 @@
 package com.example.budgettracker.controller;
 
 import com.example.budgettracker.ChangeScene;
+import com.example.budgettracker.SceneName;
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.ProfileFactory;
 import javafx.fxml.FXML;
@@ -55,7 +56,7 @@ public class CreateProfileController {
 
     @FXML
     private void goBack(MouseEvent event) throws IOException {
-        changeScene.changeScene(event, "/com/example/budgettracker/select-profile.fxml");
+        changeScene.changeScene(event, SceneName.SELECT_PROFILE);
     }
 
 

@@ -1,11 +1,10 @@
 package tests.controller;
+import com.example.budgettracker.StartApplication;
 import com.example.budgettracker.controller.BudgetEntryController;
-import com.example.budgettracker.HelloApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import org.junit.Before;
-import org.junit.Test;
 import org.testfx.assertions.api.Assertions;
 import org.testfx.framework.junit.ApplicationTest;
 
@@ -19,7 +18,7 @@ public class BudgetEntryControllerTest extends ApplicationTest {
     private BudgetEntryController controller;
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("budget-entry.fxml"));
+        FXMLLoader loader = new FXMLLoader(StartApplication.class.getResource("/com/example/budgettracker/budget-entry.fxml"));
         Parent root = loader.load();
         this.controller = loader.getController();
         stage.setScene(new Scene(root, 0, 0));
