@@ -29,7 +29,7 @@
             <Insets />
          </HBox.margin>
       </Button>
-      <Button fx:id="deleteBtn" mnemonicParsing="false" text="Delete">
+      <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#onDelete" text="Delete">
          <HBox.margin>
             <Insets left="20.0" />
          </HBox.margin>
