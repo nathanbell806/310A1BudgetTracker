@@ -73,6 +73,8 @@ public class ProfileRepository {
                 profile.setUsername(username);
                 List<Expense> emptyList = new ArrayList<>();
                 profile.setExpenses(emptyList);
+                profile.setBudget(0);
+                profile.setSavings(0);
                 saveProfile(profile);
                 return true;
             }
