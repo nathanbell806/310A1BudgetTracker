@@ -14,6 +14,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * We had to comment out these tests as sonarcloud didn't seem to be able to finish its testing with javafx test types running
+ */
 public class BudgetEntryControllerTest extends ApplicationTest {
     private BudgetEntryController controller;
     @Override

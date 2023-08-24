@@ -57,7 +57,7 @@ public class ProfileRepository {
     }
 
     /**
-     * This method creates a profile and adds it to json data file
+     * This method creates a profile and adds it to json data file using gson
      * @param username The username of the profile
      * @param profileSlot which slot the user should be created in
      */
@@ -85,7 +85,7 @@ public class ProfileRepository {
 
 
     /**
-     * This method saves an aldready created profile to json data file
+     * This method saves an already created profile to json data file
      * @param saveProfile The profile to be saved
      */
     protected void saveProfile(Profile saveProfile) {
@@ -95,7 +95,6 @@ public class ProfileRepository {
             // Formats the JSON into the proper format.
             for (int i = 0; i < profiles.size(); i++) {
 
-                // Check if the current profile is the same, if not, write to JSON.
                 if (profiles.get(i).getUsername().equals(saveProfile.getUsername())) {
                     json.append(gson.toJson(saveProfile, Profile.class));
                 } else {
@@ -107,7 +106,6 @@ public class ProfileRepository {
             }
             json.append("\n]");
 
-            // Save to the JSON file
             fileWriter.write(String.valueOf(json));
         }catch (IOException e) {
             e.printStackTrace();
