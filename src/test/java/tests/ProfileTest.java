@@ -28,14 +28,14 @@ public class ProfileTest {
      * change the json by how it says to in the comments it also makes sure createprofile is working
      */
 //    @Test
-//    public void createProfile() throws IOException {
-//        //make sure that slot 2 username is empty
-//        boolean result1 = profileFactory.createProfile("user4",2);
-//        assertTrue(result1);
-//        //make sure slot 3 has a user called user5
-//        boolean result2 = profileFactory.createProfile("user5",  3);
-//        assertFalse(result2);
-//    }
+    public void createProfile() throws IOException {
+        //make sure that slot 2 username is empty
+        boolean result1 = profileFactory.createProfile("user4",2);
+        assertTrue(result1);
+        //make sure slot 3 has a user called user5
+        boolean result2 = profileFactory.createProfile("user5",  3);
+        assertFalse(result2);
+    }
 
     /**
      * This test ensures the singleton is working and select profile is working
