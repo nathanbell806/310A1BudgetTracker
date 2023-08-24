@@ -1,4 +1,3 @@
-
 # Contribute to SE310 G6 Budget tracker 
 We'd welcome you to contribute to improve our budget tracker! Here're some guidelines we'd like you to follow.
 - [The high level design](#highLv)
@@ -8,11 +7,9 @@ We'd welcome you to contribute to improve our budget tracker! Here're some guide
 - [Setting up](#setup)
 - [Testing](#test)
 - [Expected contributions](#excon)
-
-
-## <a name="highLv"></a> High level design
+## High level design
 The aim of the Budget Tracker project is to create a personal finance web application to enhance user’s financial awareness and to promote healthy financial spending habits. By providing a set of user-friendly and intuitive tools, users will be able to seamlessly track their expenses, set personalised budgets, and visualise their spending patterns, empowering them to make informed financial decisions and work towards their financial goals.
-## <a name="projRM"></a> Project roadmap
+## Project roadmap
 
 This project consists of 3 development stages, each with different scope of work
 
@@ -33,8 +30,8 @@ This project consists of 3 development stages, each with different scope of work
 - payment service integration and bill splitting (Potential*)
 
 
-## <a name="bugrep"></a>Found a problem?
-If you find bug in the source code or mistakes in documentation, you can help us by submitting [an issue][link] along with a bug report
+## Found a problem?
+If you find bug in the source code or mistakes in documentation, you can help us by submitting [an issue](https://github.com/nathanbell806/310A1BudgetTracker/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=) along with a bug report
 
 You'll be asked to include the following in the bug report:
 
@@ -42,10 +39,9 @@ You'll be asked to include the following in the bug report:
 - Steps to reproduce
 - Other necessary info such as error reports, screenshots, build condition
 
-[Bug report template][Link]
-## <a name="newfeat"></a>Adding features
+## Adding features
 
-You can request a new feature by submitting [an issue][link].
+You can request a new feature by submitting [an issue](https://github.com/nathanbell806/310A1BudgetTracker/issues/new?assignees=&labels=&projects=&template=feature_request.md&title=).
 
 Make sure you search for existing issues before you make a new one!
 
@@ -53,10 +49,32 @@ You should fork this repository and implement the feature on a new branch.
 
 Once you finished the implementation, create a pull request that reference to the resolved issue with a description of changes made. Your pull request should be reviewed by another contributor before being approved.
 
-## <a name="setup"></a>Setting up 
-TBA
-## <a name="test"></a>Testing
-TBA
-## <a name="excon"></a>What is expected
-Please checkout the code of conduct of this project: [Code of conduct][Link]
+## Setting up 
+Priquisities:
+- [Java JDK 17.0.2](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+JavaFX should be installed by the Maven setup in this project
 
+### Installation
+1. Configure the JAVA_HOME environment variable by following the instructions [here](https://www.java.com/en/download/help/path.html). Afterwards, verify if the JAVA_HOME environment variable is properly set by navigating to your Terminal and typing the following:
+   ```bash
+   java -version
+2. Once verified, clone the repository to your directory of choice:
+   ```bash
+   git clone https://github.com/nathanbell806/310A1BudgetTracker
+3. Done!
+
+### Running the project:
+For Unix/MacOsX:  
+`./mvnw clean javafx:run`
+
+For Windows:  
+`.\mvnw.cmd clean javafx:run`
+
+## Testing
+For Unix/MacOsX:  
+`./mvnw clean test`
+
+For Windows:  
+`.\mvnw.cmd clean test`
+## What is expected
+Please checkout the code of conduct of this project: [Code of conduct](https://github.com/nathanbell806/310A1BudgetTracker/blob/main/CODE_OF_CONDUCT.md)
