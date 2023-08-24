@@ -25,11 +25,11 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Text id="budgetLeftAmountTxt" fx:id="leftBudgetLabel" layoutX="21.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\$ 1000">
+      <Label fx:id="leftBudgetLabel" layoutX="21.0" layoutY="67.0" text="1000$">
          <font>
             <Font size="30.0" />
          </font>
-      </Text>
+      </Label>
       <Button id="addCategoryBtn" fx:id="addCategoryBtn" layoutX="21.0" layoutY="162.0" mnemonicParsing="false" onAction="#onAddCategory" prefHeight="40.0" prefWidth="158.0" stylesheets="@../../../Css/categories_page.css" text="Add category">
          <font>
             <Font name="Arial" size="12.0" />
