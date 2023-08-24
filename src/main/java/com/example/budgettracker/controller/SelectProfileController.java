@@ -1,4 +1,4 @@
-package com.example.budgettracker;
+package com.example.budgettracker.controller;
 
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.Profile;
