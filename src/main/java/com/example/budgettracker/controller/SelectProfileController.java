@@ -2,6 +2,7 @@ package com.example.budgettracker.controller;
 
 
 import com.example.budgettracker.ChangeScene;
+import com.example.budgettracker.SceneName;
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.Profile;
 import com.example.budgettracker.profiles.ProfileFactory;
@@ -35,9 +36,7 @@ public class SelectProfileController {
     ImageView profileViewTwo;
     @FXML
     ImageView profileViewThree;
-
-    private static final String DESTIONATION_CREATE_PROFILE = "/com/example/budgettracker/create-profile.fxml";
-    private static final String DESTIONATION_BUDGET_ENTRY = "/com/example/budgettracker/budget-entry.fxml";
+    
     CurrentProfile currentProfile;
     ProfileFactory profileFactory;
 
@@ -83,10 +82,10 @@ public class SelectProfileController {
     private void onProfileButtonOne(MouseEvent actionEvent) throws IOException {
         if (accountOneLabel.getText().equals(CREATE_ACCOUNT)) {
             currentProfile.setProfileSlot(1);
-            changeScene.changeScene(actionEvent,DESTIONATION_CREATE_PROFILE );
+            changeScene.changeScene(actionEvent, SceneName.CREATE_PROFILE );
         } else {
             currentProfile.setCurrentProfile(profileFactory.selectProfile(accountOneLabel.getText()));
-            changeScene.changeScene(actionEvent,DESTIONATION_BUDGET_ENTRY );
+            changeScene.changeScene(actionEvent,SceneName.BUDGET_ENTRY );
             accountOneLabel.setText("done");
         }
     }
@@ -94,10 +93,10 @@ public class SelectProfileController {
     private void onProfileButtonTwo(MouseEvent actionEvent) throws IOException {
         if (accountTwoLabel.getText().equals(CREATE_ACCOUNT)) {
             currentProfile.setProfileSlot(2);
-            changeScene.changeScene(actionEvent,DESTIONATION_CREATE_PROFILE );
+            changeScene.changeScene(actionEvent,SceneName.CREATE_PROFILE );
         } else {
             currentProfile.setCurrentProfile(profileFactory.selectProfile(accountTwoLabel.getText()));
-            changeScene.changeScene(actionEvent,DESTIONATION_BUDGET_ENTRY );
+            changeScene.changeScene(actionEvent,SceneName.BUDGET_ENTRY );
             accountTwoLabel.setText("done");
         }
     }
@@ -105,10 +104,10 @@ public class SelectProfileController {
     private void onProfileButtonThree(MouseEvent actionEvent) throws IOException {
         if (accountThreeLabel.getText().equals(CREATE_ACCOUNT)) {
             currentProfile.setProfileSlot(3);
-            changeScene.changeScene(actionEvent,DESTIONATION_CREATE_PROFILE );
+            changeScene.changeScene(actionEvent,SceneName.CREATE_PROFILE );
         } else {
             currentProfile.setCurrentProfile(profileFactory.selectProfile(accountThreeLabel.getText()));
-            changeScene.changeScene(actionEvent,DESTIONATION_BUDGET_ENTRY );
+            changeScene.changeScene(actionEvent,SceneName.BUDGET_ENTRY );
             accountThreeLabel.setText("done");
         }
     }
