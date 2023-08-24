@@ -63,7 +63,7 @@ public class ProfileTest {
         profileFactory.saveProfile(currentProfile.getCurrentProfile());
         assertEquals(expense.toString(),profileFactory.getAllProfiles().get(2).getExpenses().get(0).toString());
 
-        assertEquals(10.0f,profileFactory.getAllProfiles().get(2).getBudget(), 0.001f);
-        assertEquals(5.0f,profileFactory.getAllProfiles().get(2).getSavings(), 0.001f);
+        assertEquals(10,profileFactory.getAllProfiles().get(2).getBudget());
+        assertEquals(5,profileFactory.getAllProfiles().get(2).getSavings());
     }
 }

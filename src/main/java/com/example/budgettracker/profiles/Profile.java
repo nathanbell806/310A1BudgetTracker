@@ -12,10 +12,10 @@ public class Profile {
     private List<Expense> expenses;
 
     @SerializedName("budget")
-    private float budget;
+    private int budget;
 
     @SerializedName("savings")
-    private float savings;
+    private int savings;
 
 
     public String getUsername() {
@@ -37,18 +37,18 @@ public class Profile {
         this.expenses.add(expense);
     }
 
-    public void setBudget(float budget){
+    public void setBudget(int budget){
         this.budget = budget;
     }
 
-    public void setSavings(float savings){
+    public void setSavings(int savings){
         this.savings = savings;
     }
 
-    public float getBudget(){
+    public int getBudget(){
         return budget;
     }
-    public float getSavings(){
+    public int getSavings(){
         return savings;
     }
 
