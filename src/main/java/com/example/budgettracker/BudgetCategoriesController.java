@@ -2,8 +2,10 @@ package com.example.budgettracker;
 
 import java.io.IOException;
 
+import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -24,6 +26,7 @@ public class BudgetCategoriesController {
     @FXML private TextField budgetValueField;
     @FXML private VBox categoryList;
 
+    private float leftBudgetValue = 1000;
 
     @FXML
     public void initialize(){
@@ -31,6 +34,18 @@ public class BudgetCategoriesController {
         popupPane.setDisable(true);
         overlayPane.setDisable(true);
         overlayPane.setVisible(false);
+        leftBudgetLabel.setText(String.format("%.2f", leftBudgetValue) + "$");
+        categoryList.getChildren().addListener((ListChangeListener<Node>) change ->{
+            while(change.next()){
+            if(change.wasRemoved()){
+                HBox removedItem = (HBox) change.getRemoved().get(0);
+                for (Node node : removedItem.getChildren()) {
+                    if(node instanceof Label && node.getId().equals("budgetedValue")){
+                        updateLeftBudget(((Label)node).getText(), true);
+                    }
+            }
+        }}});
+    
     }
 
     @FXML
@@ -54,6 +69,7 @@ public class BudgetCategoriesController {
         //TODO: save info and add list item
         String catName = categoryNameField.getText();
         String budgetedValue = budgetValueField.getText();
+        updateLeftBudget(budgetedValue, false);
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("categoryItem.fxml"));
         HBox hBox;
@@ -70,5 +86,14 @@ public class BudgetCategoriesController {
         popupPane.setDisable(true);
         overlayPane.setDisable(true);
         overlayPane.setVisible(false);
+    }
+
+    public void updateLeftBudget(String budgetedValue, boolean isIncrement){
+        if(isIncrement){
+            leftBudgetValue += Float.parseFloat(budgetedValue);
+        } else{
+            leftBudgetValue -= Float.parseFloat(budgetedValue);
+        }
+        leftBudgetLabel.setText(String.format("%.2f", leftBudgetValue) + "$");
     }
 }

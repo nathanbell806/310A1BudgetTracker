@@ -25,7 +25,7 @@
             <Font size="30.0" />
          </font>
       </Text>
-      <Label fx:id="leftBudgetLabel" layoutX="21.0" layoutY="67.0" text="1000$">
+      <Label fx:id="leftBudgetLabel" layoutX="21.0" layoutY="67.0" text="field">
          <font>
             <Font size="30.0" />
          </font>

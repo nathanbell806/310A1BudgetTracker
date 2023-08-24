@@ -21,7 +21,7 @@ public class CategoryItemController implements Initializable{
     @FXML
     private Button editBtn;
 
-    public void setData(String budgetedValueData, String categoryNameData){
+    public void setData(String categoryNameData, String budgetedValueData){
         categoryName.setText(categoryNameData);
         budgetedValue.setText(budgetedValueData);
     }
@@ -34,5 +34,13 @@ public class CategoryItemController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
+    }
+
+    public String getCatName(){
+        return categoryName.getText();
+    }
+
+    public String getBudgetValue(){
+        return budgetedValue.getText();
     }
 }
