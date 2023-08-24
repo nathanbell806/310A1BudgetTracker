@@ -2,6 +2,7 @@ package tests;
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.Expense;
 import com.example.budgettracker.profiles.ProfileFactory;
+import com.example.budgettracker.profiles.ProfileRepository;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -48,7 +49,8 @@ public class ProfileTest {
         assertEquals(3, userSlot);
     }
     /**
-     * This test ensures saveprofile is working and get all profiles
+     * This test ensures saveprofile is working and get all profiles, and that all the fields inside of profile are indeed
+     * being received and given properly
      */
     @Test
     public void testSaveAndGetALlProfiles() throws IOException {

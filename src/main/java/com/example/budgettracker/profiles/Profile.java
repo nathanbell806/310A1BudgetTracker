@@ -4,7 +4,10 @@ package com.example.budgettracker.profiles;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
+/**
+ * This test class is for the profile objects that will be saved and retrieved from the json to track the expenses and budget
+ * of users
+ */
 public class Profile {
     @SerializedName("username")
     private String username;
