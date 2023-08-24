@@ -4,6 +4,7 @@ import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.ProfileFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -12,6 +13,8 @@ public class CreateProfileController {
     @FXML
     TextField usernameTextField;
 
+    @FXML
+    Label accountLabel;
     ProfileFactory profileFactory;
     CurrentProfile currentProfile;
     public void initialize() throws IOException {
@@ -39,4 +42,10 @@ public class CreateProfileController {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    @FXML
+    private void onUserKey( ) {
+        accountLabel.setText(usernameTextField.getText());
+    }
+
 }
