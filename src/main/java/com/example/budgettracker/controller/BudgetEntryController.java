@@ -1,6 +1,7 @@
 package com.example.budgettracker.controller;
 
 import com.example.budgettracker.profiles.CurrentProfile;
+import com.example.budgettracker.profiles.ProfileFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,14 +12,16 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+
 public class BudgetEntryController {
 
     @FXML
-    private ComboBox savingPeriodCombo;
+    private ComboBox<String> savingPeriodCombo;
     @FXML
-    private ComboBox savingIncomeCombo;
+    private ComboBox<String> savingIncomeCombo;
     @FXML
-    private ComboBox incomeCombo;
+    private ComboBox<String> incomeCombo;
     @FXML
     private VBox savingView;
     @FXML
@@ -77,7 +80,7 @@ public class BudgetEntryController {
      * @param event The on click event
      */
     @FXML
-    public void onExpense(ActionEvent event) {
+    public void onExpense(ActionEvent event) throws IOException {
 
         saveUserEntryData();
         // navigate to expense categorise view
@@ -87,14 +90,14 @@ public class BudgetEntryController {
     /**
      * This helped method saves the user data depending on current tab to the JSON always in weekly format
      */
-    private void saveUserEntryData() {
+    private void saveUserEntryData() throws IOException {
         //checks which page was open
         if(!savingIncomeEntry.getText().isEmpty()){
             int income = Integer.parseInt(savingIncomeEntry.getText());
             int saving = Integer.parseInt(savingEntry.getText());
 
-            String incomePeriod = (String) savingIncomeCombo.getValue();
-            String savingPeriod = (String) savingPeriodCombo.getValue();
+            String incomePeriod = savingIncomeCombo.getValue();
+            String savingPeriod = savingPeriodCombo.getValue();
 
             //convert to always want data weekly
             if(incomePeriod.equals("Monthly")){
@@ -115,7 +118,7 @@ public class BudgetEntryController {
         } else {
             int income = Integer.parseInt(incomeEntry.getText());
 
-            String budgetPeriod = (String) incomeCombo.getValue();
+            String budgetPeriod = incomeCombo.getValue();
 
             //convert to always weekly data
             if(budgetPeriod.equals("Monthly")){{
@@ -128,6 +131,8 @@ public class BudgetEntryController {
             CurrentProfile.getInstance().getCurrentProfile().setSavings(0);
 
         }
+        ProfileFactory profileFactory = new ProfileFactory();
+        profileFactory.saveProfile(CurrentProfile.getInstance().getCurrentProfile());
     }
 
     /**
