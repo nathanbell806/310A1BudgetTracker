@@ -1,7 +1,12 @@
 package com.example.budgettracker.controller;
 
+import java.io.IOException;
+
+import com.example.budgettracker.ChangeScene;
+import com.example.budgettracker.SceneName;
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.ProfileFactory;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,8 +16,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
 
 public class BudgetEntryController {
 
@@ -39,12 +42,16 @@ public class BudgetEntryController {
     @FXML
     private TextArea incomeEntry;
     private final ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", "Monthly", "Yearly");
+    
+    ChangeScene changeScene;
 
     @FXML
     public void initialize() {
+        changeScene = new ChangeScene();
+
         expenseButton.setDisable(true);
         onBack(null);
-
+        
         savingIncomeCombo.setItems(periodOptions);
         incomeCombo.setItems(periodOptions);
         savingPeriodCombo.setItems(periodOptions);
@@ -84,7 +91,7 @@ public class BudgetEntryController {
 
         saveUserEntryData();
         // navigate to expense categorise view
-
+        changeScene.changeScene(event,SceneName.BUDGET_CATEGORIES);
     }
 
     /**

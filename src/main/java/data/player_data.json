@@ -14,11 +14,15 @@
       "name": "Utilities",
       "cost": 150.0
     }
-  ]
+  ],
+  "budget": 0,
+  "savings": 0
 },
 {
   "username": "user4",
-  "expenses": []
+  "expenses": [],
+  "budget": 234,
+  "savings": 0
 },
 {
   "username": "user5",
@@ -30,7 +34,13 @@
     {
       "name": "food",
       "cost": 2.0
+    },
+    {
+      "name": "food",
+      "cost": 2.0
     }
-  ]
+  ],
+  "budget": 8,
+  "savings": 0
 }
 ]
