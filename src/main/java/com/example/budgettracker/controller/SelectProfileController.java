@@ -5,8 +5,7 @@ import com.example.budgettracker.ChangeScene;
 import com.example.budgettracker.SceneName;
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.Profile;
-import com.example.budgettracker.profiles.ProfileFactory;
-
+import com.example.budgettracker.profiles.ProfileRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -38,7 +37,7 @@ public class SelectProfileController {
     ImageView profileViewThree;
     
     CurrentProfile currentProfile;
-    ProfileFactory profileFactory;
+    ProfileRepository profileRepository;
 
     ChangeScene changeScene;
     private static final String CREATE_ACCOUNT = "Create Account";
@@ -46,9 +45,9 @@ public class SelectProfileController {
 
     public void initialize() throws IOException {
         currentProfile = CurrentProfile.getInstance();
-        profileFactory = new ProfileFactory();
+        profileRepository = new ProfileRepository();
         changeScene = new ChangeScene();
-        List<Profile> profiles = profileFactory.getAllProfiles();
+        List<Profile> profiles = profileRepository.getAllProfiles();
         if(profiles.get(0).getUsername().equals("")){
             accountOneLabel.setText(CREATE_ACCOUNT);
             plusLabelOne.setVisible(true);
@@ -84,7 +83,7 @@ public class SelectProfileController {
             currentProfile.setProfileSlot(1);
             changeScene.changeScene(actionEvent, SceneName.CREATE_PROFILE );
         } else {
-            currentProfile.setCurrentProfile(profileFactory.selectProfile(accountOneLabel.getText()));
+            currentProfile.setCurrentProfile(profileRepository.selectProfile(accountOneLabel.getText()));
             changeScene.changeScene(actionEvent,SceneName.BUDGET_ENTRY );
             accountOneLabel.setText("done");
         }
@@ -95,7 +94,7 @@ public class SelectProfileController {
             currentProfile.setProfileSlot(2);
             changeScene.changeScene(actionEvent,SceneName.CREATE_PROFILE );
         } else {
-            currentProfile.setCurrentProfile(profileFactory.selectProfile(accountTwoLabel.getText()));
+            currentProfile.setCurrentProfile(profileRepository.selectProfile(accountTwoLabel.getText()));
             changeScene.changeScene(actionEvent,SceneName.BUDGET_ENTRY );
             accountTwoLabel.setText("done");
         }
@@ -106,7 +105,7 @@ public class SelectProfileController {
             currentProfile.setProfileSlot(3);
             changeScene.changeScene(actionEvent,SceneName.CREATE_PROFILE );
         } else {
-            currentProfile.setCurrentProfile(profileFactory.selectProfile(accountThreeLabel.getText()));
+            currentProfile.setCurrentProfile(profileRepository.selectProfile(accountThreeLabel.getText()));
             changeScene.changeScene(actionEvent,SceneName.BUDGET_ENTRY );
             accountThreeLabel.setText("done");
         }
