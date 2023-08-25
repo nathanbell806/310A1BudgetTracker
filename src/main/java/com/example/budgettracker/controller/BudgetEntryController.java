@@ -1,12 +1,9 @@
 package com.example.budgettracker.controller;
 
-import java.io.IOException;
-
 import com.example.budgettracker.ChangeScene;
 import com.example.budgettracker.SceneName;
 import com.example.budgettracker.profiles.CurrentProfile;
-import com.example.budgettracker.profiles.ProfileFactory;
-
+import com.example.budgettracker.profiles.ProfileRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +13,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 public class BudgetEntryController {
 
@@ -41,7 +40,12 @@ public class BudgetEntryController {
     private TextArea savingIncomeEntry;
     @FXML
     private TextArea incomeEntry;
-    private final ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", "Monthly", "Yearly");
+
+    private static final String MONTHLY = "Monthly";
+    private static final String YEARLY = "Yearly";
+
+
+    private final ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", MONTHLY, YEARLY);
     
     ChangeScene changeScene;
 
@@ -107,15 +111,15 @@ public class BudgetEntryController {
             String savingPeriod = savingPeriodCombo.getValue();
 
             //convert to always want data weekly
-            if(incomePeriod.equals("Monthly")){
+            if(incomePeriod.equals(MONTHLY)){
                 income = (income*12)/52;
-            } else if (incomePeriod.equals("Yearly")) {
+            } else if (incomePeriod.equals(YEARLY)) {
                 income = income/52;
             }
 
-            if(savingPeriod.equals("Monthly")){
+            if(savingPeriod.equals(MONTHLY)){
                 saving = (saving*12)/52;
-            } else if (savingPeriod.equals("Yearly")) {
+            } else if (savingPeriod.equals(YEARLY)) {
                 saving = saving/52;
             }
 
@@ -128,9 +132,9 @@ public class BudgetEntryController {
             String budgetPeriod = incomeCombo.getValue();
 
             //convert to always weekly data
-            if(budgetPeriod.equals("Monthly")){{
+            if(budgetPeriod.equals(MONTHLY)){
                 income = (income*12)/52;
-            }} else if (budgetPeriod.equals("Yearly")) {
+            } else if (budgetPeriod.equals(YEARLY)) {
                 income = income/52;
             }
 
@@ -138,8 +142,8 @@ public class BudgetEntryController {
             CurrentProfile.getInstance().getCurrentProfile().setSavings(0);
 
         }
-        ProfileFactory profileFactory = new ProfileFactory();
-        profileFactory.saveProfile(CurrentProfile.getInstance().getCurrentProfile());
+        ProfileRepository profileRepository = new ProfileRepository();
+        profileRepository.saveProfile(CurrentProfile.getInstance().getCurrentProfile());
     }
 
     /**
