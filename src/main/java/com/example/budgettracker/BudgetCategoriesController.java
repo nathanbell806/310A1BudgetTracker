@@ -34,6 +34,8 @@ public class BudgetCategoriesController {
 
     private final ChangeScene changeScene = new ChangeScene();
 
+    CurrentProfile currentProfile;
+
     @FXML
     public void initialize(){
         popupPane.setVisible(false);
@@ -59,8 +61,12 @@ public class BudgetCategoriesController {
             }
         }
     }});
+        currentProfile = CurrentProfile.getInstance();
+        for(Expense expense: currentProfile.getCurrentProfile().getExpenses()){
+            initialiseCategory(expense.getName(),""+expense.getCost());
+        }
 
-    
+
     }
 
     @FXML
@@ -87,6 +93,16 @@ public class BudgetCategoriesController {
         Expense expense = new Expense(catName, Integer.parseInt(budgetedValue));
         CurrentProfile.getInstance().getCurrentProfile().addExpense(expense);
 
+        initialiseCategory(catName, budgetedValue);
+
+        popupPane.setVisible(false);
+        popupPane.setDisable(true);
+        overlayPane.setDisable(true);
+        overlayPane.setVisible(false);
+    }
+
+    public void initialiseCategory(String catName, String budgetedValue){
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("categoryItem.fxml"));
         HBox hBox;
@@ -99,11 +115,8 @@ public class BudgetCategoriesController {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        popupPane.setVisible(false);
-        popupPane.setDisable(true);
-        overlayPane.setDisable(true);
-        overlayPane.setVisible(false);
     }
+
 
     public void updateLeftBudget(String budgetedValue, boolean isIncrement){
         if(isIncrement){
