@@ -1,16 +1,16 @@
 package tests.controller;
+
 import com.example.budgettracker.StartApplication;
 import com.example.budgettracker.controller.BudgetEntryController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import org.junit.Before;
-import org.testfx.assertions.api.Assertions;
-import org.testfx.framework.junit.ApplicationTest;
-
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import org.junit.Before;
+import org.testfx.assertions.api.Assertions;
+import org.testfx.framework.junit.ApplicationTest;
 
 import java.io.IOException;
 

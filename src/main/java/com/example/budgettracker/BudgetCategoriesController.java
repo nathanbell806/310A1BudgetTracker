@@ -1,7 +1,5 @@
 package com.example.budgettracker;
 
-import java.io.IOException;
-
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 public class BudgetCategoriesController {
     @FXML private Label leftBudgetLabel;
@@ -44,6 +44,7 @@ public class BudgetCategoriesController {
                         updateLeftBudget(((Label)node).getText(), true);
                     }
             }
+
         }}});
     
     }
