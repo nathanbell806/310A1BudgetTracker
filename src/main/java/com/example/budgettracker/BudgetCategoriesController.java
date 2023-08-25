@@ -41,11 +41,19 @@ public class BudgetCategoriesController {
                 HBox removedItem = (HBox) change.getRemoved().get(0);
                 for (Node node : removedItem.getChildren()) {
                     if(node instanceof Label && node.getId().equals("budgetedValue")){
-                        updateLeftBudget(((Label)node).getText(), true);
+                        updateLeftBudget(((Label)node).getText().replace("$", ""), true);
                     }
             }
+        }else if (change.wasAdded()){
+            HBox addedItem = (HBox) change.getAddedSubList().get(0);
+            for (Node node : addedItem.getChildren()) {
+                    if(node instanceof Label && node.getId().equals("budgetedValue")){
+                        updateLeftBudget(((Label)node).getText().replace("$", ""), false);
+                    }
+            }
+        }
+    }});
 
-        }}});
     
     }
 
@@ -70,7 +78,6 @@ public class BudgetCategoriesController {
         //TODO: save info and add list item
         String catName = categoryNameField.getText();
         String budgetedValue = budgetValueField.getText();
-        updateLeftBudget(budgetedValue, false);
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("categoryItem.fxml"));
         HBox hBox;

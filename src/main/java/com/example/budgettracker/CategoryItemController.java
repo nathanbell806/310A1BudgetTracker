@@ -24,7 +24,7 @@ public class CategoryItemController implements Initializable{
 
     public void setData(String categoryNameData, String budgetedValueData){
         categoryName.setText(categoryNameData);
-        budgetedValue.setText(budgetedValueData);
+        budgetedValue.setText("$" + budgetedValueData);
     }
 
     public void onDelete(){
@@ -36,12 +36,5 @@ public class CategoryItemController implements Initializable{
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
     }
-
-    public String getCatName(){
-        return categoryName.getText();
-    }
-
-    public String getBudgetValue(){
-        return budgetedValue.getText();
-    }
 }
+
