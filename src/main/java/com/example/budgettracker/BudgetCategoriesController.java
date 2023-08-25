@@ -44,6 +44,7 @@ public class BudgetCategoriesController {
                         updateLeftBudget(((Label)node).getText(), true);
                     }
             }
+
         }}});
     
     }
