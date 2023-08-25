@@ -3,7 +3,7 @@ package com.example.budgettracker.controller;
 import com.example.budgettracker.ChangeScene;
 import com.example.budgettracker.SceneName;
 import com.example.budgettracker.profiles.CurrentProfile;
-import com.example.budgettracker.profiles.ProfileFactory;
+import com.example.budgettracker.profiles.ProfileRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -18,22 +18,22 @@ public class CreateProfileController {
 
     @FXML
     Label accountLabel;
-    ProfileFactory profileFactory;
+    ProfileRepository profileRepository;
     CurrentProfile currentProfile;
 
     ChangeScene changeScene;
     public void initialize() throws IOException {
-        profileFactory = new ProfileFactory();
+        profileRepository = new ProfileRepository();
         currentProfile = CurrentProfile.getInstance();
         changeScene = new ChangeScene();
     }
 
     @FXML
-    public void onCreate() throws IOException {
+    public void onCreate(){
 
-        Boolean didWork = profileFactory.createProfile(usernameTextField.getText(), currentProfile.getProfileSlot());
+        Boolean didWork = profileRepository.createProfile(usernameTextField.getText(), currentProfile.getProfileSlot());
         if(Boolean.TRUE.equals(didWork)){
-            currentProfile.setCurrentProfile(profileFactory.selectProfile(usernameTextField.getText()));
+            currentProfile.setCurrentProfile(profileRepository.selectProfile(usernameTextField.getText()));
             //take to next page
         }
         else{

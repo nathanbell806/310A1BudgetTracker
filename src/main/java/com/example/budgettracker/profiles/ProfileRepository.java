@@ -20,8 +20,8 @@ public class ProfileRepository {
     /**
      * This method gets all profiles from the json data file
      */
-    protected static List<Profile> getAllProfiles() throws IOException {
-        ArrayList<Profile> profiles = new ArrayList<>();
+    public List<Profile> getAllProfiles() throws IOException {
+        ArrayList<Profile> newProfiles = new ArrayList<>();
 
         Path profilePath = Path.of("src/main/java/data/player_data.json");
         String rawProfiles = Files.readString(profilePath);
@@ -36,18 +36,18 @@ public class ProfileRepository {
                 JsonArray elements = (JsonArray) page;
                 for (JsonElement element : elements) {
                     Profile profile = new Gson().fromJson(element, Profile.class);
-                        profiles.add(profile);
+                        newProfiles.add(profile);
                 }
             }
         }
-        return profiles;
+        return newProfiles;
     }
 
     /**
      * This method gets a profile from the json data file
      * @param username the username for the profile
      */
-    protected Profile selectProfile(String username) {
+    public Profile selectProfile(String username) {
         for (Profile profile : profiles) {
             if (profile.getUsername().equals(username)) {
                 return profile;
@@ -61,7 +61,7 @@ public class ProfileRepository {
      * @param username The username of the profile
      * @param profileSlot which slot the user should be created in
      */
-    protected boolean createProfile(String username, int profileSlot){
+    public boolean createProfile(String username, int profileSlot){
         username = username.trim();
         int count = 1;
         for (Profile profile : profiles) {
@@ -88,7 +88,7 @@ public class ProfileRepository {
      * This method saves an already created profile to json data file
      * @param saveProfile The profile to be saved
      */
-    protected void saveProfile(Profile saveProfile) {
+    public void saveProfile(Profile saveProfile) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         StringBuilder json = new StringBuilder("[\n");
         try (FileWriter fileWriter = new FileWriter("src/main/java/data/player_data.json")){

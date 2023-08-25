@@ -1,23 +1,23 @@
 package tests;
+
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.Expense;
-import com.example.budgettracker.profiles.ProfileFactory;
 import com.example.budgettracker.profiles.ProfileRepository;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 
-
 import static org.junit.Assert.*;
+
 public class ProfileTest {
-    ProfileFactory profileFactory;
+    ProfileRepository profileRepository;
 
     CurrentProfile currentProfile;
 
     @Before
     public void setup() throws IOException {
-        profileFactory = new ProfileFactory();
+        profileRepository = new ProfileRepository();
         currentProfile = CurrentProfile.getInstance();
 
     }
@@ -29,10 +29,10 @@ public class ProfileTest {
 //    @Test
     public void createProfile() throws IOException {
         //make sure that slot 2 username is empty
-        boolean result1 = profileFactory.createProfile("user4",2);
+        boolean result1 = profileRepository.createProfile("user4",2);
         assertTrue(result1);
         //make sure slot 3 has a user called user5
-        boolean result2 = profileFactory.createProfile("user5",  3);
+        boolean result2 = profileRepository.createProfile("user5",  3);
         assertFalse(result2);
     }
 
@@ -41,7 +41,7 @@ public class ProfileTest {
      */
     @Test
     public void testSingletonAndSelect() {
-        currentProfile.setCurrentProfile(profileFactory.selectProfile("user5"));
+        currentProfile.setCurrentProfile(profileRepository.selectProfile("user5"));
         currentProfile.setProfileSlot(3);
 
 
@@ -60,10 +60,10 @@ public class ProfileTest {
         currentProfile.getCurrentProfile().addExpense(expense);
         currentProfile.getCurrentProfile().setBudget(10);
         currentProfile.getCurrentProfile().setSavings(5);
-        profileFactory.saveProfile(currentProfile.getCurrentProfile());
-        assertEquals(expense.toString(),profileFactory.getAllProfiles().get(2).getExpenses().get(0).toString());
+        profileRepository.saveProfile(currentProfile.getCurrentProfile());
+        assertEquals(expense.toString(),profileRepository.getAllProfiles().get(2).getExpenses().get(0).toString());
 
-        assertEquals(10,profileFactory.getAllProfiles().get(2).getBudget());
-        assertEquals(5,profileFactory.getAllProfiles().get(2).getSavings());
+        assertEquals(10,profileRepository.getAllProfiles().get(2).getBudget());
+        assertEquals(5,profileRepository.getAllProfiles().get(2).getSavings());
     }
 }
