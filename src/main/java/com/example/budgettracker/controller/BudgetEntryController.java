@@ -45,6 +45,7 @@ public class BudgetEntryController {
     private static final String YEARLY = "Yearly";
 
 
+
     private final ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", MONTHLY, YEARLY);
     
     ChangeScene changeScene;
