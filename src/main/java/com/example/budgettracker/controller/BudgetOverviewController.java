@@ -1,6 +1,10 @@
 package com.example.budgettracker.controller;
 
 import java.util.ArrayList;
+
+import com.example.budgettracker.profiles.CurrentProfile;
+import com.example.budgettracker.profiles.Expense;
+import com.example.budgettracker.profiles.Profile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,29 +14,37 @@ public class BudgetOverviewController {
   @FXML
   private PieChart pieChart;
 
-  private ArrayList<Double> data = new ArrayList();
+  private String username;
+
+  private double totalBudget;
+  private ObservableList<PieChart.Data> budgetData;
 
 
   private void dataGet() {
-    data.add(10.0);
-    data.add(12.0);
-    data.add(1.0);
-    data.add(5.0);
-    data.add(8.0);
-    data.add(15.0);
+    Profile profile = CurrentProfile.getInstance().getCurrentProfile();
+    budgetData = FXCollections.observableArrayList();
+
+    totalBudget = profile.getBudget();
+    double totalBudgetLeft = totalBudget;
+    username = profile.getUsername();
+
+    for (Expense expense: profile.getExpenses()) {
+          budgetData.add(new PieChart.Data(expense.getName(), expense.getCost()));
+          totalBudgetLeft = totalBudgetLeft - expense.getCost();
+    }
+
+    if(totalBudgetLeft > 0){
+      budgetData.add(new PieChart.Data("Savings", totalBudgetLeft));
+    }
+
+
+
   }
 
   @FXML
   public void initialize() {
     dataGet();
-    ObservableList<PieChart.Data> budgetData = FXCollections.observableArrayList(
-        new PieChart.Data("Everyday", data.get(0)),
-        new PieChart.Data("Living",data.get(1)),
-        new PieChart.Data("Regular",data.get(2)),
-        new PieChart.Data("Irregular",data.get(3)),
-        new PieChart.Data("Savings",data.get(4)),
-        new PieChart.Data("Personal",data.get(5))
-    );
+
     pieChart.setData(budgetData);
     pieChart.setTitle("Budget Breakdown Pie Chart");
   }

@@ -30,6 +30,9 @@ public class ChangeScene {
             case BUDGET_CATEGORIES:
                 setParent(FXMLLoader.load(getClass().getResource("/com/example/budgettracker/budget-categories.fxml")));
                 break;
+            case BUDGET_OVERVIEW:
+                setParent(FXMLLoader.load(getClass().getResource("/com/example/budgettracker/budget-overview.fxml")));
+                break;
 
         }
 

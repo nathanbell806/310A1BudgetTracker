@@ -11,9 +11,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.BudgetOverviewController">
    <children>
-      <StackPane prefHeight="100.0" prefWidth="1920.0" style="-fx-background-color: #FFFFFF;">
+      <StackPane prefHeight="157.0" prefWidth="1920.0" style="-fx-background-color: #FFFFFF;">
          <children>
-            <Label contentDisplay="CENTER" prefHeight="111.0" prefWidth="657.0" text="Budget Breakdown" textAlignment="CENTER" StackPane.alignment="CENTER">
+            <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
+               <image>
+                  <Image url="@../../../Images/arrow_back_FILL0_wght400_GRAD0_opsz48.png" />
+               </image>
+            </ImageView>
+            <Label contentDisplay="CENTER" prefHeight="129.0" prefWidth="745.0" text="Budget Breakdown" textAlignment="CENTER" StackPane.alignment="CENTER">
                <font>
                   <Font name="System Bold" size="81.0" />
                </font>
@@ -21,11 +26,6 @@
                   <Insets top="10.0" />
                </padding>
             </Label>
-            <ImageView fitHeight="100.0" fitWidth="100.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER_LEFT">
-               <image>
-                  <Image url="@../../../Images/arrow_back_FILL0_wght400_GRAD0_opsz48.png" />
-               </image>
-            </ImageView>
          </children>
       </StackPane>
       <PieChart fx:id="pieChart" layoutX="692.0" layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="700.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF;" title="Budget Breakdown" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="400.0" AnchorPane.topAnchor="250.0" />
