@@ -14,6 +14,8 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
+import com.example.budgettracker.profiles.CurrentProfile;
+
 public class BudgetCategoriesController {
     @FXML private Label leftBudgetLabel;
     @FXML private Pane popupPane;
@@ -26,7 +28,7 @@ public class BudgetCategoriesController {
     @FXML private TextField budgetValueField;
     @FXML private VBox categoryList;
 
-    private float leftBudgetValue = 1000;
+    private float leftBudgetValue = CurrentProfile.getInstance().getCurrentProfile().getBudget();
 
     @FXML
     public void initialize(){
