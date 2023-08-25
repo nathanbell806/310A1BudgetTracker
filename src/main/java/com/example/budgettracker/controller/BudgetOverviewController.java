@@ -1,18 +1,28 @@
 package com.example.budgettracker.controller;
 
-import java.util.ArrayList;
+import java.io.IOException;
 
+import com.example.budgettracker.ChangeScene;
+import com.example.budgettracker.SceneName;
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.Expense;
 import com.example.budgettracker.profiles.Profile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 
 public class BudgetOverviewController {
   @FXML
   private PieChart pieChart;
+
+  @FXML
+  private Label usernameText;
+
+  @FXML
+  private Label totalText;
 
   private String username;
 
@@ -45,11 +55,14 @@ public class BudgetOverviewController {
   public void initialize() {
     dataGet();
 
+    usernameText.setText(username);
+    totalText.setText("Total budget is " + totalBudget);
     pieChart.setData(budgetData);
     pieChart.setTitle("Budget Breakdown Pie Chart");
   }
   @FXML
-  protected void goBack(){
-    //TODO implement after page is made
+  protected void goBack(ActionEvent event) throws IOException {
+    ChangeScene changeScene = new ChangeScene();
+    changeScene.changeScene(event, SceneName.BUDGET_CATEGORIES);
   }
 }
