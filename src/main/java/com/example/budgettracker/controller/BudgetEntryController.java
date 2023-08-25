@@ -13,7 +13,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -41,6 +43,8 @@ public class BudgetEntryController {
     private TextArea savingIncomeEntry;
     @FXML
     private TextArea incomeEntry;
+    @FXML
+    private Label accountLabel;
     private final ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", "Monthly", "Yearly");
     
     ChangeScene changeScene;
@@ -51,6 +55,7 @@ public class BudgetEntryController {
 
         expenseButton.setDisable(true);
         onBack(null);
+        accountLabel.setText(CurrentProfile.getInstance().getCurrentProfile().getUsername());
         
         savingIncomeCombo.setItems(periodOptions);
         incomeCombo.setItems(periodOptions);
@@ -92,6 +97,16 @@ public class BudgetEntryController {
         saveUserEntryData();
         // navigate to expense categorise view
         changeScene.changeScene(event,SceneName.BUDGET_CATEGORIES);
+    }
+
+    /**
+     * This method navigates to the Profile Select Scene
+     * @param event The mouse on click event
+     * @throws IOException
+     */
+    @FXML
+    public void onProfileSelect(MouseEvent event) throws IOException {
+        changeScene.changeScene(event,SceneName.SELECT_PROFILE);
     }
 
     /**

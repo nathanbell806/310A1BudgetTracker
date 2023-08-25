@@ -21,7 +21,7 @@
 {
   "username": "user4",
   "expenses": [],
-  "budget": 5,
+  "budget": 55555,
   "savings": 0
 },
 {
@@ -40,7 +40,7 @@
       "cost": 2.0
     }
   ],
-  "budget": 8,
+  "budget": 5555,
   "savings": 0
 }
 ]
