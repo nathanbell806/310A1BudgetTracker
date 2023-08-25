@@ -1,6 +1,8 @@
 package com.example.budgettracker;
 
+import com.example.budgettracker.profiles.Expense;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -29,6 +31,8 @@ public class BudgetCategoriesController {
     @FXML private VBox categoryList;
 
     private float leftBudgetValue = CurrentProfile.getInstance().getCurrentProfile().getBudget();
+
+    private final ChangeScene changeScene = new ChangeScene();
 
     @FXML
     public void initialize(){
@@ -80,6 +84,9 @@ public class BudgetCategoriesController {
         //TODO: save info and add list item
         String catName = categoryNameField.getText();
         String budgetedValue = budgetValueField.getText();
+        Expense expense = new Expense(catName, Integer.parseInt(budgetedValue));
+        CurrentProfile.getInstance().getCurrentProfile().addExpense(expense);
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("categoryItem.fxml"));
         HBox hBox;
@@ -105,5 +112,10 @@ public class BudgetCategoriesController {
             leftBudgetValue -= Float.parseFloat(budgetedValue);
         }
         leftBudgetLabel.setText(String.format("%.2f", leftBudgetValue) + "$");
+    }
+
+    public void onSummary(ActionEvent actionEvent) throws IOException {
+
+        changeScene.changeScene(actionEvent,SceneName.BUDGET_OVERVIEW);
     }
 }

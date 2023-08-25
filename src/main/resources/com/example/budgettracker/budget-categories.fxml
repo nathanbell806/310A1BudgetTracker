@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f0f5fd;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.BudgetCategoriesController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f0f5fd;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.BudgetCategoriesController">
    <children>
       <PieChart id="pieChartTxt" layoutX="559.0" layoutY="40.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="107.0" prefWidth="141.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="40.0" />
       <Text id="totalBudgetTxt" layoutX="575.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total budegted: 0.0" AnchorPane.rightAnchor="52.1025390625" AnchorPane.topAnchor="16.71875">
@@ -68,5 +68,6 @@
             </TextField>
          </children>
       </Pane>
+      <Button id="saveBtn" layoutX="1752.0" layoutY="162.0" mnemonicParsing="false" onAction="#onSummary" prefHeight="47.0" prefWidth="150.0" styleClass="saveBtn" stylesheets="@../../../Css/categories_page.css" text="Summary" />
    </children>
 </AnchorPane>
