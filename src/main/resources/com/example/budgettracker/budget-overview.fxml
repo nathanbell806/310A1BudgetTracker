@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.BudgetOverviewController">
+   <children>
+      <StackPane prefHeight="157.0" prefWidth="1920.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <Label contentDisplay="CENTER" prefHeight="129.0" prefWidth="745.0" text="Budget Breakdown" textAlignment="CENTER" StackPane.alignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="81.0" />
+               </font>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="usernameText" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="89.0" prefWidth="381.0" text="username is a long one" textAlignment="RIGHT" StackPane.alignment="CENTER_RIGHT">
+               <font>
+                  <Font name="System Bold" size="33.0" />
+               </font>
+               <padding>
+                  <Insets right="20.0" top="10.0" />
+               </padding>
+            </Label>
+            <Button mnemonicParsing="false" onAction="#goBack" text="Back" StackPane.alignment="CENTER_LEFT">
+               <font>
+                  <Font size="34.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets left="30.0" />
+               </StackPane.margin>
+            </Button>
+         </children>
+      </StackPane>
+      <PieChart fx:id="pieChart" layoutX="420.0" layoutY="166.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1074.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF;" title="Budget Breakdown" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="250.0" />
+      <Label fx:id="totalText" contentDisplay="CENTER" layoutX="1495.0" layoutY="248.0" prefHeight="187.0" prefWidth="395.0" text="Total per week = 80000" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </Label>
+   </children>
+</AnchorPane>

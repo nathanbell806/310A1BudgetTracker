@@ -1,44 +1,76 @@
 package com.example.budgettracker.controller;
 
+import java.io.IOException;
+
+import com.example.budgettracker.ChangeScene;
+import com.example.budgettracker.SceneName;
+import com.example.budgettracker.profiles.CurrentProfile;
+import com.example.budgettracker.profiles.Expense;
+import com.example.budgettracker.profiles.Profile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
-
-import java.util.ArrayList;
+import javafx.scene.control.Label;
 
 public class BudgetOverviewController {
   @FXML
   private PieChart pieChart;
 
-  private ArrayList<Double> data = new ArrayList();
+  @FXML
+  private Label usernameText;
 
+  @FXML
+  private Label totalText;
 
+  private String username;
+
+  private double totalBudget;
+  private ObservableList<PieChart.Data> budgetData;
+
+  /**
+   * Retrieves data from the current profile to be used by initialize in the setup phase
+   */
   private void dataGet() {
-    data.add(10.0);
-    data.add(12.0);
-    data.add(1.0);
-    data.add(5.0);
-    data.add(8.0);
-    data.add(15.0);
+    Profile profile = CurrentProfile.getInstance().getCurrentProfile();
+    budgetData = FXCollections.observableArrayList();
+
+    totalBudget = profile.getBudget();
+    double totalBudgetLeft = totalBudget;
+    username = profile.getUsername();
+
+    for (Expense expense: profile.getExpenses()) {
+          budgetData.add(new PieChart.Data(expense.getName(), expense.getCost()));
+          totalBudgetLeft = totalBudgetLeft - expense.getCost();
+    }
+
+    if(totalBudgetLeft > 0){
+      budgetData.add(new PieChart.Data("Savings", totalBudgetLeft));
+    }
   }
 
+  /**
+   * On startup of FXML this is run to populate piechart and labels
+   */
   @FXML
   public void initialize() {
     dataGet();
-    ObservableList<PieChart.Data> budgetData = FXCollections.observableArrayList(
-        new PieChart.Data("Everyday", data.get(0)),
-        new PieChart.Data("Living",data.get(1)),
-        new PieChart.Data("Regular",data.get(2)),
-        new PieChart.Data("Irregular",data.get(3)),
-        new PieChart.Data("Savings",data.get(4)),
-        new PieChart.Data("Personal",data.get(5))
-    );
+
+    usernameText.setText(username);
+    totalText.setText("Total budget is " + totalBudget);
     pieChart.setData(budgetData);
     pieChart.setTitle("Budget Breakdown Pie Chart");
   }
+
+  /**
+   * This method is activated on click of back button
+   * @param event form backbutton
+   * @throws IOException
+   */
   @FXML
-  protected void goBack(){
-    //TODO implement after page is made
+  protected void goBack(ActionEvent event) throws IOException {
+    ChangeScene changeScene = new ChangeScene();
+    changeScene.changeScene(event, SceneName.BUDGET_CATEGORIES);
   }
 }
