@@ -1,10 +1,11 @@
 package com.example.budgettracker.controller;
 
-import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
+
+import java.util.ArrayList;
 
 public class BudgetOverviewController {
   @FXML
