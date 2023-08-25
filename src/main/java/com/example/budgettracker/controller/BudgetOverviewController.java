@@ -29,7 +29,9 @@ public class BudgetOverviewController {
   private double totalBudget;
   private ObservableList<PieChart.Data> budgetData;
 
-
+  /**
+   * Retrieves data from the current profile to be used by initialize in the setup phase
+   */
   private void dataGet() {
     Profile profile = CurrentProfile.getInstance().getCurrentProfile();
     budgetData = FXCollections.observableArrayList();
@@ -46,11 +48,11 @@ public class BudgetOverviewController {
     if(totalBudgetLeft > 0){
       budgetData.add(new PieChart.Data("Savings", totalBudgetLeft));
     }
-
-
-
   }
 
+  /**
+   * On startup of FXML this is run to populate piechart and labels
+   */
   @FXML
   public void initialize() {
     dataGet();
@@ -60,6 +62,12 @@ public class BudgetOverviewController {
     pieChart.setData(budgetData);
     pieChart.setTitle("Budget Breakdown Pie Chart");
   }
+
+  /**
+   * This method is activated on click of back button
+   * @param event form backbutton
+   * @throws IOException
+   */
   @FXML
   protected void goBack(ActionEvent event) throws IOException {
     ChangeScene changeScene = new ChangeScene();
