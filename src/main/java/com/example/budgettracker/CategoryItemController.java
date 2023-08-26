@@ -33,7 +33,18 @@ public class CategoryItemController implements Initializable{
 
     public void setData(String categoryNameData, String budgetedValueData){
         categoryName.setText(categoryNameData);
-        budgetedValue.setText("$" + budgetedValueData);
+        try {
+            int intBudgetedValue = Integer.parseInt(budgetedValueData);
+            budgetedValue.setText("$" + intBudgetedValue);
+        } catch (NumberFormatException e) {
+            try {
+                double doubleBudgetedData = Double.parseDouble(budgetedValueData);
+                budgetedValue.setText("$" + (int)doubleBudgetedData);
+            } catch (NumberFormatException ex) {
+                System.out.println("The string is not a valid number.");
+                //ToDo tell user to input a number
+            }
+        }
     }
 
     public void onDelete(){
