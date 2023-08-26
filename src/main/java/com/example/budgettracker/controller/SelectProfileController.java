@@ -42,7 +42,9 @@ public class SelectProfileController {
     ChangeScene changeScene;
     private static final String CREATE_ACCOUNT = "Create Account";
 
-
+    /**
+     * set profile to either create profile or select profile depending on whether account already created or not
+     */
     public void initialize() throws IOException {
         currentProfile = CurrentProfile.getInstance();
         profileRepository = new ProfileRepository();

@@ -1,20 +1,7 @@
 [
 {
   "username": "",
-  "expenses": [
-    {
-      "name": "Groceries",
-      "cost": 50.0
-    },
-    {
-      "name": "Rent",
-      "cost": 1000.0
-    },
-    {
-      "name": "Utilities",
-      "cost": 150.0
-    }
-  ],
+  "expenses": [],
   "budget": 0,
   "savings": 0
 },

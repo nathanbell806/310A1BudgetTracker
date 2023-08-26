@@ -10,7 +10,7 @@
     <name>BudgetTracker</name>
 
     <properties>
-        <sonar.organization>nathanbell806</sonar.organization>
+        <sonar.organization>tmur647</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
