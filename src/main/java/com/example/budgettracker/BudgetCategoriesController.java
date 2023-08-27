@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -91,18 +92,23 @@ public class BudgetCategoriesController {
 
     @FXML
     public void onFinishAddCategory(){
-        String catName = categoryNameField.getText();
-        String budgetedValue = budgetValueField.getText();
-        double doubleValue = Double.parseDouble(budgetedValue);
-        Expense expense = new Expense(catName, (int)doubleValue);
-        CurrentProfile.getInstance().getCurrentProfile().addExpense(expense);
-        profileRepository.saveProfile(currentProfile.getCurrentProfile());
-        initialiseCategory(catName, budgetedValue);
+        try {
+            String catName = categoryNameField.getText();
+            String budgetedValue = budgetValueField.getText();
+            double doubleValue = Double.parseDouble(budgetedValue);
+            Expense expense = new Expense(catName, (int) doubleValue);
+            CurrentProfile.getInstance().getCurrentProfile().addExpense(expense);
+            profileRepository.saveProfile(currentProfile.getCurrentProfile());
+            initialiseCategory(catName, budgetedValue);
 
-        popupPane.setVisible(false);
-        popupPane.setDisable(true);
-        overlayPane.setDisable(true);
-        overlayPane.setVisible(false);
+            popupPane.setVisible(false);
+            popupPane.setDisable(true);
+            overlayPane.setDisable(true);
+            overlayPane.setVisible(false);
+
+        }catch (NumberFormatException ex) {
+                showAlert("nonNumber", "input is not a number");
+            }
     }
 
     public void initialiseCategory(String catName, String budgetedValue){
@@ -113,7 +119,11 @@ public class BudgetCategoriesController {
         try {
             hBox = fxmlLoader.load();
             CategoryItemController catItemController = fxmlLoader.getController();
+
             catItemController.setData(catName, budgetedValue);
+
+
+
             categoryList.getChildren().add(hBox);
         } catch (IOException e) {
             e.printStackTrace();
@@ -128,10 +138,22 @@ public class BudgetCategoriesController {
             leftBudgetValue -= Float.parseFloat(budgetedValue);
         }
         leftBudgetLabel.setText(String.format("%.2f", leftBudgetValue) + "$");
+        if(leftBudgetValue<0){
+            showAlert("overBudget", "Expenses are greater than budget");
+        }
     }
 
     public void onSummary(ActionEvent actionEvent) throws IOException {
 
         changeScene.changeScene(actionEvent,SceneName.BUDGET_OVERVIEW);
     }
+
+    public static void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }
