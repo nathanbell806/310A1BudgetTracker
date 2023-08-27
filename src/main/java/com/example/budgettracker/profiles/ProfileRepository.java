@@ -91,12 +91,13 @@ public class ProfileRepository {
     public void saveProfile(Profile saveProfile) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         StringBuilder json = new StringBuilder("[\n");
-        try (FileWriter fileWriter = new FileWriter("src/main/java/data/player_data.json")){
-            // Formats the JSON into the proper format.
-            for (int i = 0; i < profiles.size(); i++) {
 
+        try (FileWriter fileWriter = new FileWriter("src/main/java/data/player_data.json")) {
+            for (int i = 0; i < profiles.size(); i++) {
                 if (profiles.get(i).getUsername().equals(saveProfile.getUsername())) {
-                    json.append(gson.toJson(saveProfile, Profile.class));
+                    profiles.get(i).getExpenses().clear();
+                    profiles.get(i).getExpenses().addAll(saveProfile.getExpenses());
+                    json.append(gson.toJson(profiles.get(i), Profile.class));
                 } else {
                     json.append(gson.toJson(profiles.get(i), Profile.class));
                 }
@@ -107,11 +108,9 @@ public class ProfileRepository {
             json.append("\n]");
 
             fileWriter.write(String.valueOf(json));
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
