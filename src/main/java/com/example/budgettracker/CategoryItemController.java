@@ -37,13 +37,9 @@ public class CategoryItemController implements Initializable{
             int intBudgetedValue = Integer.parseInt(budgetedValueData);
             budgetedValue.setText("$" + intBudgetedValue);
         } catch (NumberFormatException e) {
-            try {
-                double doubleBudgetedData = Double.parseDouble(budgetedValueData);
-                budgetedValue.setText("$" + (int)doubleBudgetedData);
-            } catch (NumberFormatException ex) {
-                System.out.println("The string is not a valid number.");
-                //ToDo tell user to input a number
-            }
+            double doubleBudgetedData = Double.parseDouble(budgetedValueData);
+            budgetedValue.setText("$" + (int)doubleBudgetedData);
+
         }
     }
 
@@ -79,5 +75,6 @@ public class CategoryItemController implements Initializable{
         currentProfile = CurrentProfile.getInstance();
 
     }
+
 }
 
