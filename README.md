@@ -2,7 +2,7 @@
 
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 
 The Budget Tracker is a user-friendly desktop application designed to help you manage your personal finances effectively to enhance your financial awareness and to promote healthy spending habits.
@@ -67,16 +67,13 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-## Versions
-The latest version of the Budget Tracker application is **v1.0.0**.
-
-## Where can I get more help, if I need it?
+## Help
 If you require additional assistance or have any questions, you can:
 
 - Check out the [Issues](https://github.com/nathanbell806/310A1BudgetTracker/issues) section on GitHub to first see if the issue has already been addressed to avoid duplicate issues. Otherwise, you can open a new issue.
 
 ## Contributing Guidelines
-If you're interested in contributing to the project, please read our [Contributing Guidelines](https://https://github.com/nathanbell806/310A1BudgetTracker/blob/main/CONTRIBUTING.md).
+If you're interested in contributing to the project, please read our [Contributing Guidelines](CONTRIBUTING.md).
 
 ## Acknowledgements
 
