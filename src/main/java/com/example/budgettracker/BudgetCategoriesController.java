@@ -1,6 +1,7 @@
 package com.example.budgettracker;
 
 import com.example.budgettracker.profiles.Expense;
+import com.example.budgettracker.profiles.ProfileRepository;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,8 +37,11 @@ public class BudgetCategoriesController {
 
     CurrentProfile currentProfile;
 
+    ProfileRepository profileRepository;
+
     @FXML
-    public void initialize(){
+    public void initialize() throws IOException {
+        profileRepository = new ProfileRepository();
         popupPane.setVisible(false);
         popupPane.setDisable(true);
         overlayPane.setDisable(true);
@@ -63,7 +67,7 @@ public class BudgetCategoriesController {
     }});
         currentProfile = CurrentProfile.getInstance();
         for(Expense expense: currentProfile.getCurrentProfile().getExpenses()){
-            initialiseCategory(expense.getName(),""+expense.getCost());
+            initialiseCategory(expense.getName(),""+(int)expense.getCost());
         }
 
 
@@ -87,12 +91,12 @@ public class BudgetCategoriesController {
 
     @FXML
     public void onFinishAddCategory(){
-        //TODO: save info and add list item
         String catName = categoryNameField.getText();
         String budgetedValue = budgetValueField.getText();
-        Expense expense = new Expense(catName, Integer.parseInt(budgetedValue));
+        double doubleValue = Double.parseDouble(budgetedValue);
+        Expense expense = new Expense(catName, (int)doubleValue);
         CurrentProfile.getInstance().getCurrentProfile().addExpense(expense);
-
+        profileRepository.saveProfile(currentProfile.getCurrentProfile());
         initialiseCategory(catName, budgetedValue);
 
         popupPane.setVisible(false);
@@ -112,7 +116,6 @@ public class BudgetCategoriesController {
             catItemController.setData(catName, budgetedValue);
             categoryList.getChildren().add(hBox);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

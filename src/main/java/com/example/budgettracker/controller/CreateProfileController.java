@@ -53,7 +53,9 @@ public class CreateProfileController {
     private void onUserKey( ) {
         accountLabel.setText(usernameTextField.getText());
     }
-
+    /**
+     * Takes the user back to the select profile page
+     */
     @FXML
     private void goBack(MouseEvent event) throws IOException {
         changeScene.changeScene(event, SceneName.SELECT_PROFILE);
