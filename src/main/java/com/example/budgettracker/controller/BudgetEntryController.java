@@ -230,4 +230,9 @@ public class BudgetEntryController {
         });
     }
 
+    @FXML
+    public void onExportIncome(MouseEvent actionEvent) throws IOException {
+        ChangeScene changeScene = new ChangeScene();
+        changeScene.changeScene(actionEvent, SceneName.SELECT_PROFILE);
+    }
 }
