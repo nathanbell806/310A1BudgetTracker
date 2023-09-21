@@ -201,14 +201,5 @@
             </ImageView>
          </children>
       </StackPane>
-      <StackPane layoutX="212.0" prefHeight="210.0" prefWidth="193.0">
-         <children>
-            <ImageView fitHeight="110.0" fitWidth="102.0" onMouseClicked="#onExportIncome" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../Images/export.png" />
-               </image>
-            </ImageView>
-         </children>
-      </StackPane>
    </children>
 </Pane>
