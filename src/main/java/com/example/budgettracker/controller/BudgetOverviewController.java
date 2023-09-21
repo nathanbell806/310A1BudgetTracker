@@ -85,6 +85,14 @@ public class BudgetOverviewController {
     changeScene.changeScene(event, SceneName.BUDGET_CATEGORIES);
   }
 
+  /**
+   * This method is triggered when the user clicks the "Save Text" button.
+   * It initiates a process to save specific income data (From Json file) to a text file.
+   * The user is provided with a dialog to select the desired save location.
+   *
+   * @param event from the "Save Text" button click.
+   * @throws IOException if there's an error during the file writing process.
+   */
   @FXML
   protected  void onSaveText(MouseEvent event) throws  IOException{
     // Create a FileChooser object
@@ -117,6 +125,14 @@ public class BudgetOverviewController {
     }
   }
 
+  /**
+   * This method is triggered when the user clicks the "Save Image" button.
+   * It captures a snapshot of the current state of the user's pie chart.
+   * The user is provided with a dialog to select and save image to the desired save location.
+   *
+   * @param event from the "Save Image" button click.
+   * @throws IOException if there's an error during the image saving process.
+   */
   @FXML
   protected void onSaveImage(MouseEvent event) throws IOException {
     // Create the snapshot
