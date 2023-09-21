@@ -19,6 +19,7 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 
 import com.example.budgettracker.profiles.CurrentProfile;
+import javafx.scene.text.Text;
 
 public class BudgetCategoriesController {
     @FXML private Label leftBudgetLabel;
@@ -31,8 +32,10 @@ public class BudgetCategoriesController {
     @FXML private TextField categoryNameField;
     @FXML private TextField budgetValueField;
     @FXML private VBox categoryList;
+    @FXML private Text totalBudgetTxt;
 
     private float leftBudgetValue = CurrentProfile.getInstance().getCurrentProfile().getBudget();
+    private float totalBudgeted;
 
     private final ChangeScene changeScene = new ChangeScene();
 
@@ -55,6 +58,7 @@ public class BudgetCategoriesController {
                 for (Node node : removedItem.getChildren()) {
                     if(node instanceof Label && node.getId().equals("budgetedValue")){
                         updateLeftBudget(((Label)node).getText().replace("$", ""), true);
+                        updateTotalBudgeted(((Label)node).getText().replace("$", ""), false);
                     }
             }
         }else if (change.wasAdded()){
@@ -62,6 +66,7 @@ public class BudgetCategoriesController {
             for (Node node : addedItem.getChildren()) {
                     if(node instanceof Label && node.getId().equals("budgetedValue")){
                         updateLeftBudget(((Label)node).getText().replace("$", ""), false);
+                        updateTotalBudgeted(((Label)node).getText().replace("$", ""), true);
                     }
             }
         }
@@ -137,10 +142,19 @@ public class BudgetCategoriesController {
         } else{
             leftBudgetValue -= Float.parseFloat(budgetedValue);
         }
-        leftBudgetLabel.setText(String.format("%.2f", leftBudgetValue) + "$");
+        leftBudgetLabel.setText("$" + String.format("%.2f", leftBudgetValue));
         if(leftBudgetValue<0){
             showAlert("overBudget", "Expenses are greater than budget");
         }
+    }
+
+    public void updateTotalBudgeted(String budgetedValue, boolean isIncrement){
+        if(isIncrement){
+            totalBudgeted += Float.parseFloat(budgetedValue);
+        } else{
+            totalBudgeted -= Float.parseFloat(budgetedValue);
+        }
+        totalBudgetTxt.setText("Total budgeted: $" + (String.format("%.2f", totalBudgeted)));
     }
 
     public void onSummary(ActionEvent actionEvent) throws IOException {
