@@ -119,37 +119,31 @@ public class BudgetOverviewController {
 
   @FXML
   protected void onSaveImage(MouseEvent event) throws IOException {
-    // Create snapshot image
-    image = pieChart.snapshot(new SnapshotParameters(), null);
+    // Create the snapshot
+    WritableImage image = pieChart.snapshot(new SnapshotParameters(), null);
+
+    // Save the snapshot with ImageIO
+    BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
 
     // Create a FileChooser object
     FileChooser fileChooser = new FileChooser();
 
     // Set the Title of the FileChooser dialog window
-    fileChooser.setTitle("Export Image as JPG");
+    fileChooser.setTitle("Export Image as PNG");
 
-    // Set the type of files the user can save as (.jpg files)
+    // Set the type of files the user can save as (.png files)
     fileChooser.getExtensionFilters().add(
-            new FileChooser.ExtensionFilter("JPG Image", "*.jpg")
+            new FileChooser.ExtensionFilter("PNG Image", "*.png")
     );
 
     // Show the save dialog window and get the selected file
-    File selectedFile = fileChooser.showSaveDialog(null); // Replace null with your main stage if you have it accessible
+    File selectedFile = fileChooser.showSaveDialog(null);  // Replace null with your main stage if you have it accessible
 
     // Check if a file was selected
     if (selectedFile != null) {
-      saveImageAsJPG(selectedFile);
+      ImageIO.write(bufferedImage, "png", selectedFile);
     } else {
-      // Case when user did not choose any file
-    }
-  }
-
-  private void saveImageAsJPG(File file) {
-    try {
-      BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
-      ImageIO.write(bufferedImage, "jpg", file);
-    } catch (IOException e) {
-      e.printStackTrace();
+      // Handle the case where no file was chosen
     }
   }
 }

@@ -45,7 +45,7 @@
                         <Image url="@../../../Images/image.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="73.0" fitWidth="73.0" layoutX="357.0" layoutY="42.0" onMouseClicked="#onSaveText" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="359.0" layoutY="34.0" onMouseClicked="#onSaveText" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../Images/text.png" />
                      </image>
