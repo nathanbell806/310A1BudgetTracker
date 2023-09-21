@@ -15,7 +15,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class BudgetEntryController {
@@ -232,7 +235,33 @@ public class BudgetEntryController {
 
     @FXML
     public void onExportIncome(MouseEvent actionEvent) throws IOException {
-        ChangeScene changeScene = new ChangeScene();
-        changeScene.changeScene(actionEvent, SceneName.SELECT_PROFILE);
+        // Create a FileChooser object
+        FileChooser fileChooser = new FileChooser();
+
+        // Set the Title of the FileChooser dialog window
+        fileChooser.setTitle("Export Income Data");
+
+        // Set the type of files the user can save as (e.g. .txt files)
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Text Files", "*.txt")
+        );
+
+        // Show the save dialog window and get the selected file
+        File selectedFile = fileChooser.showSaveDialog(null); // Replace null with your main stage if you have it accessible
+
+        // Check if a file was selected
+        if (selectedFile != null) {
+            // Here you would handle the actual exporting of the income data to the selected file
+            // This is just an example, replace with your actual logic
+            try (FileWriter fileWriter = new FileWriter(selectedFile)) {
+
+                // This is where the data comes in to be saved (Database connection before)
+                fileWriter.write("Your income data here...");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Case when user not chose any file
+        }
     }
 }
