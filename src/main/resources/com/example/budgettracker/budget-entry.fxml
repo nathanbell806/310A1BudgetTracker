@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.BudgetEntryController">
+<Pane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.BudgetEntryController">
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f0f5fd;" stylesheets="@../../../Css/categories_page.css">
          <children>
@@ -197,6 +197,15 @@
             <ImageView fx:id="profileViewThree" fitHeight="105.0" fitWidth="105.0" onMouseClicked="#onProfileSelect">
                <image>
                   <Image url="@../../../Images/user.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <StackPane layoutX="212.0" prefHeight="210.0" prefWidth="193.0">
+         <children>
+            <ImageView fitHeight="110.0" fitWidth="102.0" onMouseClicked="#onExportIncome" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/export.png" />
                </image>
             </ImageView>
          </children>
