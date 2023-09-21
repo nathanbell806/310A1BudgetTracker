@@ -60,7 +60,8 @@ public class BudgetOverviewController {
     }
 
     if(totalBudgetLeft > 0){
-      budgetData.add(new PieChart.Data("Savings", totalBudgetLeft));
+      String save = (profile.getSavings() > 0) ? "Extra Savings" : "Savings";
+      budgetData.add(new PieChart.Data(save, totalBudgetLeft));
     }
 
 
