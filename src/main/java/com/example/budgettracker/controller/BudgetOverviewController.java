@@ -1,10 +1,5 @@
 package com.example.budgettracker.controller;
 
-import java.awt.*;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-
 import com.example.budgettracker.ChangeScene;
 import com.example.budgettracker.SceneName;
 import com.example.budgettracker.profiles.CurrentProfile;
@@ -12,14 +7,20 @@ import com.example.budgettracker.profiles.Expense;
 import com.example.budgettracker.profiles.Profile;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
-import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class BudgetOverviewController {
   @FXML
@@ -34,6 +35,9 @@ public class BudgetOverviewController {
   private String username;
 
   private double totalBudget;
+
+  private WritableImage image;
+
   private ObservableList<PieChart.Data> budgetData;
 
   /**
@@ -115,6 +119,9 @@ public class BudgetOverviewController {
 
   @FXML
   protected void onSaveImage(MouseEvent event) throws IOException {
+    // Create snapshot image
+    image = pieChart.snapshot(new SnapshotParameters(), null);
+
     // Create a FileChooser object
     FileChooser fileChooser = new FileChooser();
 
@@ -138,14 +145,8 @@ public class BudgetOverviewController {
   }
 
   private void saveImageAsJPG(File file) {
-    // A Sample to test out
-    BufferedImage bufferedImage = new BufferedImage(200, 200, BufferedImage.TYPE_INT_RGB);
-    Graphics2D g = bufferedImage.createGraphics();
-    g.setColor(Color.RED);
-    g.fillRect(0, 0, 200, 200);
-    g.dispose();
-
     try {
+      BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
       ImageIO.write(bufferedImage, "jpg", file);
     } catch (IOException e) {
       e.printStackTrace();
