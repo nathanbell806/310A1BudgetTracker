@@ -48,9 +48,11 @@ public class BudgetOverviewController {
 
   private double totalBudget;
   private ObservableList<PieChart.Data> budgetData;
+  private double totalExpense;
 
   /**
-   * Retrieves data from the current profile to be used by initialize in the setup phase
+   * Retrieves data from the current profile to be used by initialize in the setup
+   * phase
    */
   private void dataGet() {
     Profile profile = CurrentProfile.getInstance().getCurrentProfile();
@@ -61,23 +63,34 @@ public class BudgetOverviewController {
     double totalBudgetLeft = totalBudget;
     username = profile.getUsername();
 
-    for (Expense expense: profile.getExpenses()) {
-          budgetData.add(new PieChart.Data(expense.getName(), expense.getCost()));
-          totalBudgetLeft = totalBudgetLeft - expense.getCost();
+    for (Expense expense : profile.getExpenses()) {
+      budgetData.add(new PieChart.Data(expense.getName(), expense.getCost()));
     }
+    totalExpense = getTotalExpense(profile);
+    totalBudgetLeft = totalBudgetLeft - totalExpense;
 
-    if(totalBudgetLeft > 0){
+    if (totalBudgetLeft > 0) {
       String save = (profile.getSavings() > 0) ? "Extra Savings" : "Savings";
       budgetData.add(new PieChart.Data(save, totalBudgetLeft));
     }
 
-
     series.setName("Your Current Spending");
     // Show savings for 10 years
     for (int i = 0; i < 11; i++) {
-      series.getData().add(new XYChart.Data<>(i, (totalBudgetLeft + profile.getSavings()) * i));
+      // series.getData().add(new XYChart.Data<>(i, (totalBudgetLeft +
+      // profile.getSavings()) * i));
+      series.getData().add(new XYChart.Data<>(i, forecastSavings(profile, i)));
     }
     lineChart.getData().add(series);
+  }
+
+  private double getTotalExpense(Profile profile) {
+    return profile.getExpenses().stream().mapToDouble(Expense::getCost).sum();
+  }
+
+  private double forecastSavings(Profile profile, int i) {
+    double totalBudgetLeft = profile.getBudget() - totalExpense;
+    return (totalBudgetLeft + profile.getSavings()) * i;
   }
 
   /**
@@ -102,7 +115,7 @@ public class BudgetOverviewController {
   /**
    * Sets title and mouse events for charts
    */
-  public void addEventHandlersCharts(){
+  public void addEventHandlersCharts() {
     pieChart.setTitle("Budget Breakdown Pie Chart");
     // Add event handlers to each pie chart slice
     Tooltip tooltip = new Tooltip();
@@ -124,7 +137,8 @@ public class BudgetOverviewController {
     for (XYChart.Series<Number, Number> series : lineChart.getData()) {
       for (XYChart.Data<Number, Number> data : series.getData()) {
         data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-          // Set the tooltip text to display the value when the mouse enters the data point
+          // Set the tooltip text to display the value when the mouse enters the data
+          // point
           String tooltipText = "$" + data.getYValue();
           tooltip.setText(tooltipText);
 
@@ -142,6 +156,7 @@ public class BudgetOverviewController {
 
   /**
    * This method is activated on click of back button
+   * 
    * @param event form backbutton
    * @throws IOException
    */
@@ -153,14 +168,15 @@ public class BudgetOverviewController {
 
   /**
    * This method is triggered when the user clicks the "Save Text" button.
-   * It initiates a process to save specific income data (From Json file) to a text file.
+   * It initiates a process to save specific income data (From Json file) to a
+   * text file.
    * The user is provided with a dialog to select the desired save location.
    *
    * @param event from the "Save Text" button click.
    * @throws IOException if there's an error during the file writing process.
    */
   @FXML
-  protected  void onSaveText(MouseEvent event) throws  IOException{
+  protected void onSaveText(MouseEvent event) throws IOException {
     // Create a FileChooser object
     FileChooser fileChooser = new FileChooser();
 
@@ -169,20 +185,29 @@ public class BudgetOverviewController {
 
     // Set the type of files the user can save as (e.g. .txt files)
     fileChooser.getExtensionFilters().add(
-            new FileChooser.ExtensionFilter("Text Files", "*.txt")
-    );
+        new FileChooser.ExtensionFilter("Text Files", "*.txt"));
 
     // Show the save dialog window and get the selected file
     File selectedFile = fileChooser.showSaveDialog(null); // Replace null with your main stage if you have it accessible
 
     // Check if a file was selected
     if (selectedFile != null) {
-      // Here you would handle the actual exporting of the income data to the selected file
+      // Here you would handle the actual exporting of the income data to the selected
+      // file
       // This is just an example, replace with your actual logic
       try (FileWriter fileWriter = new FileWriter(selectedFile)) {
-
+        Profile curProfile = CurrentProfile.getInstance().getCurrentProfile();
         // This is where the data comes in to be saved (Database connection before)
-        fileWriter.write("Your income data here...");
+        fileWriter.write("Your income data here:");
+        fileWriter.write("Your income data here:\n");
+        fileWriter.write("Budget: " + curProfile.getBudget() + "\n");
+        fileWriter.write("All Expenses: \n");
+        for (Expense e : curProfile.getExpenses()) {
+          fileWriter.write(e.getName() + " : " + e.getCost() + "\n");
+        }
+        fileWriter.write("Savings: " + curProfile.getSavings() + "\n");
+        fileWriter
+            .write("Forecasted savings in 10 years: " + forecastSavings(curProfile, 10));
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -194,7 +219,8 @@ public class BudgetOverviewController {
   /**
    * This method is triggered when the user clicks the "Save Image" button.
    * It captures a snapshot of the current state of the user's pie chart.
-   * The user is provided with a dialog to select and save image to the desired save location.
+   * The user is provided with a dialog to select and save image to the desired
+   * save location.
    *
    * @param event from the "Save Image" button click.
    * @throws IOException if there's an error during the image saving process.
@@ -215,11 +241,10 @@ public class BudgetOverviewController {
 
     // Set the type of files the user can save as (.png files)
     fileChooser.getExtensionFilters().add(
-            new FileChooser.ExtensionFilter("PNG Image", "*.png")
-    );
+        new FileChooser.ExtensionFilter("PNG Image", "*.png"));
 
     // Show the save dialog window and get the selected file
-    File selectedFile = fileChooser.showSaveDialog(null);  // Replace null with your main stage if you have it accessible
+    File selectedFile = fileChooser.showSaveDialog(null); // Replace null with your main stage if you have it accessible
 
     // Check if a file was selected
     if (selectedFile != null) {
