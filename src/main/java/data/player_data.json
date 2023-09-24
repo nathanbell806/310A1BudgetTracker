@@ -6,7 +6,7 @@
   "savings": 0
 },
 {
-  "username": "user4",
+  "username": "Adwait",
   "expenses": [
     {
       "name": "food",
@@ -17,11 +17,11 @@
       "cost": 110.0
     }
   ],
-  "budget": 123,
-  "savings": 0
+  "budget": 1000,
+  "savings": 1000
 },
 {
-  "username": "user5",
+  "username": "Kevin",
   "expenses": [
     {
       "name": "food",

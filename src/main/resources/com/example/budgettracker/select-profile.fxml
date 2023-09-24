@@ -1,102 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.SelectProfileController">
-    <children>
-        <VBox prefHeight="650.0" prefWidth="750.0">
-            <children>
-                <HBox maxHeight="880.0" minHeight="880.0" minWidth="800.0" prefWidth="200.0">
-                    <children>
-                        <VBox fx:id="leftVbox" maxHeight="650.0" minHeight="1080.0" prefHeight="650.0" prefWidth="100.0" />
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0">
-                            <children>
-                                <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#E5E5E5" height="507.0" layoutX="56.0" layoutY="147.0" stroke="BLACK" strokeType="INSIDE" width="1160.0" />
-                                <Text layoutX="404.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0" text="Select Your Profile">
-                                    <font>
-                                        <Font name="System Bold" size="57.0" />
-                                    </font>
-                                </Text>
-                                <StackPane layoutX="506.0" layoutY="195.0" prefHeight="172.0" prefWidth="172.0" style="-fx-background-radius: 200;">
-                                    <children>
-                                        <Circle fill="#A3D8E5" radius="129.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 5;" />
-                                        <Label fx:id="accountTwoLabel" text="Label" translateY="-165.0">
-                                            <font>
-                                                <Font size="36.0" />
-                                            </font>
-                                        </Label>
-                                        <ImageView fx:id="profileViewTwo" fitHeight="263.0" fitWidth="263.0">
-                                            <image>
-                                                <Image url="@../../../Images/user.png" />
-                                            </image>
-                                        </ImageView>
-                                        <Label fx:id="plusLabelTwo" text="+" textFill="WHITE" translateY="-15.0">
-                                            <font>
-                                                <Font size="300.0" />
-                                            </font>
-                                        </Label>
-                                        <Circle fill="DODGERBLUE" onMouseClicked="#onProfileButtonTwo" opacity="0.0" radius="129.0" stroke="BLACK" strokeType="INSIDE" />
-                                    </children>
-                                </StackPane>
-                                <StackPane layoutX="128.0" layoutY="195.0" prefHeight="172.0" prefWidth="172.0" style="-fx-background-radius: 200;">
-                                    <children>
-                                        <Circle fill="#A3D8E5" radius="129.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 5;" />
-                                        <Label fx:id="accountOneLabel" text="Label" translateY="-165.0">
-                                            <font>
-                                                <Font size="36.0" />
-                                            </font>
-                                        </Label>
-                                        <ImageView fx:id="profileViewOne" fitHeight="262.0" fitWidth="262.0">
-                                            <image>
-                                                <Image url="@../../../Images/user.png" />
-                                            </image>
-                                        </ImageView>
-                                        <Label fx:id="plusLabelOne" text="+" textFill="WHITE" translateY="-15.0">
-                                            <font>
-                                                <Font size="300.0" />
-                                            </font>
-                                        </Label>
-                                        <Circle fill="DODGERBLUE" onMouseClicked="#onProfileButtonOne" opacity="0.0" radius="129.0" stroke="BLACK" strokeType="INSIDE" />
-                                    </children>
-                                </StackPane>
-                                <StackPane layoutX="885.0" layoutY="195.0" prefHeight="172.0" prefWidth="172.0" style="-fx-background-radius: 200;">
-                                    <children>
-                                        <Circle fill="#A3D8E5" radius="129.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 5;" />
-                                        <Label fx:id="accountThreeLabel" text="Label" translateY="-165.0">
-                                            <font>
-                                                <Font size="36.0" />
-                                            </font>
-                                        </Label>
-                                        <ImageView fx:id="profileViewThree" fitHeight="262.0" fitWidth="262.0">
-                                            <image>
-                                                <Image url="@../../../Images/user.png" />
-                                            </image>
-                                        </ImageView>
-                                        <Label fx:id="plusLabelThree" text="+" textFill="WHITE" translateY="-15.0">
-                                            <font>
-                                                <Font size="300.0" />
-                                            </font>
-                                        </Label>
-                                        <Circle fill="DODGERBLUE" onMouseClicked="#onProfileButtonThree" opacity="0.0" radius="129.0" stroke="BLACK" strokeType="INSIDE" />
-                                    </children>
-                                </StackPane>
-                            </children>
-                        </AnchorPane>
-                        <VBox minHeight="50.0" prefHeight="200.0" prefWidth="100.0" />
-                    </children>
-                </HBox>
-                <HBox minHeight="100.0" minWidth="800.0" prefHeight="100.0" prefWidth="800.0" />
-            </children>
-        </VBox>
-    </children>
+<AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #E7F0FF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.SelectProfileController">
+   <children>
+      <Text layoutX="375.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0" text="Track your budget.">
+         <font>
+            <Font name="Baghdad Regular" size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="402.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0" text="Budget Tracker" textAlignment="CENTER">
+         <font>
+            <Font name="Baghdad Regular" size="71.0" />
+         </font>
+      </Text>
+      <HBox alignment="CENTER" layoutX="190.0" layoutY="344.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="933.0" spacing="100.0" style="-fx-background-color: #F6FBFF;" styleClass="shadow" stylesheets="@../../../Css/categories_page.css">
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="accountOneLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="57.0" prefWidth="256.0" text="Add User" textAlignment="CENTER">
+                     <font>
+                        <Font name="Baghdad Regular" size="32.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="270.0" top="50.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <ImageView fx:id="profileViewOne" fitHeight="210.0" fitWidth="210.0" onMouseClicked="#onProfileButtonOne">
+                     <image>
+                        <Image url="@../../../Images/profile.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets top="60.0" />
+                     </StackPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="plusLabelOne" fitHeight="45.0" fitWidth="45.0" onMouseClicked="#onProfileButtonThree">
+                     <image>
+                        <Image url="@../../../Images/plus.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets bottom="80.0" left="110.0" />
+                     </StackPane.margin>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="accountTwoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="57.0" prefWidth="141.0" text="Adwait" textAlignment="CENTER">
+                     <font>
+                        <Font name="Baghdad Regular" size="32.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="270.0" top="50.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <ImageView fx:id="profileViewTwo" fitHeight="210.0" fitWidth="210.0" onMouseClicked="#onProfileButtonTwo">
+                     <image>
+                        <Image url="@../../../Images/profile.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets top="60.0" />
+                     </StackPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="plusLabelTwo" fitHeight="45.0" fitWidth="45.0" onMouseClicked="#onProfileButtonThree">
+                     <image>
+                        <Image url="@../../../Images/plus.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets bottom="80.0" left="110.0" />
+                     </StackPane.margin>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <StackPane prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="accountThreeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="57.0" prefWidth="141.0" text="Adwait" textAlignment="CENTER">
+                     <font>
+                        <Font name="Baghdad Regular" size="32.0" />
+                     </font>
+                     <StackPane.margin>
+                        <Insets bottom="270.0" top="50.0" />
+                     </StackPane.margin>
+                  </Label>
+                  <ImageView fx:id="profileViewThree" fitHeight="210.0" fitWidth="210.0" onMouseClicked="#onProfileButtonThree">
+                     <image>
+                        <Image url="@../../../Images/profile.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets top="60.0" />
+                     </StackPane.margin>
+                  </ImageView>
+                  <ImageView fx:id="plusLabelThree" fitHeight="45.0" fitWidth="45.0" onMouseClicked="#onProfileButtonThree">
+                     <image>
+                        <Image url="@../../../Images/plus.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets bottom="80.0" left="110.0" />
+                     </StackPane.margin>
+                  </ImageView>
+               </children>
+            </StackPane>
+         </children>
+         <padding>
+            <Insets left="100.0" right="100.0" />
+         </padding>
+      </HBox>
+      <Text fill="#0649f4" layoutX="681.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0" text="The easy way.">
+         <font>
+            <Font name="Baghdad Regular" size="36.0" />
+         </font>
+      </Text>
+      <Text layoutX="551.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0" text="Select User" textAlignment="CENTER">
+         <font>
+            <Font name="Baghdad Regular" size="39.0" />
+         </font>
+      </Text>
+   </children>
 </AnchorPane>

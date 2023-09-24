@@ -17,6 +17,10 @@
 .button:pressed{
     -fx-background-color: rgba(0, 0, 0, 0.5);
 }
+.shadow{
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.1, 0.0, 0.5);
+
+}
 .saveBtn{
     -fx-border-color: #6dde00;
     -fx-border-width: 4px;
