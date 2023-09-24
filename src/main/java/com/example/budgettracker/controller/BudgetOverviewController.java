@@ -90,7 +90,7 @@ public class BudgetOverviewController {
 
   private double forecastSavings(Profile profile, int i) {
     double totalBudgetLeft = profile.getBudget() - totalExpense;
-    return (totalBudgetLeft + profile.getSavings()) * i * 52;
+    return (totalBudgetLeft) * i * 52;
   }
 
   /**
@@ -198,14 +198,13 @@ public class BudgetOverviewController {
       try (FileWriter fileWriter = new FileWriter(selectedFile)) {
         Profile curProfile = CurrentProfile.getInstance().getCurrentProfile();
         // This is where the data comes in to be saved (Database connection before)
-        fileWriter.write("Your income data here:");
         fileWriter.write("Your income data here:\n");
-        fileWriter.write("Budget: " + curProfile.getBudget() + "\n");
-        fileWriter.write("All Expenses: \n");
+        fileWriter.write("Budget per week: " + curProfile.getBudget() + "\n");
+        fileWriter.write("All Expenses per week: \n");
         for (Expense e : curProfile.getExpenses()) {
           fileWriter.write(e.getName() + " : " + e.getCost() + "\n");
         }
-        fileWriter.write("Savings: " + curProfile.getSavings() + "\n");
+        fileWriter.write("Savings per week: " + curProfile.getSavings() + "\n");
         fileWriter
             .write("Forecasted savings in 10 years: " + forecastSavings(curProfile, 10));
       } catch (IOException e) {

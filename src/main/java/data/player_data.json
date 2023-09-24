@@ -25,18 +25,10 @@
   "expenses": [
     {
       "name": "food",
-      "cost": 2.0
-    },
-    {
-      "name": "food",
-      "cost": 2.0
-    },
-    {
-      "name": "food",
-      "cost": 2.0
+      "cost": 800.0
     }
   ],
-  "budget": 500,
-  "savings": 1000
+  "budget": 1200,
+  "savings": 1200
 }
 ]
