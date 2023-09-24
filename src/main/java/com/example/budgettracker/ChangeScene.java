@@ -37,7 +37,7 @@ public class ChangeScene {
         }
 
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(this.parent, 1920, 1080);
+        Scene scene = new Scene(this.parent, 1280, 720);
         stage.setScene(scene);
         stage.show();
     }

@@ -7,7 +7,16 @@
 },
 {
   "username": "user4",
-  "expenses": [],
+  "expenses": [
+    {
+      "name": "food",
+      "cost": 270.0
+    },
+    {
+      "name": "transport",
+      "cost": 110.0
+    }
+  ],
   "budget": 123,
   "savings": 0
 },
