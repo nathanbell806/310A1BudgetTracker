@@ -75,7 +75,7 @@
             </Button>
          </children>
       </VBox>
-      <ImageView fitHeight="71.0" fitWidth="71.0" layoutX="19.0" layoutY="19.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="53.0" fitWidth="54.0" layoutX="19.0" layoutY="19.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Images/back.png" />
          </image>

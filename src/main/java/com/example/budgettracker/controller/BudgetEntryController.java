@@ -41,8 +41,6 @@ public class BudgetEntryController {
     private TextArea savingIncomeEntry;
     @FXML
     private TextArea incomeEntry;
-    @FXML
-    private Label accountLabel;
 
     private static final String MONTHLY = "Monthly";
     private static final String YEARLY = "Yearly";
@@ -57,8 +55,7 @@ public class BudgetEntryController {
 
         expenseButton.setDisable(true);
         onBack(null);
-        accountLabel.setText(CurrentProfile.getInstance().getCurrentProfile().getUsername());
-        
+
         savingIncomeCombo.setItems(periodOptions);
         incomeCombo.setItems(periodOptions);
         savingPeriodCombo.setItems(periodOptions);
