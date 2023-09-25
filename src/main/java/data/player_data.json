@@ -6,22 +6,26 @@
   "savings": 0
 },
 {
-  "username": "user4",
+  "username": "Adwait",
   "expenses": [
     {
       "name": "food",
-      "cost": 270.0
+      "cost": 150.0
     },
     {
       "name": "transport",
-      "cost": 110.0
+      "cost": 200.0
+    },
+    {
+      "name": "alcohol",
+      "cost": 400.0
     }
   ],
-  "budget": 123,
-  "savings": 0
+  "budget": 2200,
+  "savings": 300
 },
 {
-  "username": "user5",
+  "username": "Kevin",
   "expenses": [
     {
       "name": "food",

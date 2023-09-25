@@ -11,6 +11,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -28,11 +29,10 @@ public class BudgetCategoriesController {
     @FXML private Button saveBtn;
     @FXML private Button cancelAddBtn;
     @FXML private Button finishAddBtn;
-    @FXML private StackPane overlayPane;
     @FXML private TextField categoryNameField;
     @FXML private TextField budgetValueField;
     @FXML private VBox categoryList;
-    @FXML private Text totalBudgetTxt;
+
 
     private float leftBudgetValue = CurrentProfile.getInstance().getCurrentProfile().getBudget();
     private float totalBudgeted;
@@ -48,8 +48,6 @@ public class BudgetCategoriesController {
         profileRepository = new ProfileRepository();
         popupPane.setVisible(false);
         popupPane.setDisable(true);
-        overlayPane.setDisable(true);
-        overlayPane.setVisible(false);
         leftBudgetLabel.setText(String.format("%.2f", leftBudgetValue) + "$");
         categoryList.getChildren().addListener((ListChangeListener<Node>) change ->{
             while(change.next()){
@@ -80,19 +78,20 @@ public class BudgetCategoriesController {
     }
 
     @FXML
+    public void onProfileSelect(MouseEvent event) throws IOException {
+        changeScene.changeScene(event,SceneName.SELECT_PROFILE);
+    }
+
+    @FXML
     public void onAddCategory(){
         popupPane.setVisible(true);
         popupPane.setDisable(false);
-        overlayPane.setDisable(false);
-        overlayPane.setVisible(true);
     }
 
     @FXML
     public void onCancelAddCategory(){
         popupPane.setVisible(false);
         popupPane.setDisable(true);
-        overlayPane.setDisable(true);
-        overlayPane.setVisible(false);
     }
 
     @FXML
@@ -108,8 +107,6 @@ public class BudgetCategoriesController {
 
             popupPane.setVisible(false);
             popupPane.setDisable(true);
-            overlayPane.setDisable(true);
-            overlayPane.setVisible(false);
 
         }catch (NumberFormatException ex) {
                 showAlert("nonNumber", "input is not a number");
@@ -154,7 +151,6 @@ public class BudgetCategoriesController {
         } else{
             totalBudgeted -= Float.parseFloat(budgetedValue);
         }
-        totalBudgetTxt.setText("Total budgeted: $" + (String.format("%.2f", totalBudgeted)));
     }
 
     public void onSummary(ActionEvent actionEvent) throws IOException {
