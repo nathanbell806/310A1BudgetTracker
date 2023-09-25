@@ -9,9 +9,8 @@
     fx-transition: transform 0.2s;
 }
 .button:hover{
-    -fx-background-color : #6495ed;
-    -fx-background-radius : 5 5 5 5;
-    -fx-text-fill : #FFFFFF;
+    -fx-background-color : #f2f2f2;
+    -fx-background-radius : 20px;
     -fx-transform: scale(1.1);
 }
 .button:pressed{
@@ -28,6 +27,12 @@
     -fx-border-width: 2px;
     -fx-text-fill: black;
 
+}
+
+.userbutton:hover{
+    -fx-background-color : #f2f2f2;
+    -fx-background-radius : 20px;
+    -fx-transform: scale(1.1);
 }
 .shadow{
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.1, 0.0, 0.5);

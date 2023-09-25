@@ -173,7 +173,7 @@
                               </VBox>
                               <HBox fx:id="optionView" alignment="CENTER" prefHeight="316.0" prefWidth="957.0" spacing="30.0" visible="false">
                                  <children>
-                                    <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onIncome" prefHeight="170.0" prefWidth="190.0" style="-fx-background-color: white; -fx-background-radius: 20px; -fx-border-color: purple; -fx-border-radius: 20px; -fx-border-width: 2px; -fx-text-fill: black;" text="Amount to Budget" textAlignment="CENTER">
+                                    <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onIncome" prefHeight="170.0" prefWidth="190.0" styleClass="userButton" stylesheets="@../../../Css/categories_page.css" text="Amount to Budget" textAlignment="CENTER">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
@@ -188,7 +188,7 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSaving" prefHeight="170.0" prefWidth="190.0" style="-fx-background-color: white; -fx-border-color: purple; -fx-background-radius: 20px; -fx-border-radius: 20px; -fx-border-width: 2px; -fx-text-fill: black;" text="Saving Goal" textAlignment="CENTER">
+                                    <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onSaving" prefHeight="170.0" prefWidth="190.0" styleClass="userButton" stylesheets="@../../../Css/categories_page.css" text="Saving Goal" textAlignment="CENTER">
                                        <font>
                                           <Font size="18.0" />
                                        </font>

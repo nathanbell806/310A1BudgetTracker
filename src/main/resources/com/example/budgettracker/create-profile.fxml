@@ -62,7 +62,7 @@
                   <Insets />
                </VBox.margin>
             </TextField>
-            <Button fx:id="addUser" mnemonicParsing="false" onAction="#onCreate" style="-fx-background-color: white; -fx-border-radius: 20px; -fx-background-radius: 20px; -fx-border-color: purple;" styleClass="userButton" stylesheets="@../../../Css/categories_page.css" text="Add User">
+            <Button fx:id="addUser" mnemonicParsing="false" onAction="#onCreate" styleClass="userButton" stylesheets="@../../../Css/categories_page.css" text="Add User">
                <font>
                   <Font name="Baghdad Regular" size="23.0" />
                </font>
