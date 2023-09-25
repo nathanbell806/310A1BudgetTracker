@@ -12,6 +12,11 @@
 
 <AnchorPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #E7F0FF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.SelectProfileController">
    <children>
+      <ImageView fitHeight="923.0" fitWidth="1384.0" layoutX="-89.0" layoutY="-162.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 60%;">
+         <image>
+            <Image url="@../../../Images/background.jpg" />
+         </image>
+      </ImageView>
       <Text layoutX="375.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0" text="Track your budget.">
          <font>
             <Font name="Baghdad Regular" size="36.0" />
@@ -19,10 +24,10 @@
       </Text>
       <Text layoutX="402.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0" text="Budget Tracker" textAlignment="CENTER">
          <font>
-            <Font name="Baghdad Regular" size="71.0" />
+            <Font name="Geeza Pro Regular" size="71.0" />
          </font>
       </Text>
-      <HBox alignment="CENTER" layoutX="190.0" layoutY="344.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="933.0" spacing="100.0" style="-fx-background-color: #F6FBFF;" styleClass="shadow" stylesheets="@../../../Css/categories_page.css">
+      <HBox alignment="CENTER" layoutX="187.0" layoutY="314.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="933.0" spacing="100.0" style="-fx-background-color: white; -fx-background-radius: 20px;" stylesheets="@../../../Css/categories_page.css">
          <children>
             <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
@@ -34,9 +39,9 @@
                         <Insets bottom="270.0" top="50.0" />
                      </StackPane.margin>
                   </Label>
-                  <ImageView fx:id="profileViewOne" fitHeight="210.0" fitWidth="210.0" onMouseClicked="#onProfileButtonOne">
+                  <ImageView fx:id="profileViewOne" fitHeight="183.0" fitWidth="183.0" onMouseClicked="#onProfileButtonOne">
                      <image>
-                        <Image url="@../../../Images/profile.png" />
+                        <Image url="@../../../Images/user3.png" />
                      </image>
                      <StackPane.margin>
                         <Insets top="60.0" />
@@ -44,7 +49,7 @@
                   </ImageView>
                   <ImageView fx:id="plusLabelOne" fitHeight="45.0" fitWidth="45.0" onMouseClicked="#onProfileButtonThree">
                      <image>
-                        <Image url="@../../../Images/plus.png" />
+                        <Image url="@../../../Images/plus2.png" />
                      </image>
                      <StackPane.margin>
                         <Insets bottom="80.0" left="110.0" />
@@ -62,9 +67,9 @@
                         <Insets bottom="270.0" top="50.0" />
                      </StackPane.margin>
                   </Label>
-                  <ImageView fx:id="profileViewTwo" fitHeight="210.0" fitWidth="210.0" onMouseClicked="#onProfileButtonTwo">
+                  <ImageView fx:id="profileViewTwo" fitHeight="183.0" fitWidth="183.0" onMouseClicked="#onProfileButtonTwo">
                      <image>
-                        <Image url="@../../../Images/profile.png" />
+                        <Image url="@../../../Images/user3.png" />
                      </image>
                      <StackPane.margin>
                         <Insets top="60.0" />
@@ -72,7 +77,7 @@
                   </ImageView>
                   <ImageView fx:id="plusLabelTwo" fitHeight="45.0" fitWidth="45.0" onMouseClicked="#onProfileButtonThree">
                      <image>
-                        <Image url="@../../../Images/plus.png" />
+                        <Image url="@../../../Images/plus2.png" />
                      </image>
                      <StackPane.margin>
                         <Insets bottom="80.0" left="110.0" />
@@ -90,9 +95,9 @@
                         <Insets bottom="270.0" top="50.0" />
                      </StackPane.margin>
                   </Label>
-                  <ImageView fx:id="profileViewThree" fitHeight="210.0" fitWidth="210.0" onMouseClicked="#onProfileButtonThree">
+                  <ImageView fx:id="profileViewThree" fitHeight="183.0" fitWidth="183.0" onMouseClicked="#onProfileButtonThree">
                      <image>
-                        <Image url="@../../../Images/profile.png" />
+                        <Image url="@../../../Images/user3.png" />
                      </image>
                      <StackPane.margin>
                         <Insets top="60.0" />
@@ -100,7 +105,7 @@
                   </ImageView>
                   <ImageView fx:id="plusLabelThree" fitHeight="45.0" fitWidth="45.0" onMouseClicked="#onProfileButtonThree">
                      <image>
-                        <Image url="@../../../Images/plus.png" />
+                        <Image url="@../../../Images/plus2.png" />
                      </image>
                      <StackPane.margin>
                         <Insets bottom="80.0" left="110.0" />
@@ -113,12 +118,12 @@
             <Insets left="100.0" right="100.0" />
          </padding>
       </HBox>
-      <Text fill="#0649f4" layoutX="681.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0" text="The easy way.">
+      <Text fill="#9307f2" layoutX="681.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0" text="The easy way.">
          <font>
             <Font name="Baghdad Regular" size="36.0" />
          </font>
       </Text>
-      <Text layoutX="551.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0" text="Select User" textAlignment="CENTER">
+      <Text layoutX="549.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0" text="Select User" textAlignment="CENTER">
          <font>
             <Font name="Baghdad Regular" size="39.0" />
          </font>

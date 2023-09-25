@@ -1,22 +1,22 @@
-.button{
-    -fx-border-color: #6495ed;
-    -fx-border-width: 4px;
-    -fx-background-color : #FFFFFF;
-    -fx-background-radius : 5 5 5 5;
-    -fx-text-fill : #6495ed;
-    -fx-font-weight: bold;
-    -fx-font-size: 18;
-    fx-transition: transform 0.2s;
-}
-.button:hover{
-    -fx-background-color : #6495ed;
-    -fx-background-radius : 5 5 5 5;
-    -fx-text-fill : #FFFFFF;
-    -fx-transform: scale(1.1);
-}
-.button:pressed{
-    -fx-background-color: rgba(0, 0, 0, 0.5);
-}
+/*.button{*/
+/*    -fx-border-color: #6495ed;*/
+/*    -fx-border-width: 4px;*/
+/*    -fx-background-color : #FFFFFF;*/
+/*    -fx-background-radius : 5 5 5 5;*/
+/*    -fx-text-fill : #6495ed;*/
+/*    -fx-font-weight: bold;*/
+/*    -fx-font-size: 18;*/
+/*    fx-transition: transform 0.2s;*/
+/*}*/
+/*.button:hover{*/
+/*    -fx-background-color : #6495ed;*/
+/*    -fx-background-radius : 5 5 5 5;*/
+/*    -fx-text-fill : #FFFFFF;*/
+/*    -fx-transform: scale(1.1);*/
+/*}*/
+/*.button:pressed{*/
+/*    -fx-background-color: rgba(0, 0, 0, 0.5);*/
+/*}*/
 .shadow{
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.1, 0.0, 0.5);
 
