@@ -10,15 +10,19 @@
   "expenses": [
     {
       "name": "food",
-      "cost": 270.0
+      "cost": 150.0
     },
     {
       "name": "transport",
-      "cost": 110.0
+      "cost": 200.0
+    },
+    {
+      "name": "alcohol",
+      "cost": 400.0
     }
   ],
-  "budget": 2000,
-  "savings": 0
+  "budget": 1000,
+  "savings": 500
 },
 {
   "username": "Kevin",
