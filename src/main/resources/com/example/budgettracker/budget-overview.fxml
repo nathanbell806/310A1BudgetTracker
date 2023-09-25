@@ -9,80 +9,34 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.BudgetOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.BudgetOverviewController">
    <children>
-      <StackPane prefHeight="157.0" prefWidth="1280.0" style="-fx-background-color: #FFFFFF;">
-         <children>
-            <Label contentDisplay="CENTER" prefHeight="129.0" prefWidth="400.0" text="Budget Breakdown" textAlignment="CENTER" StackPane.alignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
-            </Label>
-      
-                              <!-- Export buttons -->
-            <AnchorPane prefHeight="200.0" prefWidth="300.0">
-               <children>
-                  <ImageView fitHeight="73.0" fitWidth="79.0" layoutX="184.0" layoutY="39.0" onMouseClicked="#onSaveImage" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Images/image.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="291.0" layoutY="30.0" onMouseClicked="#onSaveText" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../Images/text.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-            <Label fx:id="usernameText" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="89.0" prefWidth="381.0" text="username is a long one" textAlignment="RIGHT" StackPane.alignment="CENTER_RIGHT">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-               <padding>
-                  <Insets right="20.0" top="10.0" />
-               </padding>
-            </Label>
+      <ImageView fitHeight="923.0" fitWidth="1384.0" layoutX="-49.0" layoutY="-122.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 60%;">
+         <image>
+            <Image url="@../../../Images/background.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="195.0" layoutY="169.0" prefHeight="470.0" prefWidth="914.0" style="-fx-background-color: white; -fx-background-radius: 20px;" />
 
-            <!-- Toggle button -->
-            <Button fx:id="toggleButton" alignment="CENTER" contentDisplay="CENTER" text="Toggle Chart" textAlignment="CENTER">
-               <StackPane.margin>
-                  <Insets left="400.0" />
-               </StackPane.margin>
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#goBack" prefHeight="50.0" prefWidth="80.0" text="Back" StackPane.alignment="CENTER_LEFT">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <StackPane.margin>
-                  <Insets left="30.0" />
-               </StackPane.margin>
-            </Button>
-         </children>
-      </StackPane>
+                  <!-- PieChart -->
+      <PieChart fx:id="pieChart" layoutX="692.0" layoutY="248.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1074.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF;" title="Budget Breakdown" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="692.0" AnchorPane.rightAnchor="208.0" AnchorPane.topAnchor="248.0" />
 
-      <!-- PieChart -->
-      <PieChart fx:id="pieChart" layoutX="110.0" layoutY="276.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1074.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF;" title="Budget Breakdown" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="250.0" />
-
-      <Label fx:id="totalText" contentDisplay="CENTER" layoutX="430.0" layoutY="540.0" prefHeight="187.0" prefWidth="395.0" text="Total per week = 80000" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="totalText" contentDisplay="CENTER" layoutX="497.0" layoutY="115.0" prefHeight="187.0" prefWidth="395.0" text="Total per week = 80000" textAlignment="CENTER">
          <font>
-            <Font name="System Bold" size="33.0" />
+            <Font name="System Bold" size="29.0" />
          </font>
          <padding>
             <Insets top="10.0" />
          </padding>
       </Label>
 
-      <!-- LineChart (initially hidden) -->
-      <LineChart fx:id="lineChart" layoutX="420.0" layoutY="166.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1074.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF;" title="Savings Forecast" visible="false" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="450.0" AnchorPane.rightAnchor="450.0" AnchorPane.topAnchor="250.0">
+            <!-- LineChart (initially hidden) -->
+      <LineChart fx:id="lineChart" layoutX="263.0" layoutY="259.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1074.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF; visibility: true;" title="Savings Forecast" visible="false" AnchorPane.bottomAnchor="141.0" AnchorPane.leftAnchor="263.0" AnchorPane.rightAnchor="637.0" AnchorPane.topAnchor="259.0">
          <xAxis>
             <NumberAxis label="Years" />
          </xAxis>
@@ -91,5 +45,51 @@
          </yAxis>
          <!-- Add your line chart data series here -->
       </LineChart>
+      <HBox alignment="CENTER_LEFT" layoutX="106.0" layoutY="33.0" prefHeight="100.0" prefWidth="1184.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0" text="Expense Summary" textAlignment="CENTER" wrappingWidth="479.46370697021484">
+               <font>
+                  <Font name="Geeza Pro Regular" size="54.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="25.0" />
+               </HBox.margin>
+            </Text>
+            <Button id="saveBtn" mnemonicParsing="false" onMouseClicked="#onSaveImage" prefHeight="47.0" prefWidth="189.0" styleClass="userButton" stylesheets="@../../../Css/categories_page.css" text="Export as Image">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/image.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="240.0" />
+               </HBox.margin>
+            </Button>
+            <Button id="saveBtn" mnemonicParsing="false" onMouseClicked="#onSaveText" prefHeight="47.0" prefWidth="170.0" styleClass="userButton" stylesheets="@../../../Css/categories_page.css" text="Export as CSV">
+               <graphic>
+                  <ImageView fitHeight="19.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Images/export.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Line endX="1018.262939453125" endY="3.0517578125E-5" layoutX="210.0" layoutY="138.0" startX="-74.64935302734375" startY="3.0517578125E-5" />
+      <Button layoutX="-5.0" layoutY="3.0" mnemonicParsing="false" onAction="#goBack" prefHeight="70.0" prefWidth="134.0" style="-fx-background-color: none;">
+         <graphic>
+            <ImageView fitHeight="53.0" fitWidth="54.0">
+               <image>
+                  <Image url="@../../../Images/back.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
