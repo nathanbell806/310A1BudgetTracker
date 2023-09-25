@@ -216,20 +216,19 @@ public class BudgetOverviewController {
    */
   @FXML
   protected void onSaveImage(MouseEvent event) throws IOException {
-
     // 1. Snapshot each chart individually
-    WritableImage pieChartImage = pieChart.snapshot(new SnapshotParameters(), null);
     WritableImage lineChartImage = lineChart.snapshot(new SnapshotParameters(), null);
+    WritableImage pieChartImage = pieChart.snapshot(new SnapshotParameters(), null);
 
     // 2. Combine the images programmatically (horizontally)
-    int combinedWidth = (int) (pieChartImage.getWidth() + lineChartImage.getWidth());
+    int combinedWidth = (int) (lineChartImage.getWidth() + pieChartImage.getWidth());
     int height = (int) Math.max(pieChartImage.getHeight(), lineChartImage.getHeight());
 
     BufferedImage combinedImage = new BufferedImage(combinedWidth, height, BufferedImage.TYPE_INT_ARGB);
     Graphics2D g = combinedImage.createGraphics();
 
-    g.drawImage(SwingFXUtils.fromFXImage(pieChartImage, null), 0, 0, null);
-    g.drawImage(SwingFXUtils.fromFXImage(lineChartImage, null), (int) pieChartImage.getWidth(), 0, null);
+    g.drawImage(SwingFXUtils.fromFXImage(lineChartImage, null), 0, 0, null);
+    g.drawImage(SwingFXUtils.fromFXImage(pieChartImage, null), (int) lineChartImage.getWidth(), 0, null);
     g.dispose();
 
     // 3. Save the combined image
