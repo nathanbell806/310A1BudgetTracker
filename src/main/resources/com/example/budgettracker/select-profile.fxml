@@ -123,9 +123,9 @@
             <Font name="Baghdad Regular" size="36.0" />
          </font>
       </Text>
-      <Text layoutX="549.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0" text="Select User" textAlignment="CENTER">
+      <Text layoutX="569.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0" text="Select User" textAlignment="CENTER">
          <font>
-            <Font name="Baghdad Regular" size="39.0" />
+            <Font name="Baghdad Regular" size="33.0" />
          </font>
       </Text>
    </children>
