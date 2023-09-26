@@ -1,5 +1,6 @@
 package com.example.budgettracker.controller;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileWriter;
@@ -205,7 +206,7 @@ public class BudgetOverviewController {
 
   /**
    * This method is triggered when the user clicks the "Save Image" button.
-   * It captures a snapshot of the current state of the user's pie chart.
+   * It captures a snapshot of the current state of the user's Pie chart and LineChart.
    * The user is provided with a dialog to select and save image to the desired
    * save location.
    *
@@ -214,30 +215,31 @@ public class BudgetOverviewController {
    */
   @FXML
   protected void onSaveImage(MouseEvent event) throws IOException {
-    // Create the snapshot
-    WritableImage image = pieChart.snapshot(new SnapshotParameters(), null);
+    // 1. Snapshot each chart individually
+    WritableImage lineChartImage = lineChart.snapshot(new SnapshotParameters(), null);
+    WritableImage pieChartImage = pieChart.snapshot(new SnapshotParameters(), null);
 
-    // Save the snapshot with ImageIO
-    BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+    // 2. Combine the images programmatically (horizontally)
+    int combinedWidth = (int) (lineChartImage.getWidth() + pieChartImage.getWidth());
+    int height = (int) Math.max(pieChartImage.getHeight(), lineChartImage.getHeight());
 
-    // Create a FileChooser object
+    BufferedImage combinedImage = new BufferedImage(combinedWidth, height, BufferedImage.TYPE_INT_ARGB);
+    Graphics2D g = combinedImage.createGraphics();
+
+    g.drawImage(SwingFXUtils.fromFXImage(lineChartImage, null), 0, 0, null);
+    g.drawImage(SwingFXUtils.fromFXImage(pieChartImage, null), (int) lineChartImage.getWidth(), 0, null);
+    g.dispose();
+
+    // 3. Save the combined image
     FileChooser fileChooser = new FileChooser();
-
-    // Set the Title of the FileChooser dialog window
     fileChooser.setTitle("Export Image as PNG");
+    fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG Image", "*.png"));
+    File selectedFile = fileChooser.showSaveDialog(null);
 
-    // Set the type of files the user can save as (.png files)
-    fileChooser.getExtensionFilters().add(
-        new FileChooser.ExtensionFilter("PNG Image", "*.png"));
-
-    // Show the save dialog window and get the selected file
-    File selectedFile = fileChooser.showSaveDialog(null); // Replace null with your main stage if you have it accessible
-
-    // Check if a file was selected
     if (selectedFile != null) {
-      ImageIO.write(bufferedImage, "png", selectedFile);
+      ImageIO.write(combinedImage, "png", selectedFile);
     } else {
-      // Handle the case where no file was chosen
+      // Handle no file chosen
     }
   }
 }
