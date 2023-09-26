@@ -1,6 +1,7 @@
 package com.example.budgettracker;
 
 import com.example.budgettracker.profiles.Expense;
+import com.example.budgettracker.profiles.Profile;
 import com.example.budgettracker.profiles.ProfileRepository;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
@@ -23,21 +24,35 @@ import com.example.budgettracker.profiles.CurrentProfile;
 import javafx.scene.text.Text;
 
 public class BudgetCategoriesController {
-    @FXML private Label leftBudgetLabel;
-    @FXML private Pane popupPane;
-    @FXML private Button addCategoryBtn;
-    @FXML private Button saveBtn;
-    @FXML private Button cancelAddBtn;
-    @FXML private Button finishAddBtn;
-    @FXML private TextField categoryNameField;
-    @FXML private TextField budgetValueField;
-    @FXML private VBox categoryList;
 
+    @FXML
+    private Label leftBudgetLabel;
+    @FXML
+    private Pane popupPane;
+    @FXML
+    private Button addCategoryBtn;
+    @FXML
+    private Button saveBtn;
+    @FXML
+    private Button cancelAddBtn;
+    @FXML
+    private Button finishAddBtn;
+    @FXML
+    private StackPane overlayPane;
+    @FXML
+    private TextField categoryNameField;
+    @FXML
+    private TextField budgetValueField;
+    @FXML
+    private VBox categoryList;
+    @FXML
+    private Text totalBudgetTxt;
 
     private float leftBudgetValue = CurrentProfile.getInstance().getCurrentProfile().getBudget();
     private float totalBudgeted;
 
     private final ChangeScene changeScene = new ChangeScene();
+    private double totalExpense = 0;
 
     CurrentProfile currentProfile;
 
@@ -49,31 +64,31 @@ public class BudgetCategoriesController {
         popupPane.setVisible(false);
         popupPane.setDisable(true);
         leftBudgetLabel.setText(String.format("%.2f", leftBudgetValue) + "$");
-        categoryList.getChildren().addListener((ListChangeListener<Node>) change ->{
-            while(change.next()){
-            if(change.wasRemoved()){
-                HBox removedItem = (HBox) change.getRemoved().get(0);
-                for (Node node : removedItem.getChildren()) {
-                    if(node instanceof Label && node.getId().equals("budgetedValue")){
-                        updateLeftBudget(((Label)node).getText().replace("$", ""), true);
-                        updateTotalBudgeted(((Label)node).getText().replace("$", ""), false);
+        categoryList.getChildren().addListener((ListChangeListener<Node>) change -> {
+            while (change.next()) {
+                if (change.wasRemoved()) {
+                    HBox removedItem = (HBox) change.getRemoved().get(0);
+                    for (Node node : removedItem.getChildren()) {
+                        if (node instanceof Label && node.getId().equals("budgetedValue")) {
+                            updateLeftBudget(((Label) node).getText().replace("$", ""), true);
+                            updateTotalBudgeted(((Label) node).getText().replace("$", ""), false);
+                        }
                     }
-            }
-        }else if (change.wasAdded()){
-            HBox addedItem = (HBox) change.getAddedSubList().get(0);
-            for (Node node : addedItem.getChildren()) {
-                    if(node instanceof Label && node.getId().equals("budgetedValue")){
-                        updateLeftBudget(((Label)node).getText().replace("$", ""), false);
-                        updateTotalBudgeted(((Label)node).getText().replace("$", ""), true);
+                } else if (change.wasAdded()) {
+                    HBox addedItem = (HBox) change.getAddedSubList().get(0);
+                    for (Node node : addedItem.getChildren()) {
+                        if (node instanceof Label && node.getId().equals("budgetedValue")) {
+                            updateLeftBudget(((Label) node).getText().replace("$", ""), false);
+                            updateTotalBudgeted(((Label) node).getText().replace("$", ""), true);
+                        }
                     }
+                }
             }
-        }
-    }});
+        });
         currentProfile = CurrentProfile.getInstance();
-        for(Expense expense: currentProfile.getCurrentProfile().getExpenses()){
-            initialiseCategory(expense.getName(),""+(int)expense.getCost());
+        for (Expense expense : currentProfile.getCurrentProfile().getExpenses()) {
+            initialiseCategory(expense.getName(), "" + (int) expense.getCost());
         }
-
 
     }
 
@@ -89,13 +104,13 @@ public class BudgetCategoriesController {
     }
 
     @FXML
-    public void onCancelAddCategory(){
+    public void onCancelAddCategory() {
         popupPane.setVisible(false);
         popupPane.setDisable(true);
     }
 
     @FXML
-    public void onFinishAddCategory(){
+    public void onFinishAddCategory() {
         try {
             String catName = categoryNameField.getText();
             String budgetedValue = budgetValueField.getText();
@@ -103,17 +118,18 @@ public class BudgetCategoriesController {
             Expense expense = new Expense(catName, (int) doubleValue);
             CurrentProfile.getInstance().getCurrentProfile().addExpense(expense);
             profileRepository.saveProfile(currentProfile.getCurrentProfile());
+            totalExpense += expense.getCost();
             initialiseCategory(catName, budgetedValue);
 
             popupPane.setVisible(false);
             popupPane.setDisable(true);
 
-        }catch (NumberFormatException ex) {
-                showAlert("nonNumber", "input is not a number");
-            }
+        } catch (NumberFormatException ex) {
+            showAlert("nonNumber", "input is not a number");
+        }
     }
 
-    public void initialiseCategory(String catName, String budgetedValue){
+    public void initialiseCategory(String catName, String budgetedValue) {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("categoryItem.fxml"));
@@ -124,38 +140,38 @@ public class BudgetCategoriesController {
 
             catItemController.setData(catName, budgetedValue);
 
-
-
             categoryList.getChildren().add(hBox);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-
-    public void updateLeftBudget(String budgetedValue, boolean isIncrement){
-        if(isIncrement){
+    public void updateLeftBudget(String budgetedValue, boolean isIncrement) {
+        if (isIncrement) {
             leftBudgetValue += Float.parseFloat(budgetedValue);
-        } else{
+        } else {
             leftBudgetValue -= Float.parseFloat(budgetedValue);
         }
         leftBudgetLabel.setText("$" + String.format("%.2f", leftBudgetValue));
-        if(leftBudgetValue<0){
+        if (leftBudgetValue < 0) {
             showAlert("overBudget", "Expenses are greater than budget");
         }
     }
 
-    public void updateTotalBudgeted(String budgetedValue, boolean isIncrement){
-        if(isIncrement){
+    public void updateTotalBudgeted(String budgetedValue, boolean isIncrement) {
+        if (isIncrement) {
             totalBudgeted += Float.parseFloat(budgetedValue);
-        } else{
+        } else {
             totalBudgeted -= Float.parseFloat(budgetedValue);
         }
     }
 
     public void onSummary(ActionEvent actionEvent) throws IOException {
-
-        changeScene.changeScene(actionEvent,SceneName.BUDGET_OVERVIEW);
+        Profile curProfile = CurrentProfile.getInstance().getCurrentProfile();
+        // saving profile so that the savins is updated
+        curProfile.setSavings((int) (curProfile.getBudget() - totalExpense));
+        profileRepository.saveProfile(curProfile);
+        changeScene.changeScene(actionEvent, SceneName.BUDGET_OVERVIEW);
     }
 
     public static void showAlert(String title, String message) {
