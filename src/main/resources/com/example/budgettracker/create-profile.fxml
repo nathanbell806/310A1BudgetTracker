@@ -8,57 +8,76 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.CreateProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #E7F0FF;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.CreateProfileController">
    <children>
-      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#E5E5E5" height="500.0" layoutX="156.0" layoutY="132.0" stroke="BLACK" strokeType="INSIDE" width="1000.0" />
-      <AnchorPane layoutX="256.0" layoutY="185.0" prefHeight="389.0" prefWidth="800.0">
+      <ImageView fitHeight="923.0" fitWidth="1384.0" layoutX="-79.0" layoutY="-152.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 60%;">
+         <image>
+            <Image url="@../../../Images/background.jpg" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" layoutX="437.0" layoutY="64.0" prefHeight="617.0" prefWidth="405.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
-            <Button layoutX="437.0" layoutY="225.0" mnemonicParsing="false" onAction="#onCreate" prefHeight="130.0" prefWidth="279.0" style="-fx-background-color: #51bbfe; -fx-background-radius: 20;" text="Create">
+            <Text strokeType="OUTSIDE" strokeWidth="0" text="Add a new user" textAlignment="CENTER">
                <font>
-                  <Font size="30.0" />
+                  <Font name="Baghdad Regular" size="39.0" />
                </font>
-            </Button>
-            <Label layoutX="437.0" layoutY="39.0" prefHeight="45.0" prefWidth="279.0" text="Enter A Username:">
+               <VBox.margin>
+                  <Insets bottom="80.0" />
+               </VBox.margin>
+            </Text>
+            <StackPane prefHeight="172.0" prefWidth="172.0" style="-fx-background-radius: 200;">
+               <children>
+                  <Label fx:id="accountLabel" translateY="-165.0">
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="profileViewTwo" fitHeight="202.0" fitWidth="202.0">
+                     <image>
+                        <Image url="@../../../Images/user3.png" />
+                     </image>
+                     <StackPane.margin>
+                        <Insets bottom="20.0" />
+                     </StackPane.margin>
+                  </ImageView>
+               </children>
+            </StackPane>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="279.0" text="Enter Username:" textAlignment="CENTER">
                <font>
-                  <Font size="30.0" />
+                  <Font name="Baghdad Regular" size="27.0" />
                </font>
+               <padding>
+                  <Insets top="-30.0" />
+               </padding>
             </Label>
-            <TextField fx:id="usernameTextField" layoutX="437.0" layoutY="84.0" onKeyTyped="#onUserKey" prefHeight="30.0" prefWidth="279.0" promptText="Username" style="-fx-background-color: white;">
+            <TextField fx:id="usernameTextField" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#onUserKey" prefHeight="45.0" prefWidth="372.0" promptText="Username" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-border-color: purple; -fx-border-radius: 10px; -fx-border-width: 0.5px;">
                <font>
                   <Font name="System Italic" size="24.0" />
                </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </TextField>
-            <StackPane layoutX="72.0" layoutY="92.0" prefHeight="172.0" prefWidth="172.0" style="-fx-background-radius: 200;">
-               <children>
-                  <Circle fill="#A3D8E5" radius="129.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke-width: 5;" />
-                  <Label fx:id="accountLabel" translateY="-165.0">
-                     <font>
-                        <Font size="36.0" />
-                     </font>
-                  </Label>
-                  <ImageView fx:id="profileViewTwo" fitHeight="263.0" fitWidth="263.0">
-                     <image>
-                        <Image url="@../../../Images/user.png" />
-                     </image>
-                  </ImageView>
-                  <Circle fill="DODGERBLUE" opacity="0.0" radius="129.0" stroke="BLACK" strokeType="INSIDE" />
-               </children>
-            </StackPane>
+            <Button fx:id="addUser" mnemonicParsing="false" onAction="#onCreate" styleClass="userButton" stylesheets="@../../../Css/categories_page.css" text="Add User">
+               <font>
+                  <Font name="Baghdad Regular" size="23.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" left="20.0" right="20.0" top="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
          </children>
-      </AnchorPane>
-      <Text layoutX="431.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0" text="Create An Account">
-         <font>
-            <Font name="System Bold" size="57.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="100.0" fitWidth="100.0" layoutY="14.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+      </VBox>
+      <ImageView fitHeight="53.0" fitWidth="54.0" layoutX="19.0" layoutY="19.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../Images/arrow_back_FILL0_wght400_GRAD0_opsz48.png" />
+            <Image url="@../../../Images/back.png" />
          </image>
       </ImageView>
    </children>

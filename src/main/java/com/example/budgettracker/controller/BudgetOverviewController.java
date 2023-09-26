@@ -33,16 +33,12 @@ public class BudgetOverviewController {
   private PieChart pieChart;
 
   @FXML
-  private Label usernameText;
-
-  @FXML
   private Label totalText;
 
   @FXML
   private LineChart<Number, Number> lineChart;
 
-  @FXML
-  private Button toggleButton;
+
 
   private String username;
 
@@ -99,17 +95,9 @@ public class BudgetOverviewController {
   @FXML
   public void initialize() {
     dataGet();
-
-    usernameText.setText(username);
     totalText.setText("Total budget is $" + totalBudget);
     pieChart.setData(budgetData);
     addEventHandlersCharts();
-    // Handle the toggle button click event
-    toggleButton.setOnAction(event -> {
-      // Toggle visibility of charts
-      pieChart.setVisible(!pieChart.isVisible());
-      lineChart.setVisible(!lineChart.isVisible());
-    });
   }
 
   /**

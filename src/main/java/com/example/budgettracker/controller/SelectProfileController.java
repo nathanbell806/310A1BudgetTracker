@@ -23,11 +23,11 @@ public class SelectProfileController {
     @FXML
     Label accountThreeLabel;
     @FXML
-    Label plusLabelOne;
+    ImageView plusLabelOne;
     @FXML
-    Label plusLabelTwo;
+    ImageView plusLabelTwo;
     @FXML
-    Label plusLabelThree;
+    ImageView plusLabelThree;
     
     @FXML
     ImageView profileViewOne;
@@ -40,7 +40,7 @@ public class SelectProfileController {
     ProfileRepository profileRepository;
 
     ChangeScene changeScene;
-    private static final String CREATE_ACCOUNT = "Create Account";
+    private static final String CREATE_ACCOUNT = "Add User";
 
     /**
      * set profile to either create profile or select profile depending on whether account already created or not
@@ -53,7 +53,7 @@ public class SelectProfileController {
         if(profiles.get(0).getUsername().equals("")){
             accountOneLabel.setText(CREATE_ACCOUNT);
             plusLabelOne.setVisible(true);
-            profileViewOne.setVisible(false);
+
         }else{
             accountOneLabel.setText(profiles.get(0).getUsername());
             plusLabelOne.setVisible(false);
@@ -62,7 +62,6 @@ public class SelectProfileController {
         if(profiles.get(1).getUsername().equals("")){
             accountTwoLabel.setText(CREATE_ACCOUNT);
             plusLabelTwo.setVisible(true);
-            profileViewTwo.setVisible(false);
         }else{
             accountTwoLabel.setText(profiles.get(1).getUsername());
             plusLabelTwo.setVisible(false);
@@ -71,7 +70,6 @@ public class SelectProfileController {
         if(profiles.get(2).getUsername().equals("")){
             accountThreeLabel.setText(CREATE_ACCOUNT);
             plusLabelThree.setVisible(true);
-            profileViewThree.setVisible(false);
         }else{
             accountThreeLabel.setText(profiles.get(2).getUsername());
             plusLabelThree.setVisible(false);
