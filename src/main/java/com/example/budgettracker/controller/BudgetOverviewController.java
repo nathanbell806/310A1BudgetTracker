@@ -39,8 +39,6 @@ public class BudgetOverviewController {
   @FXML
   private LineChart<Number, Number> lineChart;
 
-
-
   private String username;
 
   private double totalBudget;
@@ -174,7 +172,7 @@ public class BudgetOverviewController {
 
     // Set the type of files the user can save as (e.g. .txt files)
     fileChooser.getExtensionFilters().add(
-        new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        new FileChooser.ExtensionFilter("CSV Files (*.csv)", "*.csv"));
 
     // Show the save dialog window and get the selected file
     File selectedFile = fileChooser.showSaveDialog(null); // Replace null with your main stage if you have it accessible
@@ -184,18 +182,21 @@ public class BudgetOverviewController {
       // Here you would handle the actual exporting of the income data to the selected
       // file
       // This is just an example, replace with your actual logic
-      try (FileWriter fileWriter = new FileWriter(selectedFile)) {
-        Profile curProfile = CurrentProfile.getInstance().getCurrentProfile();
-        // This is where the data comes in to be saved (Database connection before)
-        fileWriter.write("Your income data here:\n");
-        fileWriter.write("Budget per week: " + curProfile.getBudget() + "\n");
-        fileWriter.write("All Expenses per week: \n");
-        for (Expense e : curProfile.getExpenses()) {
-          fileWriter.write(e.getName() + " : " + e.getCost() + "\n");
-        }
-        fileWriter.write("Savings per week: " + curProfile.getSavings() + "\n");
-        fileWriter
-            .write("Forecasted savings in 10 years: " + forecastSavings(curProfile, 10));
+      try {
+        // FileWriter fileWriter = new FileWriter(selectedFile);
+        // Profile curProfile = CurrentProfile.getInstance().getCurrentProfile();
+        // // This is where the data comes in to be saved (Database connection before)
+        // fileWriter.write("Your income data here:\n");
+        // fileWriter.write("Budget per week: " + curProfile.getBudget() + "\n");
+        // fileWriter.write("All Expenses per week: \n");
+        // for (Expense e : curProfile.getExpenses()) {
+        // fileWriter.write(e.getName() + " : " + e.getCost() + "\n");
+        // }
+        // fileWriter.write("Savings per week: " + curProfile.getSavings() + "\n");
+        // fileWriter
+        // .write("Forecasted savings in 10 years: " + forecastSavings(curProfile, 10));
+        // fileWriter.close();
+        writeToCSV(lineChart.getData().get(0).getData(), selectedFile);
       } catch (IOException e) {
         e.printStackTrace();
       }
@@ -204,9 +205,31 @@ public class BudgetOverviewController {
     }
   }
 
+  private void writeToCSV(ObservableList<XYChart.Data<Number, Number>> data, File file) throws IOException {
+    FileWriter csvWriter = new FileWriter(file);
+    csvWriter.append("Years");
+    csvWriter.append(",");
+    csvWriter.append("Forecasted savings");
+    csvWriter.append("\n");
+
+    // Write data rows
+    for (XYChart.Data<Number, Number> point : data) {
+      Number xValue = point.getXValue();
+      Number yValue = point.getYValue();
+
+      csvWriter.append(xValue.toString());
+      csvWriter.append(",");
+      csvWriter.append(yValue.toString());
+      csvWriter.append("\n");
+    }
+
+    csvWriter.close();
+  }
+
   /**
    * This method is triggered when the user clicks the "Save Image" button.
-   * It captures a snapshot of the current state of the user's Pie chart and LineChart.
+   * It captures a snapshot of the current state of the user's Pie chart and
+   * LineChart.
    * The user is provided with a dialog to select and save image to the desired
    * save location.
    *
