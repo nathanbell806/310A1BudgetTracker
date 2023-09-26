@@ -170,6 +170,7 @@ public class BudgetCategoriesController {
 
     public void onSummary(ActionEvent actionEvent) throws IOException {
         Profile curProfile = CurrentProfile.getInstance().getCurrentProfile();
+        // saving profile so that the savins is updated
         curProfile.setSavings((int) (curProfile.getBudget() - totalExpense));
         profileRepository.saveProfile(curProfile);
         changeScene.changeScene(actionEvent, SceneName.BUDGET_OVERVIEW);
