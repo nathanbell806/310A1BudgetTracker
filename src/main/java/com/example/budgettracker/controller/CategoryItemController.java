@@ -1,4 +1,4 @@
-package com.example.budgettracker;
+package com.example.budgettracker.controller;
 
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.Expense;
@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CategoryItemController implements Initializable{
-        @FXML
+public class CategoryItemController implements Initializable {
+    @FXML
     private Label budgetedValue;
 
     @FXML
@@ -31,34 +31,34 @@ public class CategoryItemController implements Initializable{
     CurrentProfile currentProfile;
     ProfileRepository profileRepository;
 
-    public void setData(String categoryNameData, String budgetedValueData){
+    public void setData(String categoryNameData, String budgetedValueData) {
         categoryName.setText(categoryNameData);
         try {
             int intBudgetedValue = Integer.parseInt(budgetedValueData);
             budgetedValue.setText("$" + intBudgetedValue);
         } catch (NumberFormatException e) {
             double doubleBudgetedData = Double.parseDouble(budgetedValueData);
-            budgetedValue.setText("$" + (int)doubleBudgetedData);
+            budgetedValue.setText("$" + (int) doubleBudgetedData);
 
         }
     }
 
-    public void onDelete(){
+    public void onDelete() {
         VBox parentContainer = (VBox) deleteBtn.getParent().getParent();
         parentContainer.getChildren().remove(deleteBtn.getParent());
 
         List<Expense> expenses = currentProfile.getCurrentProfile().getExpenses();
-        int index =0;
+        int index = 0;
         ArrayList<Integer> indexes = new ArrayList<>();
-        for (Expense expense : expenses){
-            if (("$"+(int)expense.getCost()).equals(budgetedValue.getText())){
+        for (Expense expense : expenses) {
+            if (("$" + (int) expense.getCost()).equals(budgetedValue.getText())) {
                 //for some reason when trying to remove the expense here it led to a java reflection exception so instead we can just get the indexes of which expenses to remove and remove them after
                 indexes.add(index);
                 break;
             }
-            index = index+1;
+            index = index + 1;
         }
-        for(int expenseIndex: indexes){
+        for (int expenseIndex : indexes) {
             expenses.remove(expenseIndex);
         }
         currentProfile.getCurrentProfile().setExpenses(expenses);
