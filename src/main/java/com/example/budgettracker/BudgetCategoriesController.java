@@ -94,11 +94,11 @@ public class BudgetCategoriesController {
 
     @FXML
     public void onProfileSelect(MouseEvent event) throws IOException {
-        changeScene.changeScene(event,SceneName.SELECT_PROFILE);
+        changeScene.changeScene(event, SceneName.SELECT_PROFILE);
     }
 
     @FXML
-    public void onAddCategory(){
+    public void onAddCategory() {
         popupPane.setVisible(true);
         popupPane.setDisable(false);
     }
@@ -181,5 +181,4 @@ public class BudgetCategoriesController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 }
