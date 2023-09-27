@@ -84,7 +84,7 @@ public class BudgetOverviewController {
   }
 
   private double forecastSavings(Profile profile, int i) {
-    double totalBudgetLeft = profile.getBudget() - totalExpense;
+    double totalBudgetLeft = profile.getIncome() - totalExpense;
     return (totalBudgetLeft) * i * 52;
   }
 

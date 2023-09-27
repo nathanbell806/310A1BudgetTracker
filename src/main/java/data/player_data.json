@@ -3,7 +3,8 @@
   "username": "?",
   "expenses": [],
   "budget": 0,
-  "savings": 0
+  "savings": 0,
+  "income": 0
 },
 {
   "username": "Adwait",
@@ -22,21 +23,14 @@
     }
   ],
   "budget": 2150,
-  "savings": 350
+  "savings": 350,
+  "income": 0
 },
 {
   "username": "Kevin",
-  "expenses": [
-    {
-      "name": "rent",
-      "cost": 450.0
-    },
-    {
-      "name": "food",
-      "cost": 200.0
-    }
-  ],
-  "budget": 2200,
-  "savings": 1550
+  "expenses": [],
+  "budget": 700,
+  "savings": 1300,
+  "income": 2000
 }
 ]

@@ -102,6 +102,7 @@ public class ProfileRepository {
                     profiles.get(i).getExpenses().addAll(saveProfile.getExpenses());
                     profiles.get(i).setBudget(saveProfile.getBudget());
                     profiles.get(i).setSavings(saveProfile.getSavings());
+                    profiles.get(i).setIncome(saveProfile.getIncome());
                     json.append(gson.toJson(profiles.get(i), Profile.class));
                 } else {
                     json.append(gson.toJson(profiles.get(i), Profile.class));
