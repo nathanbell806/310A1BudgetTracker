@@ -3,36 +3,26 @@
   "username": "?",
   "expenses": [],
   "budget": 0,
-  "savings": 0
+  "savings": 0,
+  "income": 0
 },
 {
   "username": "Adwait",
-  "expenses": [
-    {
-      "name": "food",
-      "cost": 150.0
-    },
-    {
-      "name": "transport",
-      "cost": 200.0
-    },
-    {
-      "name": "alcohol",
-      "cost": 400.0
-    }
-  ],
-  "budget": 2200,
-  "savings": 300
+  "expenses": [],
+  "budget": 90,
+  "savings": 0,
+  "income": 0
 },
 {
   "username": "Kevin",
   "expenses": [
     {
-      "name": "food",
-      "cost": 800.0
+      "name": "everything",
+      "cost": 700.0
     }
   ],
-  "budget": 1200,
-  "savings": 1200
+  "budget": 900,
+  "savings": 900,
+  "income": 2000
 }
 ]

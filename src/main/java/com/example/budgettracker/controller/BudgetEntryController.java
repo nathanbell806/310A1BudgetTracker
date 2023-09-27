@@ -63,7 +63,8 @@ public class BudgetEntryController {
         incomeCombo.getSelectionModel().selectFirst();
         savingPeriodCombo.getSelectionModel().selectFirst();
 
-        // Enable or Disable the expense navigation button if required entries are filled and is valid
+        // Enable or Disable the expense navigation button if required entries are
+        // filled and is valid
         addNumericListener(savingEntry);
         addNumericListener(savingIncomeEntry);
         addNumericListener(incomeEntry);
@@ -73,7 +74,9 @@ public class BudgetEntryController {
     }
 
     /**
-     * This method navigates from the 'Amount to Budget' or 'Set Saving Goals' back to the option selector view.
+     * This method navigates from the 'Amount to Budget' or 'Set Saving Goals' back
+     * to the option selector view.
+     * 
      * @param event The on click event
      */
     @FXML
@@ -88,6 +91,7 @@ public class BudgetEntryController {
 
     /**
      * This method navigates to the categorise expenses scene.
+     * 
      * @param event The on click event
      */
     @FXML
@@ -95,60 +99,64 @@ public class BudgetEntryController {
 
         saveUserEntryData();
         // navigate to expense categorise view
-        changeScene.changeScene(event,SceneName.BUDGET_CATEGORIES);
+        changeScene.changeScene(event, SceneName.BUDGET_CATEGORIES);
     }
 
     /**
      * This method navigates to the Profile Select Scene
+     * 
      * @param event The mouse on click event
      * @throws IOException
      */
     @FXML
     public void onProfileSelect(MouseEvent event) throws IOException {
-        changeScene.changeScene(event,SceneName.SELECT_PROFILE);
+        changeScene.changeScene(event, SceneName.SELECT_PROFILE);
     }
 
     /**
-     * This helped method saves the user data depending on current tab to the JSON always in weekly format
+     * This helped method saves the user data depending on current tab to the JSON
+     * always in weekly format
      */
     private void saveUserEntryData() throws IOException {
-        //checks which page was open
-        if(!savingIncomeEntry.getText().isEmpty()){
+        // checks which page was open
+        if (!savingIncomeEntry.getText().isEmpty()) {
             int income = Integer.parseInt(savingIncomeEntry.getText());
             int saving = Integer.parseInt(savingEntry.getText());
 
             String incomePeriod = savingIncomeCombo.getValue();
             String savingPeriod = savingPeriodCombo.getValue();
 
-            //convert to always want data weekly
-            if(incomePeriod.equals(MONTHLY)){
-                income = (income*12)/52;
+            // convert to always want data weekly
+            if (incomePeriod.equals(MONTHLY)) {
+                income = (income * 12) / 52;
             } else if (incomePeriod.equals(YEARLY)) {
-                income = income/52;
+                income = income / 52;
             }
 
-            if(savingPeriod.equals(MONTHLY)){
-                saving = (saving*12)/52;
+            if (savingPeriod.equals(MONTHLY)) {
+                saving = (saving * 12) / 52;
             } else if (savingPeriod.equals(YEARLY)) {
-                saving = saving/52;
+                saving = saving / 52;
             }
 
-            //budget = income - saving goal
+            // budget = income - saving goal
             CurrentProfile.getInstance().getCurrentProfile().setBudget(income - saving);
+            CurrentProfile.getInstance().getCurrentProfile().setIncome(income);
             CurrentProfile.getInstance().getCurrentProfile().setSavings(saving);
         } else {
             int income = Integer.parseInt(incomeEntry.getText());
 
             String budgetPeriod = incomeCombo.getValue();
 
-            //convert to always weekly data
-            if(budgetPeriod.equals(MONTHLY)){
-                income = (income*12)/52;
+            // convert to always weekly data
+            if (budgetPeriod.equals(MONTHLY)) {
+                income = (income * 12) / 52;
             } else if (budgetPeriod.equals(YEARLY)) {
-                income = income/52;
+                income = income / 52;
             }
 
             CurrentProfile.getInstance().getCurrentProfile().setBudget(income);
+            CurrentProfile.getInstance().getCurrentProfile().setIncome(income);
             CurrentProfile.getInstance().getCurrentProfile().setSavings(0);
 
         }
@@ -158,6 +166,7 @@ public class BudgetEntryController {
 
     /**
      * This method shows the 'Set Saving Goals' view.
+     * 
      * @param event The on click event
      */
     @FXML
@@ -171,6 +180,7 @@ public class BudgetEntryController {
 
     /**
      * This method shows the 'Amount to Budget' view.
+     * 
      * @param event The on click event
      */
     @FXML
@@ -198,8 +208,7 @@ public class BudgetEntryController {
         if (savingView.isVisible()) {
             boolean hasValidSavingEntry = isNumeric(savingEntry.getText()) && isNumeric(savingIncomeEntry.getText());
             expenseButton.setDisable(!hasValidSavingEntry);
-        }
-        else if (incomeView.isVisible()) {
+        } else if (incomeView.isVisible()) {
             boolean hasValidIncomeEntry = isNumeric(incomeEntry.getText());
             expenseButton.setDisable(!hasValidIncomeEntry);
         }
@@ -207,6 +216,7 @@ public class BudgetEntryController {
 
     /**
      * This method takes a String and checks if it is numeric
+     * 
      * @param text The String to check numeric for
      * @return boolean
      */
@@ -215,7 +225,9 @@ public class BudgetEntryController {
     }
 
     /**
-     * This method takes a TextArea and adds non-numeric characters preventer listener
+     * This method takes a TextArea and adds non-numeric characters preventer
+     * listener
+     * 
      * @param textField The TextArea to add the numeric listener to
      */
     private void addNumericListener(TextArea textField) {
