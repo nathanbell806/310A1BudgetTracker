@@ -1,5 +1,7 @@
-package com.example.budgettracker;
+package com.example.budgettracker.controller;
 
+import com.example.budgettracker.ChangeScene;
+import com.example.budgettracker.SceneName;
 import com.example.budgettracker.profiles.Expense;
 import com.example.budgettracker.profiles.Profile;
 import com.example.budgettracker.profiles.ProfileRepository;
