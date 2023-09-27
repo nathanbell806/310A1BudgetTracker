@@ -17,22 +17,26 @@
       "cost": 200.0
     },
     {
-      "name": "alcohol",
+      "name": "bills",
       "cost": 400.0
     }
   ],
-  "budget": 2200,
-  "savings": 300
+  "budget": 2150,
+  "savings": 350
 },
 {
   "username": "Kevin",
   "expenses": [
     {
+      "name": "rent",
+      "cost": 450.0
+    },
+    {
       "name": "food",
-      "cost": 800.0
+      "cost": 200.0
     }
   ],
-  "budget": 1200,
-  "savings": 1200
+  "budget": 2200,
+  "savings": 1550
 }
 ]
