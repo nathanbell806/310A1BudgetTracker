@@ -87,7 +87,7 @@
                                                       <Font size="19.0" />
                                                    </font>
                                                    <padding>
-                                                      <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                                                      <Insets bottom="1.0" left="2.5" right="2.5" top="1.0" />
                                                    </padding>
                                                 </TextArea>
                                                 <ComboBox fx:id="savingPeriodCombo" prefHeight="39.0" prefWidth="137.0" promptText="Monthly" style="-fx-background-color: white; -fx-border-color: purple; -fx-background-radius: 10px; -fx-border-radius: 10px;" />
@@ -112,7 +112,7 @@
                                                                   <Font size="19.0" />
                                                                </font>
                                                                <padding>
-                                                                  <Insets bottom="2.0" left="5.0" right="5.0" top="2.0" />
+                                                                  <Insets bottom="1.0" left="2.5" right="2.5" top="1.0" />
                                                                </padding>
                                                             </TextArea>
                                                             <ComboBox fx:id="savingIncomeCombo" prefHeight="39.0" prefWidth="137.0" promptText="Monthly" style="-fx-background-color: white; -fx-background-radius: 10px; -fx-border-color: purple; -fx-border-radius: 10px;">

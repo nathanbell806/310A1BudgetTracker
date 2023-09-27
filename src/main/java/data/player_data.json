@@ -8,21 +8,29 @@
 },
 {
   "username": "Adwait",
-  "expenses": [],
-  "budget": 90,
-  "savings": 0,
+  "expenses": [
+    {
+      "name": "food",
+      "cost": 150.0
+    },
+    {
+      "name": "transport",
+      "cost": 200.0
+    },
+    {
+      "name": "bills",
+      "cost": 400.0
+    }
+  ],
+  "budget": 2150,
+  "savings": 350,
   "income": 0
 },
 {
   "username": "Kevin",
-  "expenses": [
-    {
-      "name": "everything",
-      "cost": 700.0
-    }
-  ],
-  "budget": 900,
-  "savings": 900,
+  "expenses": [],
+  "budget": 700,
+  "savings": 1300,
   "income": 2000
 }
 ]
