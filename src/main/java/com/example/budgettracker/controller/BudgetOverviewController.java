@@ -183,19 +183,6 @@ public class BudgetOverviewController {
       // file
       // This is just an example, replace with your actual logic
       try {
-        // FileWriter fileWriter = new FileWriter(selectedFile);
-        // Profile curProfile = CurrentProfile.getInstance().getCurrentProfile();
-        // // This is where the data comes in to be saved (Database connection before)
-        // fileWriter.write("Your income data here:\n");
-        // fileWriter.write("Budget per week: " + curProfile.getBudget() + "\n");
-        // fileWriter.write("All Expenses per week: \n");
-        // for (Expense e : curProfile.getExpenses()) {
-        // fileWriter.write(e.getName() + " : " + e.getCost() + "\n");
-        // }
-        // fileWriter.write("Savings per week: " + curProfile.getSavings() + "\n");
-        // fileWriter
-        // .write("Forecasted savings in 10 years: " + forecastSavings(curProfile, 10));
-        // fileWriter.close();
         writeToCSV(lineChart.getData().get(0).getData(), selectedFile);
       } catch (IOException e) {
         e.printStackTrace();
