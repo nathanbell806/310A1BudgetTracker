@@ -21,14 +21,12 @@ This project consists of 3 development stages, each with different scope of work
 
 #### Stage 2 focus:
 - Forecast/extrapolate different spending and expenses inputs into future
-- Customizability of spending reports
 - Allow users to export their expenses data and their reports for easier record keeping
 
 #### Stage 3 focus:
 - Collaborative Budgeting: Implement a feature that enables multiple users (e.g., families or project teams) to collaborate on a shared budget and track expenses collectively.
 - Different user roles with different permissions
 - payment service integration and bill splitting (Potential*)
-
 
 ## Found a problem?
 If you find bug in the source code or mistakes in documentation, you can help us by submitting [an issue](https://github.com/nathanbell806/310A1BudgetTracker/issues/new?assignees=&labels=bug&projects=&template=bug_report.md&title=) along with a bug report
@@ -50,7 +48,7 @@ You should fork this repository and implement the feature on a new branch.
 Once you finished the implementation, create a pull request that reference to the resolved issue with a description of changes made. Your pull request should be reviewed by another contributor before being approved.
 
 ## Setting up 
-Priquisities:
+Prerequisites:
 - [Java JDK 17.0.2](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 JavaFX should be installed by the Maven setup in this project
 
@@ -76,5 +74,38 @@ For Unix/MacOsX:
 
 For Windows:  
 `.\mvnw.cmd clean test`
-## What is expected
-Please checkout the code of conduct of this project: [Code of conduct](https://github.com/nathanbell806/310A1BudgetTracker/blob/main/CODE_OF_CONDUCT.md)
+
+## The types of contributions
+
+We welcome all contributions to this project, however we kindly ask you to follow our CODE OF CONDUCT when contributing. Types of contributions includes:
+- Bug fixes
+- New features
+- Improvements to existing features
+- Improvements to documentation
+- Improvements to code quality
+- Many more!
+
+## How contributors can get started if they are newcomers
+
+- Check out the [issues page](https://github.com/nathanbell806/310A1BudgetTracker/issues)
+- Assign yourself to an issue, please assign yourself to a maximum of 1 issue at a time
+- If you have any questions, please reach out to our team using the contact information below.
+
+## Technical requirements for contributions
+
+- Must be able to use Git and GitHub
+- Must be familiar with Java, JavaFX and Maven
+- Follow good coding practices
+
+## Project ground rules like expected behaviour
+Code of Conduct: All contributors must follow our [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## Contact Us
+| Name            | Email                     |
+|-----------------|---------------------------|
+| Dhruvkanth Puli | dpul133@aucklanduni.ac.nz |
+| Kevin Jin       | kjin505@aucklanduni.ac.nz |
+| Aditya Sohani   | asoh038@aucklanduni.ac.nz |
+| Adwait Mane     | aman901@aucklanduni.ac.nz |
+| Young Min Kim   | ykim583@aucklanduni.ac.nz |
+| Eric Jiang      | ejia362@aucklanduni.ac.nz |
