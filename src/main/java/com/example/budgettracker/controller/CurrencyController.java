@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class CurrencyController {
         private static final String API_KEY = "029bda5c26bfdab737358d97749e4d94";
@@ -42,4 +45,31 @@ public class CurrencyController {
                 e.printStackTrace();
             }
         }
+
+    public static List<String> getAvailableCurrencies() {
+        String apiUrl = "https://openexchangerates.org/api/currencies.json";
+        try {
+            URL url = new URL(apiUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            JSONObject jsonObject = new JSONObject(response.toString());
+
+            // Convert keys (currency codes) to list
+            List<String> currencyList = new ArrayList<>(jsonObject.keySet());
+            return currencyList;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList(); // handle exception
+        }
+    }
 }

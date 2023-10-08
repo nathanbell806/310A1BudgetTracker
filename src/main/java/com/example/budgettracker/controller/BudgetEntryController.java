@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BudgetEntryController {
@@ -66,9 +67,9 @@ public class BudgetEntryController {
     @FXML
     public void initialize() {
         changeScene = new ChangeScene();
-        currencyComboBox.getItems().addAll("NZD", "JPY", "KRW");
-        currencyComboBox.setValue("EUR");  // Default value
-
+        List<String> currencies = CurrencyController.getAvailableCurrencies();
+        currencyComboBox.setItems(FXCollections.observableArrayList(currencies));
+        currencyComboBox.setValue("EUR");
         expenseButton.setDisable(true);
         onBack(null);
 
