@@ -53,8 +53,6 @@ public class BudgetEntryController {
     private static final String MONTHLY = "Monthly";
     private static final String YEARLY = "Yearly";
 
-    private String currentCurrency = "US";
-
     private final ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", MONTHLY, YEARLY);
 
     ChangeScene changeScene;
@@ -120,19 +118,19 @@ public class BudgetEntryController {
     }
 
     /**
-     * This method navigates to the categorise expenses scene.
+     * This method navigates to the category expenses scene.
      *
      * @param event The on click event
      */
     @FXML
     public void onExpense(ActionEvent event) throws IOException {
 
-        // Get the current currency and save
+        // Get the current currency from the user's profile and the selected currency from the ComboBox
+        String currentCurrency = CurrentProfile.getInstance().getCurrentProfile().getCurrentCurrency();
         String selectedCurrency = currencyComboBox.getValue();
-        saveUserEntryData(currentCurrency, selectedCurrency);
 
-        // Update the current currency after conversion
-        currentCurrency = selectedCurrency;
+        // Save the new user data
+        saveUserEntryData(currentCurrency, selectedCurrency);
 
         // navigate to expense categorise view
         changeScene.changeScene(event, SceneName.BUDGET_CATEGORIES);
@@ -201,6 +199,10 @@ public class BudgetEntryController {
             CurrentProfile.getInstance().getCurrentProfile().setSavings(0);
 
         }
+
+        // Set the selected currency to the current profile's currentCurrency
+        CurrentProfile.getInstance().getCurrentProfile().setCurrentCurrency(toCurrency);
+
         ProfileRepository profileRepository = new ProfileRepository();
         profileRepository.saveProfile(CurrentProfile.getInstance().getCurrentProfile());
     }

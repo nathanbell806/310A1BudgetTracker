@@ -21,7 +21,7 @@ public class Profile {
     @SerializedName("income")
     private int income;
     @SerializedName("currentCurrency")
-    private String currentCurrency;  // Added this field
+    private String currentCurrency;
     @SerializedName("profilePicture")
     private String profilePicture;
 
