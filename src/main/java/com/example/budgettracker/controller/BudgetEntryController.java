@@ -3,6 +3,7 @@ package com.example.budgettracker.controller;
 import com.example.budgettracker.ChangeScene;
 import com.example.budgettracker.SceneName;
 import com.example.budgettracker.profiles.CurrentProfile;
+import com.example.budgettracker.profiles.Expense;
 import com.example.budgettracker.profiles.ProfileRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +19,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class BudgetEntryController {
 
@@ -45,9 +47,13 @@ public class BudgetEntryController {
     private TextArea incomeEntry;
     @FXML
     private ImageView profileIcon;
+    @FXML
+    private ComboBox<String> currencyComboBox;
 
     private static final String MONTHLY = "Monthly";
     private static final String YEARLY = "Yearly";
+
+    private String currentCurrency = "US";
 
     private final ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", MONTHLY, YEARLY);
 
@@ -56,6 +62,8 @@ public class BudgetEntryController {
     @FXML
     public void initialize() {
         changeScene = new ChangeScene();
+        currencyComboBox.getItems().addAll("US", "KR", "EU", "UK", "JP");
+        currencyComboBox.setValue("US");  // Default value
 
         expenseButton.setDisable(true);
         onBack(null);
@@ -80,6 +88,19 @@ public class BudgetEntryController {
         savingEntry.textProperty().addListener((observable, oldValue, newValue) -> updateExpenseButtonState());
         savingIncomeEntry.textProperty().addListener((observable, oldValue, newValue) -> updateExpenseButtonState());
         incomeEntry.textProperty().addListener((observable, oldValue, newValue) -> updateExpenseButtonState());
+    }
+    private final Map<String, Double> conversionRates = Map.of(
+            "US", 1.0,
+            "KR", 1100.0,
+            "EU", 0.85,
+            "UK", 0.75,
+            "JP", 105.0
+    );
+
+    private double convertAmount(double amount, String fromCurrency, String toCurrency) {
+        double fromRate = conversionRates.getOrDefault(fromCurrency, 1.0);
+        double toRate = conversionRates.getOrDefault(toCurrency, 1.0);
+        return (amount / fromRate) * toRate;
     }
 
     /**
@@ -106,7 +127,13 @@ public class BudgetEntryController {
     @FXML
     public void onExpense(ActionEvent event) throws IOException {
 
-        saveUserEntryData();
+        // Get the current currency and save
+        String selectedCurrency = currencyComboBox.getValue();
+        saveUserEntryData(currentCurrency, selectedCurrency);
+
+        // Update the current currency after conversion
+        currentCurrency = selectedCurrency;
+
         // navigate to expense categorise view
         changeScene.changeScene(event, SceneName.BUDGET_CATEGORIES);
     }
@@ -126,7 +153,12 @@ public class BudgetEntryController {
      * This helped method saves the user data depending on current tab to the JSON
      * always in weekly format
      */
-    private void saveUserEntryData() throws IOException {
+    private void saveUserEntryData(String fromCurrency, String toCurrency) throws IOException {
+
+        for (Expense expense : CurrentProfile.getInstance().getCurrentProfile().getExpenses()) {
+            expense.setCost(convertAmount(expense.getCost(), fromCurrency, toCurrency));
+        }
+
         // checks which page was open
         if (!savingIncomeEntry.getText().isEmpty()) {
             int income = Integer.parseInt(savingIncomeEntry.getText());
@@ -149,9 +181,9 @@ public class BudgetEntryController {
             }
 
             // budget = income - saving goal
-            CurrentProfile.getInstance().getCurrentProfile().setBudget(income - saving);
-            CurrentProfile.getInstance().getCurrentProfile().setIncome(income);
-            CurrentProfile.getInstance().getCurrentProfile().setSavings(saving);
+            CurrentProfile.getInstance().getCurrentProfile().setBudget((int) convertAmount(income-saving, fromCurrency, toCurrency));
+            CurrentProfile.getInstance().getCurrentProfile().setIncome((int) convertAmount(income, fromCurrency, toCurrency));
+            CurrentProfile.getInstance().getCurrentProfile().setSavings((int) convertAmount(saving, fromCurrency, toCurrency));
         } else {
             int income = Integer.parseInt(incomeEntry.getText());
 

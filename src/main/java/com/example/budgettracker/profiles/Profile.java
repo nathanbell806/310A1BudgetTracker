@@ -20,6 +20,8 @@ public class Profile {
     private int savings;
     @SerializedName("income")
     private int income;
+    @SerializedName("currentCurrency")
+    private String currentCurrency;  // Added this field
     @SerializedName("profilePicture")
     private String profilePicture;
 
@@ -74,5 +76,9 @@ public class Profile {
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
     }
+
+    public String getCurrentCurrency() {return currentCurrency;}
+
+    public void setCurrentCurrency(String currentCurrency) {this.currentCurrency = currentCurrency;}
 
 }

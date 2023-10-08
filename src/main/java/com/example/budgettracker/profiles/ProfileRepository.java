@@ -78,6 +78,7 @@ public class ProfileRepository {
                 profile.setExpenses(emptyList);
                 profile.setBudget(0);
                 profile.setSavings(0);
+                profile.setCurrentCurrency("US");
                 saveProfile(profile);
                 return true;
             }
@@ -103,6 +104,7 @@ public class ProfileRepository {
                     profiles.get(i).setBudget(saveProfile.getBudget());
                     profiles.get(i).setSavings(saveProfile.getSavings());
                     profiles.get(i).setIncome(saveProfile.getIncome());
+                    profiles.get(i).setCurrentCurrency(saveProfile.getCurrentCurrency());
                     json.append(gson.toJson(profiles.get(i), Profile.class));
                 } else {
                     json.append(gson.toJson(profiles.get(i), Profile.class));
