@@ -78,7 +78,7 @@ public class ProfileRepository {
                 profile.setExpenses(emptyList);
                 profile.setBudget(0);
                 profile.setSavings(0);
-                profile.setCurrentCurrency("US");
+                profile.setCurrentCurrency("EUR");
                 saveProfile(profile);
                 return true;
             }

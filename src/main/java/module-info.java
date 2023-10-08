@@ -12,8 +12,9 @@ module com.example.budgettracker {
     requires java.desktop;
   requires com.fasterxml.jackson.core;
   requires com.fasterxml.jackson.databind;
+    requires org.json;
 
-  opens com.example.budgettracker to javafx.fxml, com.google.gson;
+    opens com.example.budgettracker to javafx.fxml, com.google.gson;
   exports com.example.budgettracker;
   opens com.example.budgettracker.profiles to javafx.fxml,com.google.gson;
     exports com.example.budgettracker.controller;

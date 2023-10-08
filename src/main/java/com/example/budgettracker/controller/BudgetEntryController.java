@@ -17,8 +17,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.json.JSONObject;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.Map;
 
 public class BudgetEntryController {
@@ -53,6 +57,8 @@ public class BudgetEntryController {
     private static final String MONTHLY = "Monthly";
     private static final String YEARLY = "Yearly";
 
+    private Map<String, Double> conversionRates = new HashMap<>();
+
     private final ObservableList<String> periodOptions = FXCollections.observableArrayList("Weekly", MONTHLY, YEARLY);
 
     ChangeScene changeScene;
@@ -60,8 +66,8 @@ public class BudgetEntryController {
     @FXML
     public void initialize() {
         changeScene = new ChangeScene();
-        currencyComboBox.getItems().addAll("US", "KR", "EU", "UK", "JP");
-        currencyComboBox.setValue("US");  // Default value
+        currencyComboBox.getItems().addAll("NZD", "JPY", "KRW");
+        currencyComboBox.setValue("EUR");  // Default value
 
         expenseButton.setDisable(true);
         onBack(null);
@@ -87,13 +93,24 @@ public class BudgetEntryController {
         savingIncomeEntry.textProperty().addListener((observable, oldValue, newValue) -> updateExpenseButtonState());
         incomeEntry.textProperty().addListener((observable, oldValue, newValue) -> updateExpenseButtonState());
     }
-    private final Map<String, Double> conversionRates = Map.of(
-            "US", 1.0,
-            "KR", 1100.0,
-            "EU", 0.85,
-            "UK", 0.75,
-            "JP", 105.0
-    );
+
+    private void loadConversionRatesFromFile() {
+        String filePath = "C:\\Users\\min\\IdeaProjects\\310A1BudgetTracker\\src\\main\\java\\data\\exchange_rates.json";
+
+        try {
+            String content = new String(Files.readAllBytes(Paths.get(filePath)));
+            JSONObject jsonObject = new JSONObject(content);
+
+            if (jsonObject.getBoolean("success")) {
+                JSONObject rates = jsonObject.getJSONObject("rates");
+                for (String key : rates.keySet()) {
+                    conversionRates.put(key, rates.getDouble(key));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     private double convertAmount(double amount, String fromCurrency, String toCurrency) {
         double fromRate = conversionRates.getOrDefault(fromCurrency, 1.0);
@@ -152,6 +169,8 @@ public class BudgetEntryController {
      * always in weekly format
      */
     private void saveUserEntryData(String fromCurrency, String toCurrency) throws IOException {
+
+        loadConversionRatesFromFile();
 
         for (Expense expense : CurrentProfile.getInstance().getCurrentProfile().getExpenses()) {
             expense.setCost(convertAmount(expense.getCost(), fromCurrency, toCurrency));
