@@ -14,15 +14,14 @@ public class Profile {
     private String username;
     @SerializedName("expenses")
     private List<Expense> expenses;
-
     @SerializedName("budget")
     private int budget;
-
     @SerializedName("savings")
     private int savings;
-
     @SerializedName("income")
     private int income;
+    @SerializedName("profilePicture")
+    private String profilePicture;
 
     public int getIncome() {
         return income;
@@ -66,6 +65,14 @@ public class Profile {
 
     public int getSavings() {
         return savings;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
     }
 
 }
