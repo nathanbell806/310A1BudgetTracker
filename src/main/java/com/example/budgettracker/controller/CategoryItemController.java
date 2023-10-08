@@ -16,15 +16,13 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class CategoryItemController implements Initializable {
+
     @FXML
     private Label budgetedValue;
-
     @FXML
     private Label categoryName;
-
     @FXML
     private Button deleteBtn;
-
     @FXML
     private Button editBtn;
 

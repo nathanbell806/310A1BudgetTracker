@@ -33,6 +33,9 @@ public class ChangeScene {
             case BUDGET_OVERVIEW:
                 setParent(FXMLLoader.load(getClass().getResource("/com/example/budgettracker/budget-overview.fxml")));
                 break;
+            case EDIT_PROFILE:
+                setParent(FXMLLoader.load(getClass().getResource("/com/example/budgettracker/edit-profile.fxml")));
+                break;
 
         }
 

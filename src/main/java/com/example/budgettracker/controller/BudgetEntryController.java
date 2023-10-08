@@ -10,11 +10,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 
 public class BudgetEntryController {
@@ -41,6 +43,8 @@ public class BudgetEntryController {
     private TextArea savingIncomeEntry;
     @FXML
     private TextArea incomeEntry;
+    @FXML
+    private ImageView profileIcon;
 
     private static final String MONTHLY = "Monthly";
     private static final String YEARLY = "Yearly";
@@ -63,6 +67,11 @@ public class BudgetEntryController {
         incomeCombo.getSelectionModel().selectFirst();
         savingPeriodCombo.getSelectionModel().selectFirst();
 
+        if (CurrentProfile.getInstance().getCurrentProfile().getProfilePicture() != null) {
+            Image image = new Image("file:" + CurrentProfile.getInstance().getCurrentProfile().getProfilePicture());
+            profileIcon.setImage(image);
+        }
+
         // Enable or Disable the expense navigation button if required entries are
         // filled and is valid
         addNumericListener(savingEntry);
@@ -76,7 +85,7 @@ public class BudgetEntryController {
     /**
      * This method navigates from the 'Amount to Budget' or 'Set Saving Goals' back
      * to the option selector view.
-     * 
+     *
      * @param event The on click event
      */
     @FXML
@@ -91,7 +100,7 @@ public class BudgetEntryController {
 
     /**
      * This method navigates to the categorise expenses scene.
-     * 
+     *
      * @param event The on click event
      */
     @FXML
@@ -104,7 +113,7 @@ public class BudgetEntryController {
 
     /**
      * This method navigates to the Profile Select Scene
-     * 
+     *
      * @param event The mouse on click event
      * @throws IOException
      */
@@ -166,7 +175,7 @@ public class BudgetEntryController {
 
     /**
      * This method shows the 'Set Saving Goals' view.
-     * 
+     *
      * @param event The on click event
      */
     @FXML
@@ -180,7 +189,7 @@ public class BudgetEntryController {
 
     /**
      * This method shows the 'Amount to Budget' view.
-     * 
+     *
      * @param event The on click event
      */
     @FXML
@@ -216,7 +225,7 @@ public class BudgetEntryController {
 
     /**
      * This method takes a String and checks if it is numeric
-     * 
+     *
      * @param text The String to check numeric for
      * @return boolean
      */
@@ -227,7 +236,7 @@ public class BudgetEntryController {
     /**
      * This method takes a TextArea and adds non-numeric characters preventer
      * listener
-     * 
+     *
      * @param textField The TextArea to add the numeric listener to
      */
     private void addNumericListener(TextArea textField) {
@@ -236,5 +245,16 @@ public class BudgetEntryController {
                 textField.setText(newValue.replaceAll("[^\\d]", ""));
             }
         });
+    }
+
+    /**
+     * This method takes the user to the edit profile scene
+     *
+     * @param event The mouse on click event
+     * @throws IOException If the scene cannot be changed
+     */
+    @FXML
+    public void onProfileIconClick(MouseEvent event) throws IOException {
+        changeScene.changeScene(event, SceneName.EDIT_PROFILE);
     }
 }

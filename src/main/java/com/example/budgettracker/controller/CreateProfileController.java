@@ -13,15 +13,16 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 
 public class CreateProfileController {
+
     @FXML
     TextField usernameTextField;
-
     @FXML
     Label accountLabel;
+
     ProfileRepository profileRepository;
     CurrentProfile currentProfile;
-
     ChangeScene changeScene;
+
     public void initialize() throws IOException {
         profileRepository = new ProfileRepository();
         currentProfile = CurrentProfile.getInstance();
@@ -29,14 +30,12 @@ public class CreateProfileController {
     }
 
     @FXML
-    public void onCreate(){
+    public void onCreate() {
 
         Boolean didWork = profileRepository.createProfile(usernameTextField.getText(), currentProfile.getProfileSlot());
-        if(Boolean.TRUE.equals(didWork)){
+        if (Boolean.TRUE.equals(didWork)) {
             currentProfile.setCurrentProfile(profileRepository.selectProfile(usernameTextField.getText()));
-            //take to next page
-        }
-        else{
+        } else {
             showAlert("sameUsername", "username already created");
         }
     }
@@ -50,9 +49,10 @@ public class CreateProfileController {
     }
 
     @FXML
-    private void onUserKey( ) {
+    private void onUserKey() {
         accountLabel.setText(usernameTextField.getText());
     }
+
     /**
      * Takes the user back to the select profile page
      */
@@ -60,6 +60,4 @@ public class CreateProfileController {
     private void goBack(MouseEvent event) throws IOException {
         changeScene.changeScene(event, SceneName.SELECT_PROFILE);
     }
-
-
 }

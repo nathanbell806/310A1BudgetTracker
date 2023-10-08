@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.BudgetEntryController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.budgettracker.controller.BudgetEntryController">
    <children>
       <ImageView fitHeight="923.0" fitWidth="1384.0" layoutX="-69.0" layoutY="-142.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 60%;">
          <image>
@@ -27,14 +27,28 @@
          <children>
             <VBox alignment="CENTER" layoutY="122.0" prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0" text="Budget Tracker" textAlignment="CENTER">
-                     <font>
-                        <Font name="Geeza Pro Regular" size="71.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets top="25.0" />
-                     </VBox.margin>
-                  </Text>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="profileViewThree" fitHeight="53.0" fitWidth="54.0" onMouseClicked="#onProfileSelect">
+                           <image>
+                              <Image url="@../../../Images/back.png" />
+                           </image>
+                        </ImageView>
+                        <Text strokeType="OUTSIDE" strokeWidth="0" text="Budget Tracker" textAlignment="CENTER">
+                           <font>
+                              <Font name="Geeza Pro Regular" size="71.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="300.0" right="300.0" />
+                           </HBox.margin>
+                        </Text>
+                        <ImageView fx:id="profileIcon" fitHeight="84.0" fitWidth="93.0" onMouseClicked="#onProfileIconClick">
+                           <image>
+                              <Image url="@../../../Images/user3.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
                   <Label prefHeight="83.0" prefWidth="921.0" text="Manage your personal finances effectively, enhance your financial awareness, promote healthy spending habits, and work towards your financial goals!" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="19.0" />
@@ -216,10 +230,5 @@
             </VBox>
          </children>
       </AnchorPane>
-      <ImageView fx:id="profileViewThree" fitHeight="53.0" fitWidth="54.0" layoutX="19.0" layoutY="19.0" onMouseClicked="#onProfileSelect">
-         <image>
-            <Image url="@../../../Images/back.png" />
-         </image>
-      </ImageView>
    </children>
 </Pane>

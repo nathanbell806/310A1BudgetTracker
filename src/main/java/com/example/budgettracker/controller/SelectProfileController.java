@@ -8,6 +8,7 @@ import com.example.budgettracker.profiles.Profile;
 import com.example.budgettracker.profiles.ProfileRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -28,14 +29,13 @@ public class SelectProfileController {
     ImageView plusLabelTwo;
     @FXML
     ImageView plusLabelThree;
-    
     @FXML
     ImageView profileViewOne;
     @FXML
     ImageView profileViewTwo;
     @FXML
     ImageView profileViewThree;
-    
+
     CurrentProfile currentProfile;
     ProfileRepository profileRepository;
 
@@ -50,63 +50,74 @@ public class SelectProfileController {
         profileRepository = new ProfileRepository();
         changeScene = new ChangeScene();
         List<Profile> profiles = profileRepository.getAllProfiles();
-        if(profiles.get(0).getUsername().equals("")){
+        if (profiles.get(0).getUsername().equals("")) {
             accountOneLabel.setText(CREATE_ACCOUNT);
             plusLabelOne.setVisible(true);
 
-        }else{
+        } else {
             accountOneLabel.setText(profiles.get(0).getUsername());
             plusLabelOne.setVisible(false);
             profileViewOne.setVisible(true);
         }
-        if(profiles.get(1).getUsername().equals("")){
+        if (profiles.get(1).getUsername().equals("")) {
             accountTwoLabel.setText(CREATE_ACCOUNT);
             plusLabelTwo.setVisible(true);
-        }else{
+        } else {
             accountTwoLabel.setText(profiles.get(1).getUsername());
             plusLabelTwo.setVisible(false);
             profileViewTwo.setVisible(true);
+            if (profiles.get(1).getProfilePicture() != null) {
+                Image image = new Image("file:" + profiles.get(1).getProfilePicture());
+                profileViewTwo.setImage(image);
+            }
         }
-        if(profiles.get(2).getUsername().equals("")){
+        if (profiles.get(2).getUsername().equals("")) {
             accountThreeLabel.setText(CREATE_ACCOUNT);
             plusLabelThree.setVisible(true);
-        }else{
+        } else {
             accountThreeLabel.setText(profiles.get(2).getUsername());
             plusLabelThree.setVisible(false);
             profileViewThree.setVisible(true);
+            if (profiles.get(2).getProfilePicture() != null) {
+                Image image = new Image("file:" + profiles.get(2).getProfilePicture());
+                profileViewThree.setImage(image);
+            }
         }
 
     }
+
     @FXML
     private void onProfileButtonOne(MouseEvent actionEvent) throws IOException {
         if (accountOneLabel.getText().equals(CREATE_ACCOUNT)) {
             currentProfile.setProfileSlot(1);
-            changeScene.changeScene(actionEvent, SceneName.CREATE_PROFILE );
+            changeScene.changeScene(actionEvent, SceneName.CREATE_PROFILE);
         } else {
             currentProfile.setCurrentProfile(profileRepository.selectProfile(accountOneLabel.getText()));
-            changeScene.changeScene(actionEvent,SceneName.BUDGET_ENTRY );
+            changeScene.changeScene(actionEvent, SceneName.BUDGET_ENTRY);
             accountOneLabel.setText("done");
         }
     }
+
     @FXML
     private void onProfileButtonTwo(MouseEvent actionEvent) throws IOException {
         if (accountTwoLabel.getText().equals(CREATE_ACCOUNT)) {
             currentProfile.setProfileSlot(2);
-            changeScene.changeScene(actionEvent,SceneName.CREATE_PROFILE );
+            changeScene.changeScene(actionEvent, SceneName.CREATE_PROFILE);
         } else {
             currentProfile.setCurrentProfile(profileRepository.selectProfile(accountTwoLabel.getText()));
-            changeScene.changeScene(actionEvent,SceneName.BUDGET_ENTRY );
+            changeScene.changeScene(actionEvent, SceneName.BUDGET_ENTRY);
             accountTwoLabel.setText("done");
         }
     }
+
     @FXML
     private void onProfileButtonThree(MouseEvent actionEvent) throws IOException {
         if (accountThreeLabel.getText().equals(CREATE_ACCOUNT)) {
             currentProfile.setProfileSlot(3);
-            changeScene.changeScene(actionEvent,SceneName.CREATE_PROFILE );
+            changeScene.changeScene(actionEvent, SceneName.CREATE_PROFILE);
         } else {
             currentProfile.setCurrentProfile(profileRepository.selectProfile(accountThreeLabel.getText()));
-            changeScene.changeScene(actionEvent,SceneName.BUDGET_ENTRY );
+            changeScene.changeScene(actionEvent, SceneName.BUDGET_ENTRY);
             accountThreeLabel.setText("done");
         }
     }
