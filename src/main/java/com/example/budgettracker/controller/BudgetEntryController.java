@@ -179,9 +179,9 @@ public class BudgetEntryController {
             }
 
             // budget = income - saving goal
-            CurrentProfile.getInstance().getCurrentProfile().setBudget((int) convertAmount(income-saving, fromCurrency, toCurrency));
-            CurrentProfile.getInstance().getCurrentProfile().setIncome((int) convertAmount(income, fromCurrency, toCurrency));
-            CurrentProfile.getInstance().getCurrentProfile().setSavings((int) convertAmount(saving, fromCurrency, toCurrency));
+            CurrentProfile.getInstance().getCurrentProfile().setBudget(income-saving);
+            CurrentProfile.getInstance().getCurrentProfile().setIncome(income);
+            CurrentProfile.getInstance().getCurrentProfile().setSavings(saving);
         } else {
             int income = Integer.parseInt(incomeEntry.getText());
 
