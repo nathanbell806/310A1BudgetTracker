@@ -34,13 +34,15 @@
   ],
   "budget": 1400,
   "savings": 100,
-  "income": 1500
+  "income": 1500,
+  "profilePicture": "C:\\Users\\ejian\\Downloads\\p12132704_e_h10_aa.jpg"
 },
 {
   "username": "Kevin",
   "expenses": [],
   "budget": 700,
   "savings": 1300,
-  "income": 2000
+  "income": 2000,
+  "profilePicture": "C:\\Users\\ejian\\Downloads\\Tony-Tony-Chopper.png"
 }
 ]
