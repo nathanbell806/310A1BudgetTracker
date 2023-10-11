@@ -22,9 +22,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class BudgetEntryController {
 
@@ -70,9 +69,34 @@ public class BudgetEntryController {
         List<String> currencies = CurrencyController.getAvailableCurrencies();
         currencyComboBox.setItems(FXCollections.observableArrayList(currencies));
         currencyComboBox.setValue("EUR");
+        Map<String, String> currencyInfoMap = Arrays.stream(Locale.getAvailableLocales())
+                .collect(HashMap<Locale, Currency>::new,
+                        (map, locale) -> map.put(locale, getLocaleCurrency(locale)), HashMap<Locale, Currency>::putAll)
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() != null)
+                .collect(Collectors.toMap(
+                        entry -> entry.getValue().getCurrencyCode(),
+                        entry -> formatCurrency(entry.getKey(), entry.getValue()),
+                        (existingValue, newValue) -> existingValue // Keep the old value in case of a collision
+                ));
+        savingIncomeEntry.setPromptText(currencyInfoMap.get("EUR"));
+        savingEntry.setPromptText(currencyInfoMap.get("EUR"));
+        incomeEntry.setPromptText(currencyInfoMap.get("EUR"));
+        currencyComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if(currencyInfoMap.containsKey(newValue)){
+                savingIncomeEntry.setPromptText(currencyInfoMap.get(newValue));
+                savingEntry.setPromptText(currencyInfoMap.get(newValue));
+                incomeEntry.setPromptText(currencyInfoMap.get(newValue));
+            }
+            else{
+                savingIncomeEntry.setPromptText(Currency.getInstance(newValue).getSymbol());
+                savingEntry.setPromptText(Currency.getInstance(newValue).getSymbol());
+                incomeEntry.setPromptText(Currency.getInstance(newValue).getSymbol());
+            }
+        });
         expenseButton.setDisable(true);
         onBack(null);
-
         savingIncomeCombo.setItems(periodOptions);
         incomeCombo.setItems(periodOptions);
         savingPeriodCombo.setItems(periodOptions);
@@ -93,6 +117,18 @@ public class BudgetEntryController {
         savingEntry.textProperty().addListener((observable, oldValue, newValue) -> updateExpenseButtonState());
         savingIncomeEntry.textProperty().addListener((observable, oldValue, newValue) -> updateExpenseButtonState());
         incomeEntry.textProperty().addListener((observable, oldValue, newValue) -> updateExpenseButtonState());
+    }
+
+    private static String formatCurrency(Locale locale, Currency currency){
+        return currency.getSymbol(locale);
+    }
+
+    private static Currency getLocaleCurrency(Locale locale) {
+        try {
+            return Currency.getInstance(locale);
+        } catch (IllegalArgumentException iae) {
+            return null;
+        }
     }
 
     private void loadConversionRatesFromFile() {

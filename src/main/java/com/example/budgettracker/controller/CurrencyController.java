@@ -7,14 +7,12 @@ import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class CurrencyController {
         private static final String API_KEY = "029bda5c26bfdab737358d97749e4d94";
         private static final String API_URL = "http://api.exchangeratesapi.io/v1/latest?access_key=" + API_KEY;
-        private static final String SAVE_PATH = "C:\\Users\\min\\IdeaProjects\\310A1BudgetTracker\\src\\main\\java\\data\\exchange_rates.json";
+        private static final String SAVE_PATH = "src/main/java/data/exchange_rates.json";
 
         public void fetchAndSaveExchangeRates() {
             try {
@@ -34,6 +32,7 @@ public class CurrencyController {
 
                 // Parse the response to a JSON object
                 JSONObject jsonResponse = new JSONObject(content.toString());
+//                System.out.println(jsonResponse.getJSONObject("rates").getString("USD"));
 
                 // Save the JSON object to the specified file location
                 try (FileWriter file = new FileWriter(SAVE_PATH)) {
