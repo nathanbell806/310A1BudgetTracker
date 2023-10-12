@@ -69,6 +69,15 @@ public class BudgetEntryController {
         List<String> currencies = CurrencyController.getAvailableCurrencies();
         currencyComboBox.setItems(FXCollections.observableArrayList(currencies));
         currencyComboBox.setValue("EUR");
+        /***************************************************************************************
+         *    Title: How to get all currency symbols in Java
+         *    Author: Damian Terlecki
+         *    Date: 28/12/2020, referenced: 11/10/2023
+         *    Code version: 1.0
+         *    Availability: https://blog.termian.dev/posts/java-local-currency-symbols/
+         * Helped with understanding how to get locale specific symbol. Adapted the code accordingly.
+         *
+         ***************************************************************************************/
         Map<String, String> currencyInfoMap = Arrays.stream(Locale.getAvailableLocales())
                 .collect(HashMap<Locale, Currency>::new,
                         (map, locale) -> map.put(locale, getLocaleCurrency(locale)), HashMap<Locale, Currency>::putAll)
@@ -77,8 +86,8 @@ public class BudgetEntryController {
                 .filter(entry -> entry.getValue() != null)
                 .collect(Collectors.toMap(
                         entry -> entry.getValue().getCurrencyCode(),
-                        entry -> formatCurrency(entry.getKey(), entry.getValue()),
-                        (existingValue, newValue) -> existingValue // Keep the old value in case of a collision
+                        entry -> getCurrencySymbol(entry.getKey(), entry.getValue()),
+                        (existingValue, newValue) -> existingValue
                 ));
         savingIncomeEntry.setPromptText(currencyInfoMap.get("EUR"));
         savingEntry.setPromptText(currencyInfoMap.get("EUR"));
@@ -119,10 +128,21 @@ public class BudgetEntryController {
         incomeEntry.textProperty().addListener((observable, oldValue, newValue) -> updateExpenseButtonState());
     }
 
-    private static String formatCurrency(Locale locale, Currency currency){
+    /***
+     * Uses the local object, returns the corresponding currency
+     * @param locale the geographical location
+     * @param currency based off the location, the correct currency symbol
+     * @return currency symbol
+     */
+    private static String getCurrencySymbol(Locale locale, Currency currency){
         return currency.getSymbol(locale);
     }
 
+    /***
+     * Returns the corresponding Currency object
+     * @param locale location of the currency code
+     * @return Currency object with the currency symbol
+     */
     private static Currency getLocaleCurrency(Locale locale) {
         try {
             return Currency.getInstance(locale);
@@ -132,8 +152,7 @@ public class BudgetEntryController {
     }
 
     private void loadConversionRatesFromFile() {
-        String filePath = "C:\\Users\\min\\IdeaProjects\\310A1BudgetTracker\\src\\main\\java\\data\\exchange_rates.json";
-
+        String filePath = "src/main/java/data/exchange_rates.json";
         try {
             String content = new String(Files.readAllBytes(Paths.get(filePath)));
             JSONObject jsonObject = new JSONObject(content);
