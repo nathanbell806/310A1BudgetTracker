@@ -106,6 +106,7 @@ public class EditProfileController implements Initializable {
     @FXML
     protected void onUserKey() {
         CurrentProfile.getInstance().getCurrentProfile().setUsername(editUserName.getText());
+        currentName.setText((editUserName.getText()));
         System.out.println("User name changed to " + CurrentProfile.getInstance().getCurrentProfile().getUsername());
     }
 
