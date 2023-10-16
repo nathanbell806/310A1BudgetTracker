@@ -28,11 +28,11 @@
             <Font name="Geeza Pro Regular" size="71.0" />
          </font>
       </Text>
-      <HBox alignment="CENTER" layoutX="187.0" layoutY="314.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="933.0" spacing="100.0" style="-fx-background-color: white; -fx-background-radius: 20px;" stylesheets="@../../../Css/categories_page.css">
+      <HBox alignment="CENTER" layoutX="187.0" layoutY="314.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="313.0" prefWidth="933.0" style="-fx-background-color: white; -fx-background-radius: 20px;" stylesheets="@../../../Css/categories_page.css">
          <children>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
+            <StackPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0">
                <children>
-                  <Label fx:id="accountOneLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="57.0" prefWidth="256.0" text="Add User" textAlignment="CENTER">
+                  <Label fx:id="accountOneLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="57.0" prefWidth="341.0" text="Add User" textAlignment="CENTER">
                      <font>
                         <Font name="Baghdad Regular" size="32.0" />
                      </font>
@@ -61,9 +61,9 @@
                   </ImageView>
                </children>
             </StackPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
+            <StackPane maxWidth="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0">
                <children>
-                  <Label fx:id="accountTwoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="57.0" prefWidth="141.0" text="Adwait" textAlignment="CENTER">
+                  <Label fx:id="accountTwoLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="57.0" prefWidth="327.0" text="Adwait" textAlignment="CENTER">
                      <font>
                         <Font name="Baghdad Regular" size="32.0" />
                      </font>
@@ -92,9 +92,9 @@
                   </ImageView>
                </children>
             </StackPane>
-            <StackPane prefHeight="150.0" prefWidth="200.0">
+            <StackPane maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0">
                <children>
-                  <Label fx:id="accountThreeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="57.0" prefWidth="141.0" text="Adwait" textAlignment="CENTER">
+                  <Label fx:id="accountThreeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="57.0" prefWidth="327.0" text="Adwait" textAlignment="CENTER">
                      <font>
                         <Font name="Baghdad Regular" size="32.0" />
                      </font>
@@ -124,9 +124,6 @@
                </children>
             </StackPane>
          </children>
-         <padding>
-            <Insets left="100.0" right="100.0" />
-         </padding>
       </HBox>
       <Text fill="#9307f2" layoutX="681.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0" text="The easy way.">
          <font>

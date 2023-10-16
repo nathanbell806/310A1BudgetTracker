@@ -10,9 +10,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -23,11 +25,6 @@
             <Image url="@../../../Images/background.jpg" />
          </image>
       </ImageView>
-      <Text fill="#9307f2" layoutX="204.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0" text="Profile page" textAlignment="CENTER">
-         <font>
-            <Font size="64.0" />
-         </font>
-      </Text>
       <AnchorPane layoutX="19.0" layoutY="19.0" onMouseClicked="#onBack">
          <children>
             <ImageView fx:id="profileViewThree" fitHeight="53.0" fitWidth="54.0">
@@ -37,16 +34,8 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <VBox alignment="CENTER" layoutX="195.0" layoutY="124.0" prefHeight="550.0" prefWidth="405.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
+      <VBox alignment="CENTER" layoutX="222.0" layoutY="150.0" prefHeight="550.0" prefWidth="405.0" spacing="10.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <children>
-            <Text fx:id="userNameLabel" strokeType="OUTSIDE" strokeWidth="0" text="Hello" textAlignment="CENTER">
-               <font>
-                  <Font name="Baghdad Regular" size="39.0" />
-               </font>
-               <VBox.margin>
-                  <Insets bottom="30.0" />
-               </VBox.margin>
-            </Text>
             <StackPane prefHeight="172.0" prefWidth="172.0" style="-fx-background-radius: 200;">
                <children>
                   <Label fx:id="accountLabel" translateY="-165.0">
@@ -67,17 +56,17 @@
                   </ImageView>
                   <ImageView fx:id="editPicture" fitHeight="45.0" fitWidth="45.0" onMouseClicked="#onEditPicture" visible="false">
                      <image>
-                        <Image url="@../../../Images/plus2.png" />
+                        <Image url="@../../../Images/pen.png" />
                      </image>
                      <StackPane.margin>
-                        <Insets bottom="160.0" left="110.0" />
+                        <Insets bottom="190.0" left="130.0" />
                      </StackPane.margin>
                   </ImageView>
                </children>
             </StackPane>
             <Label fx:id="currentName" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="279.0" text="UserName" textAlignment="CENTER">
                <font>
-                  <Font name="Baghdad Regular" size="27.0" />
+                  <Font name="Baghdad Regular" size="43.0" />
                </font>
                <padding>
                   <Insets top="-30.0" />
@@ -104,7 +93,7 @@
             </Button>
          </children>
       </VBox>
-      <LineChart fx:id="lineChart" layoutX="747.0" layoutY="115.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="350.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF; visibility: true;" title="Savings Forecast">
+      <LineChart fx:id="lineChart" layoutX="727.0" layoutY="155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="266.0" prefWidth="455.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF; visibility: true;" title="Savings Forecast">
          <xAxis>
             <NumberAxis label="Years" />
          </xAxis>
@@ -112,16 +101,19 @@
             <NumberAxis label="Savings" />
          </yAxis>
       </LineChart>
-      <PieChart fx:id="pieChart" layoutX="761.0" layoutY="458.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="350.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF;" title="Budget Breakdown" />
-      <Text fill="#9307f2" layoutX="746.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0" text="Budget" textAlignment="CENTER">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Text>
-      <Text fill="#9307f2" layoutX="774.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0" text="Savings" textAlignment="CENTER">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Text>
+      <PieChart fx:id="pieChart" layoutX="724.0" layoutY="437.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="461.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF;" title="Budget Breakdown" />
+      <HBox alignment="CENTER_LEFT" layoutX="91.0" layoutY="19.0" prefHeight="100.0" prefWidth="1184.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0" text="Dashboard" textAlignment="CENTER" wrappingWidth="363.1543426513672">
+               <font>
+                  <Font name="Geeza Pro Regular" size="54.0" />
+               </font>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Text>
+         </children>
+      </HBox>
+      <Line endX="1018.262939453125" endY="3.0517578125E-5" layoutX="195.0" layoutY="124.0" startX="-74.64935302734375" startY="3.0517578125E-5" />
    </children>
 </AnchorPane>
