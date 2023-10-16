@@ -45,7 +45,7 @@
          </yAxis>
          <!-- Add your line chart data series here -->
       </LineChart>
-      <HBox alignment="CENTER_LEFT" layoutX="106.0" layoutY="33.0" prefHeight="100.0" prefWidth="1184.0">
+      <HBox alignment="CENTER_LEFT" layoutX="81.0" layoutY="33.0" prefHeight="100.0" prefWidth="1184.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0" text="Expense Summary" textAlignment="CENTER" wrappingWidth="479.46370697021484">
                <font>
@@ -81,8 +81,8 @@
             </Button>
          </children>
       </HBox>
-      <Line endX="1018.262939453125" endY="3.0517578125E-5" layoutX="210.0" layoutY="138.0" startX="-74.64935302734375" startY="3.0517578125E-5" />
-      <Button layoutX="-5.0" layoutY="3.0" mnemonicParsing="false" onAction="#goBack" prefHeight="70.0" prefWidth="134.0" style="-fx-background-color: none;">
+      <Line endX="1018.262939453125" endY="3.0517578125E-5" layoutX="185.0" layoutY="138.0" startX="-74.64935302734375" startY="3.0517578125E-5" />
+      <Button layoutX="-18.0" layoutY="15.0" mnemonicParsing="false" onAction="#goBack" prefHeight="70.0" prefWidth="134.0" style="-fx-background-color: none;">
          <graphic>
             <ImageView fitHeight="53.0" fitWidth="54.0">
                <image>

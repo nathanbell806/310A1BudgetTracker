@@ -1,47 +1,39 @@
 [
 {
-  "username": "MinTest",
-  "expenses": [
-    {
-      "name": "Food",
-      "cost": 170.4100772976067
-    },
-    {
-      "name": "Clothes",
-      "cost": 340.8201545952134
-    }
-  ],
-  "budget": 2000,
-  "savings": 1000,
-  "income": 3000,
+  "username": "",
+  "expenses": [],
+  "budget": 0,
+  "savings": 0,
+  "income": 0,
   "currentCurrency": "EUR"
 },
 {
-  "username": "Adwait",
+  "username": "Dhruv",
   "expenses": [
     {
       "name": "food",
-      "cost": 150.0
-    },
-    {
-      "name": "transport",
       "cost": 200.0
     },
     {
-      "name": "bills",
-      "cost": 400.0
+      "name": "entertainment",
+      "cost": 300.0
+    },
+    {
+      "name": "fuel",
+      "cost": 100.0
     }
   ],
-  "budget": 3000,
-  "savings": 0,
-  "income": 3000,
-  "currentCurrency": "EUR"
+  "budget": 1800,
+  "savings": 1800,
+  "income": 1800,
+  "currentCurrency": "EUR",
+  "profilePicture": "/Users/adwaitmane/Desktop/Screenshot 2023-10-16 at 10.42.37 PM.png"
 },
 {
-  "username": "Kevin",
+  "username": "",
   "expenses": [],
-  "budget": 700,
-  "savings": 1300,
-  "income": 2000
+  "budget": 0,
+  "savings": 0,
+  "income": 0
 }
 ]
