@@ -63,7 +63,7 @@ public class EditProfileController implements Initializable {
     @FXML
     private void onBack(MouseEvent event) throws IOException {
         ChangeScene changeScene = new ChangeScene();
-        changeScene.changeScene(event, SceneName.SELECT_PROFILE);
+        changeScene.changeScene(event, SceneName.BUDGET_ENTRY);
     }
 
     @FXML

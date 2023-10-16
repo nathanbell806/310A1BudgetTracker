@@ -97,7 +97,7 @@ public class BudgetCategoriesController {
 
     @FXML
     public void onProfileSelect(MouseEvent event) throws IOException {
-        changeScene.changeScene(event, SceneName.SELECT_PROFILE);
+        changeScene.changeScene(event, SceneName.BUDGET_ENTRY);
     }
 
     @FXML

@@ -69,11 +69,15 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <ImageView fx:id="profileViewThree" fitHeight="53.0" fitWidth="54.0" layoutX="19.0" layoutY="19.0" onMouseClicked="#onProfileSelect">
-         <image>
-            <Image url="@../../../Images/back.png" />
-         </image>
-      </ImageView>
+      <AnchorPane layoutX="19.0" layoutY="19.0" onMouseClicked="#onProfileSelect">
+         <children>
+            <ImageView fx:id="profileViewThree" fitHeight="53.0" fitWidth="54.0">
+               <image>
+                  <Image url="@../../../Images/back.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
       <HBox alignment="CENTER" layoutX="106.0" layoutY="33.0" prefHeight="100.0" prefWidth="1184.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0" text="Categorise your expenses" textAlignment="CENTER" wrappingWidth="667.9743270874023">
