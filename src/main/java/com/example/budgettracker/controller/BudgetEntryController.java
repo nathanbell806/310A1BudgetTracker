@@ -228,7 +228,7 @@ public class BudgetEntryController {
         // Get the current currency from the user's profile and the selected currency from the ComboBox
         String currentCurrency = CurrentProfile.getInstance().getCurrentProfile().getCurrentCurrency();
         String selectedCurrency = currencyComboBox.getValue();
-
+        CurrentProfile.getInstance().getCurrentProfile().setCurrencySymbol(incomeEntry.getPromptText());
         // Save the new user data
         saveUserEntryData(currentCurrency, selectedCurrency);
 
