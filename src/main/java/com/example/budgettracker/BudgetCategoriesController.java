@@ -63,32 +63,32 @@ public class BudgetCategoriesController {
 
     @FXML
     public void initialize() throws IOException {
+        currentProfile = CurrentProfile.getInstance();
         profileRepository = new ProfileRepository();
         popupPane.setVisible(false);
         popupPane.setDisable(true);
-        leftBudgetLabel.setText(String.format("%.2f", leftBudgetValue) + "$");
+        leftBudgetLabel.setText(String.format("%.2f", leftBudgetValue) + currentProfile.getCurrentProfile().getCurrencySymbol());
         categoryList.getChildren().addListener((ListChangeListener<Node>) change -> {
             while (change.next()) {
                 if (change.wasRemoved()) {
                     HBox removedItem = (HBox) change.getRemoved().get(0);
                     for (Node node : removedItem.getChildren()) {
                         if (node instanceof Label && node.getId().equals("budgetedValue")) {
-                            updateLeftBudget(((Label) node).getText().replace("$", ""), true);
-                            updateTotalBudgeted(((Label) node).getText().replace("$", ""), false);
+                            updateLeftBudget(((Label) node).getText().replace(currentProfile.getCurrentProfile().getCurrencySymbol(), ""), true);
+                            updateTotalBudgeted(((Label) node).getText().replace(currentProfile.getCurrentProfile().getCurrencySymbol(), ""), false);
                         }
                     }
                 } else if (change.wasAdded()) {
                     HBox addedItem = (HBox) change.getAddedSubList().get(0);
                     for (Node node : addedItem.getChildren()) {
                         if (node instanceof Label && node.getId().equals("budgetedValue")) {
-                            updateLeftBudget(((Label) node).getText().replace("$", ""), false);
-                            updateTotalBudgeted(((Label) node).getText().replace("$", ""), true);
+                            updateLeftBudget(((Label) node).getText().replace(currentProfile.getCurrentProfile().getCurrencySymbol(), ""), false);
+                            updateTotalBudgeted(((Label) node).getText().replace(currentProfile.getCurrentProfile().getCurrencySymbol(), ""), true);
                         }
                     }
                 }
             }
         });
-        currentProfile = CurrentProfile.getInstance();
         for (Expense expense : currentProfile.getCurrentProfile().getExpenses()) {
             initialiseCategory(expense.getName(), "" + (int) expense.getCost());
         }
@@ -155,7 +155,7 @@ public class BudgetCategoriesController {
         } else {
             leftBudgetValue -= Float.parseFloat(budgetedValue);
         }
-        leftBudgetLabel.setText("$" + String.format("%.2f", leftBudgetValue));
+        leftBudgetLabel.setText(currentProfile.getCurrentProfile().getCurrencySymbol() + String.format("%.2f", leftBudgetValue));
         if (leftBudgetValue < 0) {
             showAlert("overBudget", "Expenses are greater than budget");
         }

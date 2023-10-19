@@ -33,10 +33,10 @@ public class CategoryItemController implements Initializable {
         categoryName.setText(categoryNameData);
         try {
             int intBudgetedValue = Integer.parseInt(budgetedValueData);
-            budgetedValue.setText("$" + intBudgetedValue);
+            budgetedValue.setText(currentProfile.getCurrentProfile().getCurrencySymbol() + String.valueOf(intBudgetedValue));
         } catch (NumberFormatException e) {
             double doubleBudgetedData = Double.parseDouble(budgetedValueData);
-            budgetedValue.setText("$" + (int) doubleBudgetedData);
+            budgetedValue.setText(currentProfile.getCurrentProfile().getCurrencySymbol() + (int) doubleBudgetedData);
 
         }
     }
@@ -49,7 +49,7 @@ public class CategoryItemController implements Initializable {
         int index = 0;
         ArrayList<Integer> indexes = new ArrayList<>();
         for (Expense expense : expenses) {
-            if (("$" + (int) expense.getCost()).equals(budgetedValue.getText())) {
+            if ((currentProfile.getCurrentProfile().getCurrencySymbol() + (int) expense.getCost()).equals(budgetedValue.getText())) {
                 //for some reason when trying to remove the expense here it led to a java reflection exception so instead we can just get the indexes of which expenses to remove and remove them after
                 indexes.add(index);
                 break;

@@ -42,7 +42,7 @@ public class ChartController {
                     // Set the tooltip text to display the value when the mouse enters the slice
                     double value = data.getPieValue();
                     int roundedValue = (int) Math.floor(value);
-                    String tooltipText = "$" + roundedValue;
+                    String tooltipText =  CurrentProfile.getInstance().getCurrentProfile().getCurrencySymbol() + roundedValue;
                     tooltip.setText(tooltipText);
                     tooltip.show(data.getNode(), e.getScreenX() + 10, e.getScreenY() + 10);
                 }
@@ -62,7 +62,7 @@ public class ChartController {
                     // Set the tooltip text to display the value when the mouse enters the data point
                     double value = data.getYValue().doubleValue(); // Ensure the value is a double
                     int roundedValue = (int) Math.floor(value);
-                    String tooltipText = "$" + roundedValue;
+                    String tooltipText =  CurrentProfile.getInstance().getCurrentProfile().getCurrencySymbol() + roundedValue;
                     tooltip.setText(tooltipText);
 
                     // Show the tooltip immediately

@@ -25,6 +25,8 @@ public class Profile {
     @SerializedName("profilePicture")
     private String profilePicture;
 
+    private String currencySymbol;
+
     public int getIncome() {
         return income;
     }
@@ -75,6 +77,14 @@ public class Profile {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public void setCurrencySymbol(String symbol){
+        this.currencySymbol = symbol;
+    }
+
+    public String getCurrencySymbol(){
+        return this.currencySymbol;
     }
 
     public String getCurrentCurrency() {return currentCurrency;}

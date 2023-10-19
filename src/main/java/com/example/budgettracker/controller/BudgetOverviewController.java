@@ -2,6 +2,7 @@ package com.example.budgettracker.controller;
 
 import com.example.budgettracker.ChangeScene;
 import com.example.budgettracker.SceneName;
+import com.example.budgettracker.profiles.CurrentProfile;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -46,7 +47,7 @@ public class BudgetOverviewController {
     public void initialize() {
         ChartController chartController = new ChartController(pieChart, lineChart, new Tooltip());
         chartController.initialize();
-        totalText.setText("Total budget is $" + chartController.getTotalBudget());
+        totalText.setText("Total budget is " + CurrentProfile.getInstance().getCurrentProfile().getCurrencySymbol() + chartController.getTotalBudget());
     }
 
     /**
