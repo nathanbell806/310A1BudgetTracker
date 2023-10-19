@@ -24,8 +24,8 @@ public class ChartController {
     }
 
     public void initialize() {
-        addEventHandlersCharts();
         dataGet();
+        addEventHandlersCharts();
     }
 
     private void addEventHandlersCharts() {
@@ -37,31 +37,41 @@ public class ChartController {
     private void addEventHandlersToPieChart(PieChart pieChart) {
         tooltip.setStyle("-fx-font-size: 20");
         for (PieChart.Data data : pieChart.getData()) {
-            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> showTooltip(data.getPieValue()));
-            data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, e -> hideTooltip());
+            data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                if (!tooltip.isShowing()) {
+                    // Set the tooltip text to display the value when the mouse enters the slice
+                    tooltip.setText("$" + String.valueOf(data.getPieValue()));
+                    tooltip.show(data.getNode(), e.getScreenX() + 10, e.getScreenY() + 10);
+                }
+            });
+            data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                // Hide the tooltip when the mouse exits the slice
+                tooltip.hide();
+            });
         }
     }
 
     private void addEventHandlersToLineChart(LineChart<Number, Number> lineChart) {
-        tooltip.setStyle("-fx-font-size: 20");
+        // Add event handlers to each data series in the LineChart
         for (XYChart.Series<Number, Number> series : lineChart.getData()) {
             for (XYChart.Data<Number, Number> data : series.getData()) {
-                data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, e -> showTooltip(data.getYValue()));
-                data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, e -> hideTooltip());
+                data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    // Set the tooltip text to display the value when the mouse enters the data point
+                    String tooltipText = "$" + data.getYValue();
+                    tooltip.setText(tooltipText);
+
+                    // Show the tooltip immediately
+                    tooltip.show(data.getNode(), e.getScreenX() + 10, e.getScreenY() + 10);
+                });
+
+                data.getNode().addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    // Hide the tooltip when the mouse exits the data point
+                    tooltip.hide();
+                });
             }
         }
     }
 
-    private void showTooltip(Number value) {
-        if (!tooltip.isShowing()) {
-            tooltip.setText("$" + value);
-            tooltip.show(tooltip.getOwnerNode(), tooltip.getAnchorX() + 10, tooltip.getAnchorY() + 10);
-        }
-    }
-
-    private void hideTooltip() {
-        tooltip.hide();
-    }
 
     private void dataGet() {
         Profile profile = CurrentProfile.getInstance().getCurrentProfile();
@@ -84,8 +94,7 @@ public class ChartController {
         totalBudgetLeft = totalBudgetLeft - totalExpense;
 
         if (totalBudgetLeft > 0) {
-            String save = (profile.getSavings() > 0) ? "Extra Savings" : "Savings";
-            budgetData.add(new PieChart.Data(save, totalBudgetLeft));
+            budgetData.add(new PieChart.Data("Savings", totalBudgetLeft));
         }
 
         return budgetData;
