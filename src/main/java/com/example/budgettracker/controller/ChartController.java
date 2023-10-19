@@ -40,7 +40,10 @@ public class ChartController {
             data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
                 if (!tooltip.isShowing()) {
                     // Set the tooltip text to display the value when the mouse enters the slice
-                    tooltip.setText("$" + String.valueOf(data.getPieValue()));
+                    double value = data.getPieValue();
+                    int roundedValue = (int) Math.floor(value);
+                    String tooltipText = "$" + roundedValue;
+                    tooltip.setText(tooltipText);
                     tooltip.show(data.getNode(), e.getScreenX() + 10, e.getScreenY() + 10);
                 }
             });
@@ -57,7 +60,9 @@ public class ChartController {
             for (XYChart.Data<Number, Number> data : series.getData()) {
                 data.getNode().addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
                     // Set the tooltip text to display the value when the mouse enters the data point
-                    String tooltipText = "$" + data.getYValue();
+                    double value = data.getYValue().doubleValue(); // Ensure the value is a double
+                    int roundedValue = (int) Math.floor(value);
+                    String tooltipText = "$" + roundedValue;
                     tooltip.setText(tooltipText);
 
                     // Show the tooltip immediately
