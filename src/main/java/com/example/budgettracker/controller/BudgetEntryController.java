@@ -5,15 +5,21 @@ import com.example.budgettracker.SceneName;
 import com.example.budgettracker.profiles.CurrentProfile;
 import com.example.budgettracker.profiles.Expense;
 import com.example.budgettracker.profiles.ProfileRepository;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.skin.ComboBoxListViewSkin;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -67,8 +73,30 @@ public class BudgetEntryController {
     public void initialize() {
         changeScene = new ChangeScene();
         List<String> currencies = CurrencyController.getAvailableCurrencies();
+        Collections.sort(currencies);
         currencyComboBox.setItems(FXCollections.observableArrayList(currencies));
         currencyComboBox.setValue("EUR");
+        currencyComboBox.showingProperty().addListener((observable, wasShowing, isNowShowing) -> {
+            Platform.runLater(() -> scrollComboboxListToIndex(currencyComboBox, currencyComboBox.getSelectionModel().getSelectedIndex()));
+        });
+
+        currencyComboBox.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                String s = jumpTo(event.getText(), currencyComboBox.getValue(), currencyComboBox.getItems());
+                if (s != null) {
+                    currencyComboBox.setValue(s);
+                }
+            }
+        });
+
+        currencyComboBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                scrollComboboxListToIndex(currencyComboBox, newValue.intValue());
+            }
+        });
+
+
         /***************************************************************************************
          *    Title: How to get all currency symbols in Java
          *    Author: Damian Terlecki
@@ -93,12 +121,11 @@ public class BudgetEntryController {
         savingEntry.setPromptText(currencyInfoMap.get("EUR"));
         incomeEntry.setPromptText(currencyInfoMap.get("EUR"));
         currencyComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
-            if(currencyInfoMap.containsKey(newValue)){
+            if (currencyInfoMap.containsKey(newValue)) {
                 savingIncomeEntry.setPromptText(currencyInfoMap.get(newValue));
                 savingEntry.setPromptText(currencyInfoMap.get(newValue));
                 incomeEntry.setPromptText(currencyInfoMap.get(newValue));
-            }
-            else{
+            } else {
                 savingIncomeEntry.setPromptText(Currency.getInstance(newValue).getSymbol());
                 savingEntry.setPromptText(Currency.getInstance(newValue).getSymbol());
                 incomeEntry.setPromptText(Currency.getInstance(newValue).getSymbol());
@@ -134,7 +161,7 @@ public class BudgetEntryController {
      * @param currency based off the location, the correct currency symbol
      * @return currency symbol
      */
-    private static String getCurrencySymbol(Locale locale, Currency currency){
+    private static String getCurrencySymbol(Locale locale, Currency currency) {
         return currency.getSymbol(locale);
     }
 
@@ -254,7 +281,7 @@ public class BudgetEntryController {
             }
 
             // budget = income - saving goal
-            CurrentProfile.getInstance().getCurrentProfile().setBudget(income-saving);
+            CurrentProfile.getInstance().getCurrentProfile().setBudget(income - saving);
             CurrentProfile.getInstance().getCurrentProfile().setIncome(income);
             CurrentProfile.getInstance().getCurrentProfile().setSavings(saving);
         } else {
@@ -366,4 +393,34 @@ public class BudgetEntryController {
     public void onProfileIconClick(MouseEvent event) throws IOException {
         changeScene.changeScene(event, SceneName.EDIT_PROFILE);
     }
+
+    private static String jumpTo(String keyPressed, String currentlySelected, List<String> items) {
+        String key = keyPressed.toUpperCase();
+        if (key.matches("^[A-Z]$")) {
+            // Only act on letters so that navigating with cursor keys does not
+            // try to jump somewhere.
+            boolean letterFound = false;
+            boolean foundCurrent = currentlySelected == null;
+            for (String s : items) {
+                if (s.toUpperCase().startsWith(key)) {
+                    letterFound = true;
+                    if (foundCurrent) {
+                        return s;
+                    }
+                    foundCurrent = s.equals(currentlySelected);
+                }
+            }
+            if (letterFound) {
+                return jumpTo(keyPressed, null, items);
+            }
+        }
+        return null;
+    }
+
+    private void scrollComboboxListToIndex(ComboBox<?> comboBox, int index) {
+        ComboBoxListViewSkin<?> skin = (ComboBoxListViewSkin<?>) comboBox.getSkin();
+        ListView<?> list = (ListView<?>) skin.getPopupContent();
+        list.scrollTo(index);
+    }
 }
+
