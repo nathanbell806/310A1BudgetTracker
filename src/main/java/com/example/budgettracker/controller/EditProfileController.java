@@ -39,7 +39,12 @@ public class EditProfileController implements Initializable {
     @FXML
     private LineChart<Number, Number> lineChart;
 
+    @FXML
+    private Label budgetLabel;
+
     boolean edit = false;
+
+
     ProfileRepository profileRepository;
     StringBuilder oldName;
 
@@ -58,6 +63,7 @@ public class EditProfileController implements Initializable {
         chartController.initialize();
         oldName = new StringBuilder(CurrentProfile.getInstance().getCurrentProfile().getUsername());
         currentName.setText(CurrentProfile.getInstance().getCurrentProfile().getUsername());
+        budgetLabel.setText("Allocated Budget: " + CurrentProfile.getInstance().getCurrentProfile().getCurrencySymbol() + chartController.getTotalBudget());
     }
 
     @FXML

@@ -110,6 +110,8 @@ public class BudgetCategoriesController {
     public void onCancelAddCategory() {
         popupPane.setVisible(false);
         popupPane.setDisable(true);
+        categoryNameField.clear();
+        budgetValueField.clear();
     }
 
     @FXML
@@ -123,6 +125,8 @@ public class BudgetCategoriesController {
             profileRepository.saveProfile(currentProfile.getCurrentProfile());
             totalExpense += expense.getCost();
             initialiseCategory(catName, budgetedValue);
+            categoryNameField.clear();
+            budgetValueField.clear();
 
             popupPane.setVisible(false);
             popupPane.setDisable(true);

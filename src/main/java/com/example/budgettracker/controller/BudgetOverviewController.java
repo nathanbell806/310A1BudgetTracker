@@ -47,7 +47,7 @@ public class BudgetOverviewController {
     public void initialize() {
         ChartController chartController = new ChartController(pieChart, lineChart, new Tooltip());
         chartController.initialize();
-        totalText.setText("Total budget is " + CurrentProfile.getInstance().getCurrentProfile().getCurrencySymbol() + chartController.getTotalBudget());
+        totalText.setText("Total budget: " + CurrentProfile.getInstance().getCurrentProfile().getCurrencySymbol() + chartController.getTotalBudget());
     }
 
     /**
