@@ -102,7 +102,7 @@
          </yAxis>
       </LineChart>
       <PieChart fx:id="pieChart" layoutX="724.0" layoutY="437.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="461.0" style="-fx-background-radius: 20; -fx-background-color: #FFFFFF;" title="Budget Breakdown" />
-      <HBox alignment="CENTER_LEFT" layoutX="91.0" layoutY="19.0" prefHeight="100.0" prefWidth="1184.0">
+      <HBox alignment="CENTER_LEFT" layoutX="91.0" layoutY="24.0" prefHeight="100.0" prefWidth="1184.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0" text="Dashboard" textAlignment="CENTER" wrappingWidth="363.1543426513672">
                <font>
@@ -112,6 +112,11 @@
                   <Insets />
                </HBox.margin>
             </Text>
+            <Label fx:id="budgetLabel" prefHeight="29.0" prefWidth="292.0" text="Allocated Budget: $1000" translateX="440.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
          </children>
       </HBox>
       <Line endX="1018.262939453125" endY="3.0517578125E-5" layoutX="195.0" layoutY="124.0" startX="-74.64935302734375" startY="3.0517578125E-5" />
