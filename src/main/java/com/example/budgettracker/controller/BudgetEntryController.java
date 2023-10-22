@@ -75,28 +75,6 @@ public class BudgetEntryController {
         List<String> currencies = CurrencyController.getAvailableCurrencies();
         Collections.sort(currencies);
         currencyComboBox.setItems(FXCollections.observableArrayList(currencies));
-        currencyComboBox.setValue("EUR");
-        currencyComboBox.showingProperty().addListener((observable, wasShowing, isNowShowing) -> {
-            Platform.runLater(() -> scrollComboboxListToIndex(currencyComboBox, currencyComboBox.getSelectionModel().getSelectedIndex()));
-        });
-
-        currencyComboBox.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                String s = jumpTo(event.getText(), currencyComboBox.getValue(), currencyComboBox.getItems());
-                if (s != null) {
-                    currencyComboBox.setValue(s);
-                }
-            }
-        });
-
-        currencyComboBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                scrollComboboxListToIndex(currencyComboBox, newValue.intValue());
-            }
-        });
-
-
         /***************************************************************************************
          *    Title: How to get all currency symbols in Java
          *    Author: Damian Terlecki
@@ -117,9 +95,42 @@ public class BudgetEntryController {
                         entry -> getCurrencySymbol(entry.getKey(), entry.getValue()),
                         (existingValue, newValue) -> existingValue
                 ));
-        savingIncomeEntry.setPromptText(currencyInfoMap.get("EUR"));
-        savingEntry.setPromptText(currencyInfoMap.get("EUR"));
-        incomeEntry.setPromptText(currencyInfoMap.get("EUR"));
+        if(CurrentProfile.getInstance().getCurrentProfile().getCurrentCurrency() == null){
+            currencyComboBox.setValue("EUR");
+        }
+        else{
+            currencyComboBox.setValue(CurrentProfile.getInstance().getCurrentProfile().getCurrentCurrency());
+        }
+        currencyComboBox.showingProperty().addListener((observable, wasShowing, isNowShowing) -> {
+            Platform.runLater(() -> scrollComboboxListToIndex(currencyComboBox, currencyComboBox.getSelectionModel().getSelectedIndex()));
+        });
+
+        currencyComboBox.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                String s = jumpTo(event.getText(), currencyComboBox.getValue(), currencyComboBox.getItems());
+                if (s != null) {
+                    currencyComboBox.setValue(s);
+                }
+            }
+        });
+
+        currencyComboBox.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                scrollComboboxListToIndex(currencyComboBox, newValue.intValue());
+            }
+        });
+
+        if(CurrentProfile.getInstance().getCurrentProfile().getCurrentCurrency() == null){
+            savingIncomeEntry.setPromptText(currencyInfoMap.get("EUR"));
+            savingEntry.setPromptText(currencyInfoMap.get("EUR"));
+            incomeEntry.setPromptText(currencyInfoMap.get("EUR"));
+        }
+        else{
+            savingIncomeEntry.setPromptText(currencyInfoMap.get(CurrentProfile.getInstance().getCurrentProfile().getCurrentCurrency()));
+            savingEntry.setPromptText(currencyInfoMap.get(CurrentProfile.getInstance().getCurrentProfile().getCurrentCurrency()));
+            incomeEntry.setPromptText(currencyInfoMap.get(CurrentProfile.getInstance().getCurrentProfile().getCurrentCurrency()));
+        }
         currencyComboBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (currencyInfoMap.containsKey(newValue)) {
                 savingIncomeEntry.setPromptText(currencyInfoMap.get(newValue));
